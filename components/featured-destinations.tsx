@@ -27,24 +27,24 @@ const destinations = [
   {
     name: "Teluk Hijau",
     country: "Banyuwangi, Indonesia",
-    image: "/teluk-hijau.jpg",
+    image: "/Teluk hijau.jpg",
     description: "Teluk Hijau (or Green Bay) is a hidden coastal tourist destination located within the Meru Betiri National Park area, in Sarongan Village, Pesanggaran District, Banyuwangi Regency, East Java.",
     price: "From $3,499",
   },
-  {
-    name: "Iceland",
-    country: "Nordic",
-    image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg",
-    description: "Northern lights and dramatic volcanic landscapes",
-    price: "From $2,999",
-  },
-  {
-    name: "Dubai",
-    country: "UAE",
-    image: "/dubai-modern-skyline-luxury-desert.jpg",
-    description: "Modern luxury meets Arabian desert adventures",
-    price: "From $2,299",
-  },
+  // {
+  //   name: "Iceland",
+  //   country: "Nordic",
+  //   image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg",
+  //   description: "Northern lights and dramatic volcanic landscapes",
+  //   price: "From $2,999",
+  // },
+  // {
+  //   name: "Dubai",
+  //   country: "UAE",
+  //   image: "/dubai-modern-skyline-luxury-desert.jpg",
+  //   description: "Modern luxury meets Arabian desert adventures",
+  //   price: "From $2,299",
+  // },
 ]
 
 export function FeaturedDestinations() {
