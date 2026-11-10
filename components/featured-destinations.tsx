@@ -4,9 +4,9 @@ import { MapPin, ArrowRight } from "lucide-react"
 
 const destinations = [
   {
-    name: "Santorini",
-    country: "Greece",
-    image: "/santorini-sunset.png",
+    name: "Ijen Crater",
+    country: "Banyuwangi, Indonesia",
+    image: "/ijen.jpg",
     description: "Iconic white-washed buildings and stunning sunsets",
     price: "From $2,499",
   },
