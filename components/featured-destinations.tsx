@@ -11,9 +11,9 @@ const destinations = [
     price: "From $2,499",
   },
   {
-    name: "Bali",
-    country: "Indonesia",
-    image: "/bali-indonesia-rice-terraces-tropical-paradise.jpg",
+    name: "Djawatan",
+    country: "Benculuk,Banyuwangi, Indonesia",
+    image: "/djawatan.jpg",
     description: "Tropical paradise with ancient temples and beaches",
     price: "From $1,899",
   },
