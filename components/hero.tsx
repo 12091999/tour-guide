@@ -43,7 +43,7 @@ export function Hero() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-8 md:gap-16 max-w-3xl mx-auto mt-24 pt-16 border-t border-border/50">
           <div className="space-y-2">
-            <div className="text-4xl md:text-5xl font-light">150+</div>
+            <div className="text-4xl md:text-5xl font-light">15+</div>
             <div className="text-sm text-muted-foreground">Destinations</div>
           </div>
           <div className="space-y-2">
@@ -51,7 +51,7 @@ export function Hero() {
             <div className="text-sm text-muted-foreground">Happy Travelers</div>
           </div>
           <div className="space-y-2">
-            <div className="text-4xl md:text-5xl font-light">4.9</div>
+            <div className="text-4xl md:text-5xl font-light">5.5</div>
             <div className="text-sm text-muted-foreground">Average Rating</div>
           </div>
         </div>

@@ -7,9 +7,9 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-semibold">Wanderlust</h3>
+            <h3 className="text-2xl font-semibold">Tour Guide</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Creating unforgettable travel experiences around the world since 2010
+              Creating unforgettable travel experiences around the world since 2026
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -33,28 +33,28 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Europe
+                  Ijen
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Asia
+                  Djawatan
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Africa
+                  Teluk Hijau
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Americas
+                  Bangsring
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                {/* <a href="#" className="hover:text-foreground transition-colors">
                   Oceania
-                </a>
+                </a> */}
               </li>
             </ul>
           </div>
@@ -126,7 +126,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2025 Wanderlust Travel Agency. All rights reserved.</p>
+          <p>© 2026 Tour Guide Travel Agency. All rights reserved.</p>
         </div>
       </div>
     </footer>
