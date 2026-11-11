@@ -1,6 +1,28 @@
 import Link from "next/link"
-import { LanguageSwitcher } from "./language-switcher"
 import { Mountain, Zap } from "lucide-react"
+
+function LanguageSwitcher({ currentLang }: { currentLang: string }) {
+  const languages = ["en", "ka", "ru"]
+
+  return (
+    <select
+      aria-label="Select language"
+      value={currentLang}
+      onChange={(event) => {
+        const segments = window.location.pathname.split("/")
+        segments[1] = event.target.value
+        window.location.href = segments.join("/")
+      }}
+      className="rounded-md border bg-white px-3 py-2 text-sm font-medium"
+    >
+      {languages.map((language) => (
+        <option key={language} value={language}>
+          {language.toUpperCase()}
+        </option>
+      ))}
+    </select>
+  )
+}
 
 interface HeaderProps {
   dict: any
