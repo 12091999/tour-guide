@@ -19,6 +19,7 @@ const destinations = [
     price: "From $2,499",
   },
   {
+    id: 2,
     name: "Djawatan",
     slug: "djawatan",
     country: "Benculuk, Banyuwangi, Indonesia",
@@ -27,6 +28,7 @@ const destinations = [
     price: "From $1,899",
   },
   {
+    id: 3,
     name: "Bangsring Beach",
     slug: "bangsring",
     country: "Banyuwangi, Indonesia",
@@ -35,6 +37,7 @@ const destinations = [
     price: "From $1,599",
   },
   {
+    id: 4,
     name: "Teluk Hijau",
     slug: "teluk-hijau",
     country: "Banyuwangi, Indonesia",
@@ -104,7 +107,7 @@ export function FeaturedDestinations({ lang }: FeaturedDestinationsProps) {
                     {destination.price}
                   </span>
 
-                  <Link href={`/${lang}/explore/${destination.slug} {tour.id}`}>
+                  <Link href={`/${lang}/explore/${destination.slug}?id=${destination.id}`}>
                     <Button
                       variant="ghost"
                       size="sm"
