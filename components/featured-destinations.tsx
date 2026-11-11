@@ -48,7 +48,9 @@ const destinations = [
   },
 ]
 
-export function FeaturedDestinations({ lang }: FeaturedDestinationsProps) {
+export function FeaturedDestinations({
+  lang,
+}: FeaturedDestinationsProps) {
   return (
     <section id="destinations" className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -68,7 +70,7 @@ export function FeaturedDestinations({ lang }: FeaturedDestinationsProps) {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {destinations.map((destination) => (
             <Card
-              key={destination.slug}
+              key={destination.id}
               className="group overflow-hidden border-0 bg-card hover:shadow-2xl transition-all duration-500 cursor-pointer"
             >
               {/* Image */}
@@ -107,7 +109,8 @@ export function FeaturedDestinations({ lang }: FeaturedDestinationsProps) {
                     {destination.price}
                   </span>
 
-                  <Link href={`/explore/${destination.slug}?id=${destination.id}`}>
+                  {/* Detail Page Link */}
+                  <Link href={`/${lang}/explore/${destination.id}`}>
                     <Button
                       variant="ghost"
                       size="sm"
