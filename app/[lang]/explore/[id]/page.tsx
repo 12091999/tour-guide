@@ -121,7 +121,7 @@ export default async function TourDetailPage({
           </Button>
         </main>
 
-        <Footer dict={dict} lang={currentLang} />
+        <Footer />
       </div>
     )
   }
@@ -386,7 +386,7 @@ export default async function TourDetailPage({
         </div>
       </div>
 
-      <Footer dict={dict} lang={currentLang} />
+      <Footer />
     </div>
   )
 }
