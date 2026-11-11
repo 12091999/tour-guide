@@ -103,7 +103,7 @@ export function FeaturedDestinations({ lang }: FeaturedDestinationsProps) {
                     {destination.price}
                   </span>
 
-                  <Link href={`/${lang}/explore/${destination.slug}`}>
+                  <Link href={`/${lang}/explore/${destination.slug} {tour.id}`}>
                     <Button
                       variant="ghost"
                       size="sm"
