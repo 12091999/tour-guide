@@ -94,10 +94,16 @@ export function FeaturedDestinations() {
 
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-sm font-semibold text-primary">{destination.price}</span>
-                  <Button variant="ghost" size="sm" className="group/btn text-foreground hover:text-primary">
-                    Explore
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                    <Link href={`/${lang}/explore/ijen`}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="group/btn text-foreground hover:text-primary"
+                    >
+                      Explore
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>
