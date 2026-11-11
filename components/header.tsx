@@ -1,28 +1,7 @@
+
 import Link from "next/link"
 import { Mountain, Zap } from "lucide-react"
-
-function LanguageSwitcher({ currentLang }: { currentLang: string }) {
-  const languages = ["en", "ka", "ru"]
-
-  return (
-    <select
-      aria-label="Select language"
-      value={currentLang}
-      onChange={(event) => {
-        const segments = window.location.pathname.split("/")
-        segments[1] = event.target.value
-        window.location.href = segments.join("/")
-      }}
-      className="rounded-md border bg-white px-3 py-2 text-sm font-medium"
-    >
-      {languages.map((language) => (
-        <option key={language} value={language}>
-          {language.toUpperCase()}
-        </option>
-      ))}
-    </select>
-  )
-}
+import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
   dict: any
@@ -34,6 +13,8 @@ export function Header({ dict, lang }: HeaderProps) {
     <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
+
+          {/* Logo */}
           <Link
             href={`/${lang}`}
             className="flex items-center gap-2 text-2xl font-bold text-orange-600 hover:text-orange-700 transition-colors"
@@ -42,25 +23,44 @@ export function Header({ dict, lang }: HeaderProps) {
               <Mountain className="h-7 w-7" />
               <Zap className="h-5 w-5 text-red-500" />
             </div>
+
             Georgia Extreme Tours
           </Link>
 
+          {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href={`/${lang}`} className="hover:text-orange-600 transition-colors font-medium">
+            <Link
+              href={`/${lang}`}
+              className="hover:text-orange-600 transition-colors font-medium"
+            >
               {dict.nav.home}
             </Link>
-            <Link href={`/${lang}/tours`} className="hover:text-orange-600 transition-colors font-medium">
+
+            <Link
+              href={`/${lang}/tours`}
+              className="hover:text-orange-600 transition-colors font-medium"
+            >
               {dict.nav.tours}
             </Link>
-            <Link href={`/${lang}/about`} className="hover:text-orange-600 transition-colors font-medium">
+
+            <Link
+              href={`/${lang}/about`}
+              className="hover:text-orange-600 transition-colors font-medium"
+            >
               {dict.nav.about}
             </Link>
-            <Link href={`/${lang}/contact`} className="hover:text-orange-600 transition-colors font-medium">
+
+            <Link
+              href={`/${lang}/contact`}
+              className="hover:text-orange-600 transition-colors font-medium"
+            >
               {dict.nav.contact}
             </Link>
           </nav>
 
+          {/* Language Switcher */}
           <LanguageSwitcher currentLang={lang} />
+
         </div>
       </div>
     </header>
