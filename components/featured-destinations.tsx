@@ -10,6 +10,7 @@ interface FeaturedDestinationsProps {
 
 const destinations = [
   {
+    id: 1,
     name: "Ijen Crater",
     slug: "ijen",
     country: "Banyuwangi, Indonesia",
