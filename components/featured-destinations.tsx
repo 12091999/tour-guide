@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 const destinations = [
   {
