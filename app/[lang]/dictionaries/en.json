@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Extreme Tours",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Extreme Adventures in Georgia",
+    "subtitle": "Explore Georgia's wild nature with jeep tours, extreme trekking, and adrenaline-pumping adventures",
+    "cta": "Discover Adventures"
+  },
+  "tours": {
+    "title": "Extreme Tours",
+    "subtitle": "Choose your adrenaline dose from our extreme adventure tours",
+    "viewDetails": "View Details",
+    "duration": "Duration",
+    "price": "Price",
+    "from": "from",
+    "allTours": "All Extreme Tours",
+    "filterBy": "Filter by",
+    "all": "All",
+    "jeep": "Jeep Tours",
+    "hiking": "Extreme Trekking",
+    "climbing": "Rock Climbing",
+    "rafting": "White Water Rafting",
+    "winter": "Winter Sports",
+    "bookNow": "Book Now",
+    "difficulty": "Difficulty",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert"
+  },
+  "testimonials": {
+    "title": "Adventure Seekers Reviews",
+    "subtitle": "What our adrenaline-loving travelers say"
+  },
+  "staff": {
+    "title": "Our Expert Team",
+    "subtitle": "Meet our experienced extreme tour instructors"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Georgia Extreme Tours",
+    "description": "We are Georgia's leading extreme tour company, offering unique adrenaline experiences since 2018. We specialize in jeep tours, extreme trekking, and adventures in Georgia's wildest and most remote locations.",
+    "mission": "Our Mission",
+    "missionText": "To create safe but extreme adventures and show Georgia's wild side",
+    "vision": "Our Vision",
+    "visionText": "To be Georgia's #1 extreme adventure tour company",
+    "values": "Our Values",
+    "valuesText": "Safety, adrenaline, professionalism, and respect for nature"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "workingHours": "Working Hours",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "An error occurred. Please try again."
+    },
+    "info": {
+      "getInTouch": "Get In Touch",
+      "description": "Ready for extreme adventure? Contact us and plan your adrenaline dose.",
+      "officeHours": "Office Hours",
+      "mondayFriday": "Monday - Friday: 08:00 - 20:00",
+      "saturday": "Saturday: 09:00 - 18:00",
+      "sunday": "Sunday: 10:00 - 16:00"
+    }
+  },
+  "footer": {
+    "description": "Georgia Extreme Tours - Your source of adrenaline in Georgia's wild nature",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved"
+  }
+}
