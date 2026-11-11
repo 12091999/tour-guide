@@ -22,6 +22,7 @@ const tourData = {
       ru: "Откройте историю и культуру Старого города Тбилиси в этом незабываемом туре. Посетите крепость Нарикала, Абанотубани, улицу Шардени и другие исторические места.",
     },
     duration: "4 hours",
+    difficulty: "easy",
     price: 50,
     maxPeople: 15,
     rating: 4.8,
@@ -64,7 +65,8 @@ export default async function TourDetailPage({
 }) {
   const { lang, id } = await params
   const dict = await getDictionary(lang as "ka" | "en" | "ru")
-  const tour = tourData[id as keyof typeof tourData] || tourData[1]
+  const tourId = Number(id)
+  const tour = tourData[tourId as keyof typeof tourData] ?? tourData[1]
 
   return (
     <div className="min-h-screen bg-background">
