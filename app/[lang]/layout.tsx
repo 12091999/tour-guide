@@ -1,12 +1,9 @@
 
 import type React from "react"
+import { supportedLanguages } from "./dictionaries"
 
 export async function generateStaticParams() {
-  return [
-    { lang: "ka" },
-    { lang: "en" },
-    { lang: "ru" },
-  ]
+  return supportedLanguages.map((lang) => ({ lang }))
 }
 
 export default function LangLayout({

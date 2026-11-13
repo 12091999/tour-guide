@@ -1,10 +1,8 @@
 
-import { getDictionary } from "./dictionaries"
+import { getDictionary, isSupportedLanguage } from "./dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeaturedDestinations } from "@/components/featured-destinations"
-
-type SupportedLanguage = "ka" | "en" | "ru"
 
 export default async function HomePage({
   params,
@@ -13,10 +11,7 @@ export default async function HomePage({
 }) {
   const { lang } = await params
 
-  const currentLang: SupportedLanguage =
-    ["ka", "en", "ru"].includes(lang)
-      ? (lang as SupportedLanguage)
-      : "en"
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
 
   const dict = await getDictionary(currentLang)
 

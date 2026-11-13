@@ -50,7 +50,7 @@ const destinations = [
 export function FeaturedDestinations({
   lang,
 }: FeaturedDestinationsProps) {
-  const currentLang = ["ka", "en", "ru"].includes(lang)
+  const currentLang = ["id", "en", "en-au", "de", "zh", "ja", "ko", "fr", "nl", "ru", "ka"].includes(lang)
     ? lang
     : "en"
 

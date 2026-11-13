@@ -1,4 +1,4 @@
-import { getDictionary } from "../dictionaries"
+import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -51,11 +51,12 @@ export default async function AboutPage({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
-  const dict = await getDictionary(lang as "ka" | "en" | "ru")
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const dict = await getDictionary(currentLang)
 
   return (
     <div className="min-h-screen bg-background">
-      <Header dict={dict} lang={lang} />
+      <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary/10 to-primary/5">
@@ -75,7 +76,7 @@ export default async function AboutPage({
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label[lang as keyof typeof stat.label]}</div>
+                <div className="text-muted-foreground">{stat.label[currentLang as keyof typeof stat.label] ?? stat.label.en}</div>
               </div>
             ))}
           </div>
@@ -147,10 +148,10 @@ export default async function AboutPage({
                     </AvatarFallback>
                   </Avatar>
                   <CardTitle>{member.name}</CardTitle>
-                  <CardDescription>{member.position[lang as keyof typeof member.position]}</CardDescription>
+                  <CardDescription>{member.position[currentLang as keyof typeof member.position] ?? member.position.en}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{member.description[lang as keyof typeof member.description]}</p>
+                  <p className="text-muted-foreground">{member.description[currentLang as keyof typeof member.description] ?? member.description.en}</p>
                 </CardContent>
               </Card>
             ))}
@@ -163,7 +164,7 @@ export default async function AboutPage({
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              {lang === "ka" ? "რატომ ჩვენ?" : lang === "en" ? "Why Choose Us?" : "Почему мы?"}
+              {currentLang === "ka" ? "რატომ ჩვენ?" : currentLang === "ru" ? "Почему мы?" : "Why Choose Us?"}
             </h2>
           </div>
 
@@ -173,14 +174,12 @@ export default async function AboutPage({
                 <Award className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">
-                {lang === "ka" ? "ხარისხი" : lang === "en" ? "Quality" : "Качество"}
+                {currentLang === "ka" ? "ხარისხი" : currentLang === "ru" ? "Качество" : "Quality"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {lang === "ka"
+                {currentLang === "ka"
                   ? "მაღალი ხარისხის სერვისი"
-                  : lang === "en"
-                    ? "High quality service"
-                    : "Высококачественный сервис"}
+                  : currentLang === "ru" ? "Высококачественный сервис" : "High quality service"}
               </p>
             </div>
 
@@ -189,10 +188,10 @@ export default async function AboutPage({
                 <Users className="h-8 w-8 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">
-                {lang === "ka" ? "გამოცდილება" : lang === "en" ? "Experience" : "Опыт"}
+                {currentLang === "ka" ? "გამოცდილება" : currentLang === "ru" ? "Опыт" : "Experience"}
               </h3>
               <p className="text-sm text-muted-foreground">
-                {lang === "ka" ? "8+ წლიანი გამოცდილება" : lang === "en" ? "8+ years of experience" : "8+ лет опыта"}
+                {currentLang === "ka" ? "8+ წლიანი გამოცდილება" : currentLang === "ru" ? "8+ лет опыта" : "8+ years of experience"}
               </p>
             </div>
 
@@ -200,9 +199,9 @@ export default async function AboutPage({
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">{lang === "ka" ? "ენები" : lang === "en" ? "Languages" : "Языки"}</h3>
+              <h3 className="font-semibold mb-2">{currentLang === "ka" ? "ენები" : currentLang === "ru" ? "Языки" : "Languages"}</h3>
               <p className="text-sm text-muted-foreground">
-                {lang === "ka" ? "მრავალენოვანი გიდები" : lang === "en" ? "Multilingual guides" : "Многоязычные гиды"}
+                {currentLang === "ka" ? "მრავალენოვანი გიდები" : currentLang === "ru" ? "Многоязычные гиды" : "Multilingual guides"}
               </p>
             </div>
 
@@ -210,9 +209,9 @@ export default async function AboutPage({
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">{lang === "ka" ? "ზრუნვა" : lang === "en" ? "Care" : "Забота"}</h3>
+              <h3 className="font-semibold mb-2">{currentLang === "ka" ? "ზრუნვა" : currentLang === "ru" ? "Забота" : "Care"}</h3>
               <p className="text-sm text-muted-foreground">
-                {lang === "ka" ? "პერსონალური მიდგომა" : lang === "en" ? "Personal approach" : "Персональный подход"}
+                {currentLang === "ka" ? "პერსონალური მიდგომა" : currentLang === "ru" ? "Персональный подход" : "Personal approach"}
               </p>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { getDictionary } from "../dictionaries"
+import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -138,7 +138,8 @@ export default async function ToursPage({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
-  const dict = await getDictionary(lang as "ka" | "en" | "ru")
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const dict = await getDictionary(currentLang)
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -157,7 +158,7 @@ export default async function ToursPage({
 
   return (
     <div className="min-h-screen bg-background">
-      <Header dict={dict} lang={lang} />
+      <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-orange-600/10 to-red-600/10 py-16">
@@ -183,7 +184,7 @@ export default async function ToursPage({
                 <div className="relative h-48">
                   <Image
                     src={tour.image || "/placeholder.svg"}
-                    alt={tour.title[lang as keyof typeof tour.title]}
+                    alt={tour.title[currentLang as keyof typeof tour.title] ?? tour.title.en}
                     fill
                     className="object-cover"
                   />
@@ -201,9 +202,9 @@ export default async function ToursPage({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Zap className="h-4 w-4 text-orange-500" />
-                    {tour.title[lang as keyof typeof tour.title]}
+                    {tour.title[currentLang as keyof typeof tour.title] ?? tour.title.en}
                   </CardTitle>
-                  <CardDescription>{tour.description[lang as keyof typeof tour.description]}</CardDescription>
+                  <CardDescription>{tour.description[currentLang as keyof typeof tour.description] ?? tour.description.en}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -230,13 +231,13 @@ export default async function ToursPage({
                   </div>
                 </CardContent>
                 <CardFooter className="gap-2">
-                  <Link href={`/${lang}/tours/${tour.id}`} className="flex-1">
+                  <Link href={`/${currentLang}/tours/${tour.id}`} className="flex-1">
                     <Button variant="outline" className="w-full bg-transparent border-orange-200 hover:bg-orange-50">
                       {dict.tours.viewDetails}
                     </Button>
                   </Link>
                   <BookingModal
-                    tourTitle={tour.title[lang as keyof typeof tour.title]}
+                    tourTitle={tour.title[currentLang as keyof typeof tour.title] ?? tour.title.en}
                     tourPrice={tour.price}
                     duration={tour.duration}
                     difficulty={dict.tours[tour.difficulty as keyof typeof dict.tours]}

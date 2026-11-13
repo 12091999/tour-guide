@@ -1,4 +1,4 @@
-import { getDictionary } from "../dictionaries"
+import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
@@ -11,11 +11,12 @@ export default async function ContactPage({
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
-  const dict = await getDictionary(lang as "ka" | "en" | "ru")
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const dict = await getDictionary(currentLang)
 
   return (
     <div className="min-h-screen bg-background">
-      <Header dict={dict} lang={lang} />
+      <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
@@ -121,7 +122,7 @@ export default async function ContactPage({
         </div>
       </section>
 
-      <Footer dict={dict} lang={lang} />
+      <Footer dict={dict} lang={currentLang} />
     </div>
   )
 }

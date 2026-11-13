@@ -1,15 +1,14 @@
 
-import { getDictionary } from "../../dictionaries"
+import { getDictionary, isSupportedLanguage, type SupportedLanguage } from "../../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
 
-type SupportedLanguage = "ka" | "en" | "ru"
-
-type LocalizedText = Record<SupportedLanguage, string>
-type LocalizedList = Record<SupportedLanguage, string[]>
+type TourLanguage = "ka" | "en" | "ru"
+type LocalizedText = Record<TourLanguage, string>
+type LocalizedList = Record<TourLanguage, string[]>
 
 type Tour = {
   title: LocalizedText
@@ -281,10 +280,7 @@ export default async function TourDetailPage({
 }) {
   const { lang, id } = await params
 
-  const currentLang: SupportedLanguage =
-    ["ka", "en", "ru"].includes(lang)
-      ? (lang as SupportedLanguage)
-      : "en"
+  const currentLang: SupportedLanguage = isSupportedLanguage(lang) ? lang : "en"
 
   const dict = await getDictionary(currentLang)
 
@@ -317,10 +313,11 @@ export default async function TourDetailPage({
     )
   }
 
-  const title = tour.title[currentLang]
-  const description = tour.description[currentLang]
-  const itinerary = tour.itinerary[currentLang]
-  const included = tour.included[currentLang]
+  const tourLang: TourLanguage = currentLang in tour.title ? currentLang as TourLanguage : "en"
+  const title = tour.title[tourLang]
+  const description = tour.description[tourLang]
+  const itinerary = tour.itinerary[tourLang]
+  const included = tour.included[tourLang]
 
   return (
     <div className="min-h-screen bg-background">
