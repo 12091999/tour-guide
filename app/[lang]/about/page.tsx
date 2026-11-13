@@ -219,7 +219,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      <Footer dict={dict} lang={lang} />
+      <Footer />
     </div>
   )
 }
