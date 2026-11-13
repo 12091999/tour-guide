@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import { ArrowUp } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
@@ -17,9 +17,9 @@ export function Header({ dict, lang }: HeaderProps) {
           {/* Logo */}
           <Link
             href={`/${lang}`}
-            className="flex items-center gap-2 text-2xl font-bold text-orange-600 hover:text-orange-700 transition-colors"
+            className="flex items-center gap-2 text-2xl font-bold text-black hover:text-black transition-colors"
           >
-            <ArrowUp className="h-7 w-7" aria-hidden="true" />
+            <ArrowUpRight className="h-7 w-7" aria-hidden="true" />
 
             Tour Guide
           </Link>
