@@ -55,7 +55,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.email}</p>
-                      <p className="text-muted-foreground">info@georgiatours.ge</p>
+                      <p className="text-muted-foreground">@TourGuidegmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
