@@ -64,7 +64,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.address}</p>
-                      <p className="text-muted-foreground">Rustaveli Avenue 12, Tbilisi, Georgia</p>
+                      <p className="text-muted-foreground">Bumi Blambangan, Jawa Timur, Indonesia</p>
                     </div>
                   </div>
                 </CardContent>
