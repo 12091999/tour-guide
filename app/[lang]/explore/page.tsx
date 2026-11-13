@@ -254,7 +254,7 @@ export default async function ToursPage({
         </div>
       </section>
 
-      <Footer dict={dict} lang={lang} />
+      <Footer/>
     </div>
   )
 }
