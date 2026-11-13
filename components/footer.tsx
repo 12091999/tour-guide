@@ -1,6 +1,10 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 
-export function Footer() {
+export function Footer({ dict }: { dict?: any; lang?: string }) {
+  const labels = dict?.site?.footer ?? {
+    destinations: "Destinations", company: "Company", support: "Support", about: "About Us", careers: "Careers", press: "Press", blog: "Blog", partners: "Partners", help: "Help Center", contact: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Service", cancellation: "Cancellation Policy", copyright: "All rights reserved.",
+  }
+  const description = dict?.footer?.description ?? "Creating unforgettable travel experiences around the world since 2026"
   return (
     <footer id="contact" className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
@@ -9,7 +13,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-2xl font-semibold">Tour Guide</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Creating unforgettable travel experiences around the world since 2026
+              {description}
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -29,7 +33,7 @@ export function Footer() {
 
           {/* Destinations */}
           <div>
-            <h4 className="font-semibold mb-4">Destinations</h4>
+            <h4 className="font-semibold mb-4">{labels.destinations}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
@@ -61,31 +65,31 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+            <h4 className="font-semibold mb-4">{labels.company}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  About Us
+                  {labels.about}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Careers
+                  {labels.careers}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Press
+                  {labels.press}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Blog
+                  {labels.blog}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Partners
+                  {labels.partners}
                 </a>
               </li>
             </ul>
@@ -93,31 +97,31 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold mb-4">Support</h4>
+            <h4 className="font-semibold mb-4">{labels.support}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Help Center
+                  {labels.help}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Contact Us
+                  {labels.contact}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Privacy Policy
+                  {labels.privacy}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Terms of Service
+                  {labels.terms}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
-                  Cancellation Policy
+                  {labels.cancellation}
                 </a>
               </li>
             </ul>
@@ -126,7 +130,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2026 Tour Guide Travel Agency. All rights reserved.</p>
+          <p>© 2026 Tour Guide Travel Agency. {labels.copyright}</p>
         </div>
       </div>
     </footer>

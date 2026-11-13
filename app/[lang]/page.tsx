@@ -24,7 +24,7 @@ export default async function HomePage({
         <div className="absolute inset-0">
           <img
             src="/ijen.jpg"
-            alt="Beautiful Banyuwangi landscape"
+            alt={dict.site.home.title}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/55" />
@@ -32,52 +32,47 @@ export default async function HomePage({
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
           <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-6 text-orange-300">
-            Discover the Beauty of East Java
+            {dict.site.home.kicker}
           </p>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Explore Banyuwangi
+            {dict.site.home.title}
           </h1>
 
           <p className="text-lg md:text-xl leading-relaxed text-white/90 mb-10">
-            Discover breathtaking landscapes, tropical beaches,
-            beautiful forests, and unforgettable adventures in
-            Banyuwangi, Indonesia.
+            {dict.site.home.description}
           </p>
 
           <a
             href="#destinations"
             className="inline-flex items-center justify-center rounded-full bg-orange-600 hover:bg-orange-700 px-8 py-4 font-semibold text-white transition-colors"
           >
-            Explore Destinations
+            {dict.site.home.explore}
           </a>
         </div>
       </section>
 
       {/* Featured Destinations */}
-      <FeaturedDestinations lang={currentLang} />
+      <FeaturedDestinations lang={currentLang} dict={dict} />
 
       {/* About Section */}
       <section className="py-24 bg-muted/30">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <p className="text-sm uppercase tracking-widest text-primary mb-4">
-            About Banyuwangi
+            {dict.site.home.aboutKicker}
           </p>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Experience the Wonders of Banyuwangi
+            {dict.site.home.aboutTitle}
           </h2>
 
           <p className="text-muted-foreground text-lg leading-relaxed">
-            From the spectacular blue fire of Ijen Crater to the
-            peaceful atmosphere of Djawatan Forest and the
-            crystal-clear waters of Bangsring Beach, Banyuwangi
-            offers extraordinary experiences for every traveler.
+            {dict.site.home.aboutDescription}
           </p>
         </div>
       </section>
 
-      <Footer />
+      <Footer dict={dict} lang={currentLang} />
     </div>
   )
 }

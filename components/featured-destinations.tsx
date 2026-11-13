@@ -6,6 +6,7 @@ import Link from "next/link"
 
 interface FeaturedDestinationsProps {
   lang: string
+  dict: any
 }
 
 const destinations = [
@@ -16,7 +17,7 @@ const destinations = [
     image: "/ijen.jpg",
     description:
       "Discover the spectacular blue fire and breathtaking turquoise crater lake.",
-    price: "From $2,499",
+    price: 2499,
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const destinations = [
     image: "/djawatan.jpg",
     description:
       "Explore a magical forest surrounded by giant and ancient trembesi trees.",
-    price: "From $1,899",
+    price: 1899,
   },
   {
     id: 3,
@@ -34,7 +35,7 @@ const destinations = [
     image: "/bangsring.jpg",
     description:
       "Enjoy pristine beaches, crystal-clear waters, and exciting marine activities.",
-    price: "From $1,599",
+    price: 1599,
   },
   {
     id: 4,
@@ -43,12 +44,13 @@ const destinations = [
     image: "/Teluk hijau.jpg",
     description:
       "Discover Green Bay, a hidden coastal paradise in Meru Betiri National Park.",
-    price: "From $3,499",
+    price: 3499,
   },
 ]
 
 export function FeaturedDestinations({
   lang,
+  dict,
 }: FeaturedDestinationsProps) {
   const currentLang = ["id", "en", "en-au", "de", "zh", "ja", "ko", "fr", "nl", "ru", "ka"].includes(lang)
     ? lang
@@ -61,17 +63,15 @@ export function FeaturedDestinations({
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <p className="text-sm uppercase tracking-widest text-primary mb-4">
-            Explore Indonesia
+            {dict.site.destinations.kicker}
           </p>
 
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-6">
-            Featured{" "}
-            <span className="font-semibold">Destinations</span>
+            {dict.site.destinations.title}
           </h2>
 
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Discover the most beautiful destinations and unforgettable
-            experiences in Banyuwangi, East Java.
+            {dict.site.destinations.description}
           </p>
         </div>
 
@@ -109,13 +109,13 @@ export function FeaturedDestinations({
                   </h3>
 
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {destination.description}
+                    {dict.site.destinations[["", "ijen", "djawatan", "bangsring", "teluk"][destination.id]]}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-sm font-semibold text-primary">
-                    {destination.price}
+                    {dict.tours.from} ${destination.price.toLocaleString(currentLang === "zh" || currentLang === "ja" ? "en-US" : currentLang)}
                   </span>
 
                   <Button
@@ -127,7 +127,7 @@ export function FeaturedDestinations({
                     <Link
                       href={`/${currentLang}/explore/${destination.id}`}
                     >
-                      Explore
+                      {dict.site.destinations.explore}
                       <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -146,7 +146,7 @@ export function FeaturedDestinations({
             className="rounded-full px-8 border-2"
           >
             <Link href={`/${currentLang}/explore`}>
-              View All Destinations
+              {dict.site.destinations.viewAll}
             </Link>
           </Button>
         </div>

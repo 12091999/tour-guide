@@ -14,11 +14,11 @@ export default async function Home() {
     <main className="min-h-screen">
       <Header dict={dict} lang="en" />
       <Hero />
-      <FeaturedDestinations lang={""} />
+      <FeaturedDestinations lang="en" dict={dict} />
       <WhyChooseUs />
       <PopularPackages />
       <Newsletter />
-      <Footer />
+      <Footer dict={dict} />
     </main>
   )
 }

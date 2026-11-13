@@ -76,7 +76,7 @@ export default async function AboutPage({
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label[currentLang as keyof typeof stat.label] ?? stat.label.en}</div>
+                <div className="text-muted-foreground">{dict.site.about.stats[index]}</div>
               </div>
             ))}
           </div>
@@ -148,10 +148,10 @@ export default async function AboutPage({
                     </AvatarFallback>
                   </Avatar>
                   <CardTitle>{member.name}</CardTitle>
-                  <CardDescription>{member.position[currentLang as keyof typeof member.position] ?? member.position.en}</CardDescription>
+                  <CardDescription>{dict.site.about.team[index][0]}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{member.description[currentLang as keyof typeof member.description] ?? member.description.en}</p>
+                  <p className="text-muted-foreground">{dict.site.about.team[index][1]}</p>
                 </CardContent>
               </Card>
             ))}
@@ -164,7 +164,7 @@ export default async function AboutPage({
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              {currentLang === "ka" ? "რატომ ჩვენ?" : currentLang === "ru" ? "Почему мы?" : "Why Choose Us?"}
+              {dict.site.about.whyTitle}
             </h2>
           </div>
 
@@ -173,52 +173,38 @@ export default async function AboutPage({
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">
-                {currentLang === "ka" ? "ხარისხი" : currentLang === "ru" ? "Качество" : "Quality"}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {currentLang === "ka"
-                  ? "მაღალი ხარისხის სერვისი"
-                  : currentLang === "ru" ? "Высококачественный сервис" : "High quality service"}
-              </p>
+              <h3 className="font-semibold mb-2">{dict.site.about.features[0][0]}</h3>
+              <p className="text-sm text-muted-foreground">{dict.site.about.features[0][1]}</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">
-                {currentLang === "ka" ? "გამოცდილება" : currentLang === "ru" ? "Опыт" : "Experience"}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {currentLang === "ka" ? "8+ წლიანი გამოცდილება" : currentLang === "ru" ? "8+ лет опыта" : "8+ years of experience"}
-              </p>
+              <h3 className="font-semibold mb-2">{dict.site.about.features[1][0]}</h3>
+              <p className="text-sm text-muted-foreground">{dict.site.about.features[1][1]}</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">{currentLang === "ka" ? "ენები" : currentLang === "ru" ? "Языки" : "Languages"}</h3>
-              <p className="text-sm text-muted-foreground">
-                {currentLang === "ka" ? "მრავალენოვანი გიდები" : currentLang === "ru" ? "Многоязычные гиды" : "Multilingual guides"}
-              </p>
+              <h3 className="font-semibold mb-2">{dict.site.about.features[2][0]}</h3>
+              <p className="text-sm text-muted-foreground">{dict.site.about.features[2][1]}</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-semibold mb-2">{currentLang === "ka" ? "ზრუნვა" : currentLang === "ru" ? "Забота" : "Care"}</h3>
-              <p className="text-sm text-muted-foreground">
-                {currentLang === "ka" ? "პერსონალური მიდგომა" : currentLang === "ru" ? "Персональный подход" : "Personal approach"}
-              </p>
+              <h3 className="font-semibold mb-2">{dict.site.about.features[3][0]}</h3>
+              <p className="text-sm text-muted-foreground">{dict.site.about.features[3][1]}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <Footer dict={dict} />
     </div>
   )
 }

@@ -87,6 +87,94 @@ const translations: Partial<Record<SupportedLanguage, Record<string, unknown>>> 
   },
 }
 
+const pageTranslations: Partial<Record<SupportedLanguage, Record<string, unknown>>> = {
+  ru: {
+    site: {
+      home: { kicker: "Откройте Восточную Яву", title: "Откройте для себя Баньюванги", description: "Вас ждут потрясающие пейзажи, тропические пляжи, красивые леса и незабываемые впечатления в Баньюванги, Индонезия.", explore: "Смотреть направления", aboutKicker: "О Баньюванги", aboutTitle: "Откройте чудеса Баньюванги", aboutDescription: "От голубого огня кратера Иджен до тихого леса Джаватан и прозрачных вод пляжа Бангсринг — Баньюванги подарит особенные впечатления каждому путешественнику." },
+      destinations: { kicker: "Исследуйте Индонезию", title: "Популярные направления", description: "Откройте красивые места и незабываемые впечатления в Баньюванги, Восточная Ява.", explore: "Подробнее", viewAll: "Все направления", ijen: "Увидьте редкое голубое пламя и бирюзовое кратерное озеро.", djawatan: "Прогуляйтесь по волшебному лесу среди огромных деревьев трембези.", bangsring: "Насладитесь чистыми пляжами, прозрачной водой и морскими развлечениями.", teluk: "Откройте скрытый рай в национальном парке Меру-Бетири." },
+      detail: { about: "Об этом месте", itinerary: "Маршрут тура", included: "Включено", maxPeople: "До {count} человек", maxPeopleLabel: "Максимум гостей", startingPrice: "Цена от", perPerson: "На человека", duration: "Продолжительность", rating: "Рейтинг", location: "Место", contact: "Связаться с нами", back: "Назад к направлениям", notFound: "Направление не найдено", notFoundDescription: "Запрошенное направление недоступно.", backHome: "На главную" },
+      footer: { destinations: "Направления", company: "Компания", support: "Поддержка", about: "О нас", careers: "Карьера", press: "Пресса", blog: "Блог", partners: "Партнёры", help: "Центр помощи", contact: "Контакты", privacy: "Конфиденциальность", terms: "Условия использования", cancellation: "Правила отмены", copyright: "Все права защищены." },
+    },
+  },
+  id: {
+    site: {
+      home: { kicker: "Jelajahi keindahan Jawa Timur", title: "Jelajahi Banyuwangi", description: "Temukan alam yang menakjubkan, pantai tropis, hutan yang asri, dan pengalaman seru di Banyuwangi, Indonesia.", explore: "Jelajahi Destinasi", aboutKicker: "Tentang Banyuwangi", aboutTitle: "Rasakan Keajaiban Banyuwangi", aboutDescription: "Dari api biru Kawah Ijen hingga hutan Djawatan yang teduh dan perairan jernih Pantai Bangsring, Banyuwangi menawarkan pengalaman istimewa bagi setiap wisatawan." },
+      destinations: { kicker: "Jelajahi Indonesia", title: "Destinasi Pilihan", description: "Temukan destinasi indah dan pengalaman tak terlupakan di Banyuwangi, Jawa Timur.", explore: "Jelajahi", viewAll: "Lihat Semua Destinasi", ijen: "Temukan api biru yang langka dan danau kawah berwarna toska.", djawatan: "Jelajahi hutan magis dengan pepohonan trembesi raksasa.", bangsring: "Nikmati pantai yang asri, air jernih, dan aktivitas laut.", teluk: "Temukan surga tersembunyi di Taman Nasional Meru Betiri." },
+      detail: { about: "Tentang Destinasi Ini", itinerary: "Rencana Perjalanan", included: "Termasuk", maxPeople: "Maksimal {count} orang", maxPeopleLabel: "Maksimal Orang", startingPrice: "Harga mulai", perPerson: "Per orang", duration: "Durasi", rating: "Penilaian", location: "Lokasi", contact: "Hubungi Kami", back: "Kembali ke Destinasi", notFound: "Destinasi Tidak Ditemukan", notFoundDescription: "Destinasi yang Anda cari tidak tersedia.", backHome: "Kembali ke Beranda" },
+      footer: { destinations: "Destinasi", company: "Perusahaan", support: "Bantuan", about: "Tentang Kami", careers: "Karier", press: "Pers", blog: "Blog", partners: "Mitra", help: "Pusat Bantuan", contact: "Hubungi Kami", privacy: "Kebijakan Privasi", terms: "Syarat Layanan", cancellation: "Kebijakan Pembatalan", copyright: "Hak cipta dilindungi." },
+    },
+  },
+  de: {
+    site: {
+      home: { kicker: "Entdecken Sie Ostjava", title: "Banyuwangi entdecken", description: "Entdecken Sie beeindruckende Landschaften, tropische Strände, üppige Wälder und unvergessliche Erlebnisse in Banyuwangi, Indonesien.", explore: "Reiseziele entdecken", aboutKicker: "Über Banyuwangi", aboutTitle: "Die Wunder Banyuwangis erleben", aboutDescription: "Vom blauen Feuer am Ijen-Krater über den ruhigen Djawatan-Wald bis zum klaren Wasser am Bangsring-Strand bietet Banyuwangi besondere Erlebnisse." },
+      destinations: { kicker: "Indonesien entdecken", title: "Ausgewählte Reiseziele", description: "Entdecken Sie die schönsten Orte und unvergessliche Erlebnisse in Banyuwangi, Ostjava.", explore: "Entdecken", viewAll: "Alle Reiseziele ansehen", ijen: "Erleben Sie das seltene blaue Feuer und den türkisfarbenen Kratersee.", djawatan: "Entdecken Sie einen zauberhaften Wald mit riesigen Trembesi-Bäumen.", bangsring: "Genießen Sie unberührte Strände, klares Wasser und Aktivitäten auf dem Meer.", teluk: "Entdecken Sie ein verborgenes Paradies im Nationalpark Meru Betiri." },
+      detail: { about: "Über dieses Reiseziel", itinerary: "Reiseplan", included: "Inklusive", maxPeople: "Maximal {count} Personen", maxPeopleLabel: "Maximale Personenanzahl", startingPrice: "Preis ab", perPerson: "Pro Person", duration: "Dauer", rating: "Bewertung", location: "Ort", contact: "Kontaktieren Sie uns", back: "Zurück zu den Reisezielen", notFound: "Reiseziel nicht gefunden", notFoundDescription: "Das gesuchte Reiseziel ist nicht verfügbar.", backHome: "Zur Startseite" },
+      footer: { destinations: "Reiseziele", company: "Unternehmen", support: "Service", about: "Über uns", careers: "Karriere", press: "Presse", blog: "Blog", partners: "Partner", help: "Hilfe", contact: "Kontakt", privacy: "Datenschutz", terms: "Nutzungsbedingungen", cancellation: "Stornierungsbedingungen", copyright: "Alle Rechte vorbehalten." },
+    },
+  },
+  zh: {
+    site: {
+      home: { kicker: "探索东爪哇之美", title: "探索外南梦", description: "在印度尼西亚外南梦发现壮丽风景、热带海滩、宁静森林与难忘体验。", explore: "探索目的地", aboutKicker: "关于外南梦", aboutTitle: "体验外南梦的魅力", aboutDescription: "从伊真火山口的蓝色火焰，到宁静的爪哇森林和邦斯林海滩的清澈海水，外南梦为每位游客带来独特体验。" },
+      destinations: { kicker: "探索印度尼西亚", title: "精选目的地", description: "探索东爪哇外南梦的迷人景点与难忘体验。", explore: "探索", viewAll: "查看所有目的地", ijen: "观赏罕见的蓝色火焰和碧绿色火山湖。", djawatan: "漫步在巨大的雨树环绕的奇幻森林。", bangsring: "享受纯净海滩、清澈海水和丰富海上活动。", teluk: "探索梅鲁贝蒂里国家公园内的隐秘海湾。" },
+      detail: { about: "目的地介绍", itinerary: "行程安排", included: "费用包含", maxPeople: "最多 {count} 人", maxPeopleLabel: "人数上限", startingPrice: "起价", perPerson: "每人", duration: "时长", rating: "评分", location: "地点", contact: "联系我们", back: "返回目的地", notFound: "未找到目的地", notFoundDescription: "您查找的目的地暂不可用。", backHome: "返回首页" },
+      footer: { destinations: "目的地", company: "公司", support: "帮助", about: "关于我们", careers: "招聘", press: "媒体", blog: "博客", partners: "合作伙伴", help: "帮助中心", contact: "联系我们", privacy: "隐私政策", terms: "服务条款", cancellation: "取消政策", copyright: "版权所有。" },
+    },
+  },
+  ja: {
+    site: {
+      home: { kicker: "東ジャワの魅力を発見", title: "バニュワンギを旅しよう", description: "インドネシア・バニュワンギの絶景、熱帯のビーチ、美しい森、心に残る体験をお楽しみください。", explore: "観光地を見る", aboutKicker: "バニュワンギについて", aboutTitle: "バニュワンギの魅力を体験", aboutDescription: "イジェン火口の青い炎から、静かなジャワンタンの森、透明なバンスリン海岸まで、特別な体験が待っています。" },
+      destinations: { kicker: "インドネシアを探索", title: "おすすめの観光地", description: "東ジャワ・バニュワンギの美しい場所と忘れられない体験をご紹介します。", explore: "詳しく見る", viewAll: "すべての観光地", ijen: "珍しい青い炎とターコイズ色の火口湖をご覧ください。", djawatan: "巨大なトレンベシの木々に囲まれた神秘的な森を散策。", bangsring: "美しいビーチ、透明な海、海のアクティビティを満喫。", teluk: "メル・ベティリ国立公園にある隠れた楽園を発見。" },
+      detail: { about: "観光地について", itinerary: "旅行日程", included: "含まれるもの", maxPeople: "最大{count}名", maxPeopleLabel: "最大人数", startingPrice: "料金", perPerson: "1名あたり", duration: "所要時間", rating: "評価", location: "場所", contact: "お問い合わせ", back: "観光地一覧へ戻る", notFound: "観光地が見つかりません", notFoundDescription: "お探しの観光地は見つかりませんでした。", backHome: "ホームに戻る" },
+      footer: { destinations: "観光地", company: "会社情報", support: "サポート", about: "会社概要", careers: "採用情報", press: "プレス", blog: "ブログ", partners: "パートナー", help: "ヘルプセンター", contact: "お問い合わせ", privacy: "プライバシーポリシー", terms: "利用規約", cancellation: "キャンセル規定", copyright: "無断転載を禁じます。" },
+    },
+  },
+  ko: {
+    site: {
+      home: { kicker: "동자바의 아름다움을 발견하세요", title: "반유왕이를 여행하세요", description: "인도네시아 반유왕이에서 아름다운 풍경, 열대 해변, 숲과 잊지 못할 경험을 만나보세요.", explore: "여행지 둘러보기", aboutKicker: "반유왕이 소개", aboutTitle: "반유왕이의 매력을 경험하세요", aboutDescription: "이젠 화산의 푸른 불꽃부터 평화로운 자와탄 숲과 방스링 해변의 맑은 바다까지 특별한 경험이 기다립니다." },
+      destinations: { kicker: "인도네시아 탐험", title: "추천 여행지", description: "동자바 반유왕이의 아름다운 명소와 특별한 경험을 만나보세요.", explore: "둘러보기", viewAll: "모든 여행지 보기", ijen: "희귀한 푸른 불꽃과 청록색 분화호를 만나보세요.", djawatan: "거대한 트렘베시 나무가 있는 신비로운 숲을 산책하세요.", bangsring: "깨끗한 해변과 맑은 바다, 다양한 해양 활동을 즐겨보세요.", teluk: "메루 베티리 국립공원의 숨은 해변을 발견하세요." },
+      detail: { about: "여행지 소개", itinerary: "여행 일정", included: "포함 사항", maxPeople: "최대 {count}명", maxPeopleLabel: "최대 인원", startingPrice: "시작 가격", perPerson: "1인 기준", duration: "기간", rating: "평점", location: "위치", contact: "문의하기", back: "여행지로 돌아가기", notFound: "여행지를 찾을 수 없습니다", notFoundDescription: "요청하신 여행지를 찾을 수 없습니다.", backHome: "홈으로 돌아가기" },
+      footer: { destinations: "여행지", company: "회사", support: "고객 지원", about: "소개", careers: "채용", press: "언론", blog: "블로그", partners: "파트너", help: "도움말", contact: "문의", privacy: "개인정보 처리방침", terms: "이용 약관", cancellation: "취소 정책", copyright: "모든 권리 보유." },
+    },
+  },
+  fr: {
+    site: {
+      home: { kicker: "Découvrez l’est de Java", title: "Explorez Banyuwangi", description: "Découvrez les paysages grandioses, les plages tropicales, les forêts paisibles et des expériences inoubliables à Banyuwangi, en Indonésie.", explore: "Découvrir les destinations", aboutKicker: "À propos de Banyuwangi", aboutTitle: "Découvrez les merveilles de Banyuwangi", aboutDescription: "Du feu bleu du cratère d’Ijen à la forêt paisible de Djawatan et aux eaux claires de Bangsring, Banyuwangi vous réserve des expériences uniques." },
+      destinations: { kicker: "Explorez l’Indonésie", title: "Destinations à découvrir", description: "Découvrez les plus beaux sites et des expériences inoubliables à Banyuwangi, dans l’est de Java.", explore: "Découvrir", viewAll: "Voir toutes les destinations", ijen: "Admirez le rare feu bleu et le lac turquoise du cratère.", djawatan: "Explorez une forêt magique peuplée d’immenses arbres trembesi.", bangsring: "Profitez de plages préservées, d’eaux limpides et d’activités nautiques.", teluk: "Découvrez un paradis caché dans le parc national de Meru Betiri." },
+      detail: { about: "À propos de cette destination", itinerary: "Programme", included: "Compris", maxPeople: "Maximum {count} personnes", maxPeopleLabel: "Nombre maximum", startingPrice: "À partir de", perPerson: "Par personne", duration: "Durée", rating: "Note", location: "Lieu", contact: "Nous contacter", back: "Retour aux destinations", notFound: "Destination introuvable", notFoundDescription: "La destination recherchée est indisponible.", backHome: "Retour à l’accueil" },
+      footer: { destinations: "Destinations", company: "Entreprise", support: "Assistance", about: "À propos", careers: "Carrières", press: "Presse", blog: "Blog", partners: "Partenaires", help: "Centre d’aide", contact: "Contact", privacy: "Confidentialité", terms: "Conditions d’utilisation", cancellation: "Politique d’annulation", copyright: "Tous droits réservés." },
+    },
+  },
+  nl: {
+    site: {
+      home: { kicker: "Ontdek Oost-Java", title: "Ontdek Banyuwangi", description: "Ontdek indrukwekkende landschappen, tropische stranden, rustige bossen en bijzondere ervaringen in Banyuwangi, Indonesië.", explore: "Ontdek bestemmingen", aboutKicker: "Over Banyuwangi", aboutTitle: "Beleef de wonderen van Banyuwangi", aboutDescription: "Van het blauwe vuur bij de Ijen-krater tot het rustige Djawatan-bos en het heldere water bij Bangsring: Banyuwangi biedt bijzondere ervaringen." },
+      destinations: { kicker: "Ontdek Indonesië", title: "Uitgelichte bestemmingen", description: "Ontdek de mooiste plekken en bijzondere ervaringen in Banyuwangi, Oost-Java.", explore: "Ontdekken", viewAll: "Alle bestemmingen bekijken", ijen: "Bewonder het zeldzame blauwe vuur en het turquoise kratermeer.", djawatan: "Verken een magisch bos met reusachtige trembesibomen.", bangsring: "Geniet van ongerepte stranden, helder water en activiteiten op zee.", teluk: "Ontdek een verborgen paradijs in nationaal park Meru Betiri." },
+      detail: { about: "Over deze bestemming", itinerary: "Reisprogramma", included: "Inbegrepen", maxPeople: "Maximaal {count} personen", maxPeopleLabel: "Maximumaantal personen", startingPrice: "Vanaf", perPerson: "Per persoon", duration: "Duur", rating: "Beoordeling", location: "Locatie", contact: "Neem contact op", back: "Terug naar bestemmingen", notFound: "Bestemming niet gevonden", notFoundDescription: "De gezochte bestemming is niet beschikbaar.", backHome: "Terug naar home" },
+      footer: { destinations: "Bestemmingen", company: "Bedrijf", support: "Ondersteuning", about: "Over ons", careers: "Vacatures", press: "Pers", blog: "Blog", partners: "Partners", help: "Helpcentrum", contact: "Contact", privacy: "Privacybeleid", terms: "Gebruiksvoorwaarden", cancellation: "Annuleringsbeleid", copyright: "Alle rechten voorbehouden." },
+    },
+  },
+}
+
+const aboutPageTranslations: Partial<Record<SupportedLanguage, Record<string, unknown>>> = {
+  ru: { site: { about: { stats: ["Довольных путешественников", "Туров", "Лет опыта", "Опытных гидов"], team: [["Основатель и CEO", "15 лет опыта в туристической индустрии"], ["Операционный менеджер", "Специалист по культурным турам"], ["Эксперт горных туров", "Инструктор по альпинизму и гид"]], whyTitle: "Почему выбирают нас?", features: [["Качество", "Высокий уровень сервиса"], ["Опыт", "Более 8 лет опыта"], ["Языки", "Многоязычные гиды"], ["Забота", "Индивидуальный подход"]] } } },
+  id: { site: { about: { stats: ["Wisatawan Puas", "Tur", "Tahun Pengalaman", "Pemandu Ahli"], team: [["Pendiri & CEO", "Berpengalaman 15 tahun di industri pariwisata"], ["Manajer Operasional", "Spesialis tur budaya"], ["Ahli Tur Pegunungan", "Instruktur dan pemandu pendakian"]], whyTitle: "Mengapa Memilih Kami?", features: [["Kualitas", "Layanan berkualitas tinggi"], ["Pengalaman", "Pengalaman lebih dari 8 tahun"], ["Bahasa", "Pemandu multibahasa"], ["Kepedulian", "Layanan yang personal"]] } } },
+  de: { site: { about: { stats: ["Zufriedene Reisende", "Touren", "Jahre Erfahrung", "Erfahrene Guides"], team: [["Gründer & CEO", "15 Jahre Erfahrung in der Tourismusbranche"], ["Betriebsleitung", "Spezialistin für Kulturreisen"], ["Experte für Bergtouren", "Bergsteiger und Guide"]], whyTitle: "Warum mit uns reisen?", features: [["Qualität", "Service mit hohen Qualitätsstandards"], ["Erfahrung", "Mehr als 8 Jahre Erfahrung"], ["Sprachen", "Mehrsprachige Guides"], ["Persönlich", "Individuelle Betreuung"]] } } },
+  zh: { site: { about: { stats: ["满意的游客", "条线路", "年经验", "专业向导"], team: [["创始人兼首席执行官", "拥有15年旅游行业经验"], ["运营经理", "文化旅游专家"], ["山地旅行专家", "登山教练与向导"]], whyTitle: "为什么选择我们？", features: [["品质", "提供高品质服务"], ["经验", "拥有8年以上经验"], ["语言", "多语种向导"], ["贴心服务", "提供个性化服务"]] } } },
+  ja: { site: { about: { stats: ["満足した旅行者", "ツアー", "年の経験", "経験豊富なガイド"], team: [["創業者兼CEO", "観光業界で15年の経験"], ["運営マネージャー", "文化ツアーの専門家"], ["山岳ツアー専門家", "登山インストラクター兼ガイド"]], whyTitle: "選ばれる理由", features: [["品質", "質の高いサービス"], ["経験", "8年以上の経験"], ["言語", "多言語対応のガイド"], ["心配り", "一人ひとりに合わせた対応"]] } } },
+  ko: { site: { about: { stats: ["만족한 여행자", "투어", "년 경력", "전문 가이드"], team: [["창립자 및 CEO", "관광 업계 15년 경력"], ["운영 매니저", "문화 투어 전문가"], ["산악 투어 전문가", "등산 강사 겸 가이드"]], whyTitle: "저희를 선택해야 하는 이유", features: [["품질", "높은 품질의 서비스"], ["경험", "8년 이상의 경험"], ["언어", "다국어 가이드"], ["배려", "개인 맞춤 서비스"]] } } },
+  fr: { site: { about: { stats: ["Voyageurs satisfaits", "Circuits", "Ans d’expérience", "Guides experts"], team: [["Fondateur et PDG", "15 ans d’expérience dans le tourisme"], ["Responsable des opérations", "Spécialiste des circuits culturels"], ["Expert en montagne", "Instructeur d’alpinisme et guide"]], whyTitle: "Pourquoi voyager avec nous ?", features: [["Qualité", "Un service de grande qualité"], ["Expérience", "Plus de 8 ans d’expérience"], ["Langues", "Guides multilingues"], ["Attention", "Un accompagnement personnalisé"]] } } },
+  nl: { site: { about: { stats: ["Tevreden reizigers", "Tours", "Jaar ervaring", "Ervaren gidsen"], team: [["Oprichter en CEO", "15 jaar ervaring in de reisbranche"], ["Operationeel manager", "Specialist in culturele tours"], ["Bergtourexpert", "Bergsportinstructeur en gids"]], whyTitle: "Waarom voor ons kiezen?", features: [["Kwaliteit", "Service van hoge kwaliteit"], ["Ervaring", "Meer dan 8 jaar ervaring"], ["Talen", "Meertalige gidsen"], ["Persoonlijk", "Persoonlijke begeleiding"]] } } },
+}
+
+const defaultSite = {
+  site: {
+    home: { kicker: "Discover the beauty of East Java", title: "Explore Banyuwangi", description: "Discover breathtaking landscapes, tropical beaches, beautiful forests, and unforgettable adventures in Banyuwangi, Indonesia.", explore: "Explore Destinations", aboutKicker: "About Banyuwangi", aboutTitle: "Experience the Wonders of Banyuwangi", aboutDescription: "From Ijen Crater's spectacular blue fire to the peaceful Djawatan Forest and the clear waters of Bangsring Beach, Banyuwangi offers extraordinary experiences for every traveler." },
+    destinations: { kicker: "Explore Indonesia", title: "Featured Destinations", description: "Discover beautiful destinations and unforgettable experiences in Banyuwangi, East Java.", explore: "Explore", viewAll: "View All Destinations", ijen: "Discover the rare blue fire and breathtaking turquoise crater lake.", djawatan: "Explore a magical forest surrounded by giant trembesi trees.", bangsring: "Enjoy pristine beaches, crystal-clear waters, and marine activities.", teluk: "Discover a hidden paradise in Meru Betiri National Park." },
+    detail: { about: "About This Destination", itinerary: "Tour Itinerary", included: "What's Included", maxPeople: "Max {count} people", maxPeopleLabel: "Max People", startingPrice: "Starting price", perPerson: "Per person", duration: "Duration", rating: "Rating", location: "Location", contact: "Contact Us", back: "Back to Destinations", notFound: "Destination Not Found", notFoundDescription: "The destination you are looking for is unavailable.", backHome: "Back to Home" },
+    footer: { destinations: "Destinations", company: "Company", support: "Support", about: "About Us", careers: "Careers", press: "Press", blog: "Blog", partners: "Partners", help: "Help Center", contact: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Service", cancellation: "Cancellation Policy", copyright: "All rights reserved." },
+    about: { stats: ["Happy Travelers", "Tours", "Years Experience", "Expert Guides"], team: [["Founder & CEO", "15 years of experience in the tourism industry"], ["Operations Manager", "Cultural tours specialist"], ["Mountain Tours Expert", "Mountaineering instructor and guide"]], whyTitle: "Why Choose Us?", features: [["Quality", "High quality service"], ["Experience", "More than 8 years of experience"], ["Languages", "Multilingual guides"], ["Care", "Personal approach"]] },
+  },
+}
+
 function merge(base: Record<string, any>, override: Record<string, unknown>) {
   const result: Record<string, any> = { ...base }
   for (const [key, value] of Object.entries(override)) {
@@ -104,5 +192,9 @@ export async function getDictionary(locale: SupportedLanguage) {
   const regionalEnglish = locale === "en-au"
     ? { ...english, nav: { ...english.nav, tours: "Tours" } }
     : base
-  return merge(regionalEnglish as Record<string, any>, translations[locale] ?? {})
+  const merged = merge(
+    merge(merge(regionalEnglish as Record<string, any>, defaultSite), translations[locale] ?? {}),
+    pageTranslations[locale] ?? {},
+  )
+  return merge(merged as Record<string, any>, aboutPageTranslations[locale] ?? {})
 }

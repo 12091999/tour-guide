@@ -17,7 +17,7 @@ type ContactFormDictionary = {
   }
 }
 
-export function ContactForm({ dict }: { dict: ContactFormDictionary }) {
+export function ContactForm({ dict }: { dict: ContactFormDictionary | any }) {
   const form = dict.contact.form
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {

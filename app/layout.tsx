@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Prompt } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-// @ts-expect-error Next.js processes this global stylesheet at build time.
 import "./globals.css"
 
 const prompt = Prompt({
