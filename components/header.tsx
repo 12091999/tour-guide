@@ -1,6 +1,6 @@
 
 import Link from "next/link"
-import { Mountain, Zap } from "lucide-react"
+import { ArrowUp } from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
@@ -19,10 +19,7 @@ export function Header({ dict, lang }: HeaderProps) {
             href={`/${lang}`}
             className="flex items-center gap-2 text-2xl font-bold text-orange-600 hover:text-orange-700 transition-colors"
           >
-            <div className="flex items-center gap-1">
-              <Mountain className="h-7 w-7" />
-              <Zap className="h-5 w-5 text-red-500" />
-            </div>
+            <ArrowUp className="h-7 w-7" aria-hidden="true" />
 
             Tour Guide
           </Link>
