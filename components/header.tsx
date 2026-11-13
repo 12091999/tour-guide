@@ -24,7 +24,7 @@ export function Header({ dict, lang }: HeaderProps) {
               <Zap className="h-5 w-5 text-red-500" />
             </div>
 
-            Georgia Extreme Tours
+            Tour Guide
           </Link>
 
           {/* Navigation */}
