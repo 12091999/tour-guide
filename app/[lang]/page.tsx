@@ -82,7 +82,7 @@ export default async function HomePage({
         </div>
       </section>
 
-      <Footer dict={dict} lang={currentLang} />
+      <Footer />
     </div>
   )
 }
