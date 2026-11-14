@@ -48,6 +48,8 @@ const destinations = [
       "Discover Green Bay, a hidden coastal paradise in Meru Betiri National Park.",
     price: 300000,
   },
+  { id: 5, name: "Tabuhan Island", country: "Bangsring, Banyuwangi, Indonesia", image: "/bangsring.jpg", description: "Reach this clear-water island by boat from Bangsring and enjoy snorkeling and beach time.", price: 300000 },
+  { id: 6, name: "Pulau Merah", country: "Pesanggaran, Banyuwangi, Indonesia", image: "/Teluk hijau.jpg", description: "Spend a day at the south-coast beach known for its red offshore hill and sunset views.", price: 250000 },
 ]
 
 export async function FeaturedDestinations({
@@ -112,7 +114,7 @@ export async function FeaturedDestinations({
                   </h3>
 
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {dict.site.destinations[["", "ijen", "djawatan", "bangsring", "teluk"][destination.id]]}
+                    {dict.site.destinations[["", "ijen", "djawatan", "bangsring", "teluk"][destination.id]] ?? destination.description}
                   </p>
                 </div>
 

@@ -36,7 +36,7 @@ const tourData: Record<number, Tour> = {
       ka: "Discover the spectacular Ijen Crater in Banyuwangi, famous for its rare blue fire and beautiful crater lake.",
       ru: "Откройте для себя кратер Иджен в Баньюванги, известный голубым пламенем и красивым бирюзовым озером.",
     },
-    duration: "8 hours",
+    duration: "10 hours",
     difficulty: "Moderate",
     price: 300000,
     maxPeople: 5,
@@ -44,45 +44,38 @@ const tourData: Record<number, Tour> = {
     image: "/ijen.jpg",
     itinerary: {
       en: [
-        "Hotel pickup in Banyuwangi",
-        "Travel to the Ijen hiking entrance",
-        "Hike to the crater viewpoint",
-        "Enjoy the spectacular volcanic scenery",
-        "Return to Banyuwangi",
+        "00:00 — Hotel pickup in Banyuwangi (suggested time; confirm with your guide)",
+        "01:30 — Arrive at Paltuding, check tickets and health documents, and prepare safety equipment",
+        "02:00 — Enter the trail when the official hiking gate opens",
+        "02:00–05:30 — Guided ascent; crater access depends on current safety instructions",
+        "05:30–07:00 — Viewpoint and sunrise, subject to weather and access rules",
+        "07:00–08:30 — Descend and have the included meal",
+        "08:30–10:00 — Return to Banyuwangi (estimated; traffic may change arrival time)",
       ],
       ka: [
-        "Hotel pickup in Banyuwangi",
-        "Travel to the Ijen hiking entrance",
-        "Hike to the crater viewpoint",
-        "Enjoy the spectacular volcanic scenery",
-        "Return to Banyuwangi",
+        "00:00 — Hotel pickup in Banyuwangi (suggested time; confirm with your guide)",
+        "01:30 — Arrive at Paltuding, check tickets and health documents, and prepare safety equipment",
+        "02:00 — Enter the trail when the official hiking gate opens",
+        "02:00–05:30 — Guided ascent; crater access depends on current safety instructions",
+        "05:30–07:00 — Viewpoint and sunrise, subject to weather and access rules",
+        "07:00–08:30 — Descend and have the included meal",
+        "08:30–10:00 — Return to Banyuwangi (estimated; traffic may change arrival time)",
       ],
       ru: [
-        "Сбор в отеле в Баньюванги",
-        "Поездка ко входу на маршрут Иджен",
-        "Подъем к смотровой площадке кратера",
-        "Осмотр вулканических пейзажей",
-        "Возвращение в Баньюванги",
+        "00:00 — Выезд из отеля в Баньюванги (время предварительное)",
+        "01:30 — Прибытие в Палтудинг, проверка билетов и медицинских документов, подготовка снаряжения",
+        "02:00 — Вход на маршрут после открытия официального входа",
+        "02:00–05:30 — Подъём с гидом; доступ к кратеру зависит от действующих правил безопасности",
+        "05:30–07:00 — Смотровая площадка и рассвет, если позволяют погода и правила доступа",
+        "07:00–08:30 — Спуск и включённый приём пищи",
+        "08:30–10:00 — Возвращение в Баньюванги (ориентировочно)",
       ],
     },
     included: {
-      en: [
-        "Professional local guide",
-        "Transportation",
-        "Drinking water",
-        "Travel assistance",
-      ],
-      ka: [
-        "Professional local guide",
-        "Transportation",
-        "Drinking water",
-        "Travel assistance",
-      ],
+      en: ["Entrance ticket", "Health certificate", "Meal", "Flashlight", "Gas mask", "Hiking pole"],
+      ka: ["Entrance ticket", "Health certificate", "Meal", "Flashlight", "Gas mask", "Hiking pole"],
       ru: [
-        "Профессиональный местный гид",
-        "Транспорт",
-        "Питьевая вода",
-        "Помощь в поездке",
+        "Входной билет", "Медицинская справка", "Питание", "Фонарик", "Противогаз", "Палка для треккинга",
       ],
     },
   },
@@ -98,53 +91,29 @@ const tourData: Record<number, Tour> = {
       ka: "Explore the magical Djawatan Forest in Banyuwangi, surrounded by enormous old trees.",
       ru: "Посетите волшебный лес Джаватан в Баньюванги с огромными старыми деревьями и спокойной атмосферой.",
     },
-    duration: "4 hours",
+    duration: "6 hours",
     difficulty: "Easy",
     price: 250000,
     maxPeople: 5,
     rating: 4.8,
     image: "/djawatan.jpg",
     itinerary: {
-      en: [
-        "Pickup in Banyuwangi",
-        "Travel to Djawatan Forest",
-        "Explore the giant trembesi trees",
-        "Photography and leisure time",
-        "Return to your hotel",
-      ],
-      ka: [
-        "Pickup in Banyuwangi",
-        "Travel to Djawatan Forest",
-        "Explore the giant trembesi trees",
-        "Photography and leisure time",
-        "Return to your hotel",
-      ],
+      en: ["08:00 — Pickup in Banyuwangi", "09:30 — Arrive at Djawatan and enter the forest", "10:00–12:00 — Explore the trembesi trees and photo spots", "12:00–13:00 — Included meal", "13:00–14:00 — Free time and return preparation", "14:00–15:30 — Return to Banyuwangi (estimated)"],
+      ka: ["08:00 — Pickup in Banyuwangi", "09:30 — Arrive at Djawatan and enter the forest", "10:00–12:00 — Explore the trembesi trees and photo spots", "12:00–13:00 — Included meal", "13:00–14:00 — Free time and return preparation", "14:00–15:30 — Return to Banyuwangi (estimated)"],
       ru: [
-        "Сбор в Баньюванги",
-        "Поездка в лес Джаватан",
-        "Прогулка среди гигантских деревьев",
-        "Фотографии и свободное время",
-        "Возвращение в отель",
+        "08:00 — Выезд из Баньюванги",
+        "09:30 — Прибытие в Джаватан и вход в лес",
+        "10:00–12:00 — Прогулка среди деревьев трембези и фотопаузы",
+        "12:00–13:00 — Включённый приём пищи",
+        "13:00–14:00 — Свободное время и подготовка к отъезду",
+        "14:00–15:30 — Возвращение в Баньюванги (ориентировочно)",
       ],
     },
     included: {
-      en: [
-        "Local guide",
-        "Transportation",
-        "Drinking water",
-        "Travel assistance",
-      ],
-      ka: [
-        "Local guide",
-        "Transportation",
-        "Drinking water",
-        "Travel assistance",
-      ],
+      en: ["Djawatan entrance ticket", "Meal"],
+      ka: ["Djawatan entrance ticket", "Meal"],
       ru: [
-        "Местный гид",
-        "Транспорт",
-        "Питьевая вода",
-        "Помощь в поездке",
+        "Входной билет в Джаватан", "Питание",
       ],
     },
   },
@@ -272,6 +241,36 @@ const tourData: Record<number, Tour> = {
       ],
     },
   },
+  5: {
+    title: { en: "Tabuhan Island", ka: "Tabuhan Island", ru: "Остров Табухан" },
+    description: { en: "Take a boat from the Bangsring coast to Tabuhan Island for a day of clear water, beach time and snorkeling.", ka: "Take a boat from Bangsring to Tabuhan Island for a day of clear water and snorkeling.", ru: "Отправьтесь на лодке от побережья Бангсринга на остров Табухан, чтобы отдохнуть на пляже и заняться снорклингом." },
+    duration: "7 hours", difficulty: "Easy", price: 300000, maxPeople: 5, rating: 4.8, image: "/bangsring.jpg",
+    itinerary: {
+      en: ["07:30 — Pickup in Banyuwangi and drive to Kampe Beach at Bangsring", "08:30 — Check in, confirm sea conditions and prepare snorkeling equipment", "09:00 — Boat transfer to Tabuhan Island (departure depends on weather and sea conditions)", "09:30–12:00 — Beach time and snorkeling with provided equipment", "12:00–13:00 — Included meal and rest on the island", "13:00 — Return boat to Kampe Beach", "14:00–15:00 — Return to Banyuwangi (estimated)"],
+      ka: ["07:30 — Pickup in Banyuwangi and drive to Kampe Beach at Bangsring", "08:30 — Check in, confirm sea conditions and prepare snorkeling equipment", "09:00 — Boat transfer to Tabuhan Island (departure depends on weather and sea conditions)", "09:30–12:00 — Beach time and snorkeling with provided equipment", "12:00–13:00 — Included meal and rest on the island", "13:00 — Return boat to Kampe Beach", "14:00–15:00 — Return to Banyuwangi (estimated)"],
+      ru: ["07:30 — Выезд из Баньюванги на пляж Кампе в Бангсринге", "08:30 — Регистрация, проверка состояния моря и подготовка снаряжения для снорклинга", "09:00 — Лодочный переход на остров Табухан (время зависит от погоды и моря)", "09:30–12:00 — Отдых на пляже и снорклинг с предоставленным снаряжением", "12:00–13:00 — Включённый обед и отдых на острове", "13:00 — Возвращение на лодке к пляжу Кампе", "14:00–15:00 — Возвращение в Баньюванги (ориентировочно)"],
+    },
+    included: {
+      en: ["Tabuhan entrance ticket", "Return boat / sampan transfer", "Meal", "Snorkeling equipment"],
+      ka: ["Tabuhan entrance ticket", "Return boat / sampan transfer", "Meal", "Snorkeling equipment"],
+      ru: ["Входной билет на Табухан", "Лодка / сампан туда и обратно", "Питание", "Снаряжение для снорклинга"],
+    },
+  },
+  6: {
+    title: { en: "Pulau Merah", ka: "Pulau Merah", ru: "Пулау-Мерах" },
+    description: { en: "Spend a full day at Pulau Merah, a south-coast beach known for its red offshore hill and sunset views.", ka: "Spend a full day at Pulau Merah beach and enjoy its south-coast scenery.", ru: "Проведите день на пляже Пулау-Мерах, известном красноватым островком у берега и закатами." },
+    duration: "10 hours", difficulty: "Easy", price: 250000, maxPeople: 5, rating: 4.7, image: "/Teluk hijau.jpg",
+    itinerary: {
+      en: ["07:00 — Pickup in Banyuwangi", "07:00–10:00 — Drive to Pulau Merah (estimated; traffic may change travel time)", "10:00–12:00 — Beach visit and free time", "12:00–13:00 — Included meal", "13:00–15:30 — Relax, explore the shoreline and enjoy the view", "15:30–18:30 — Return to Banyuwangi (estimated)"],
+      ka: ["07:00 — Pickup in Banyuwangi", "07:00–10:00 — Drive to Pulau Merah (estimated; traffic may change travel time)", "10:00–12:00 — Beach visit and free time", "12:00–13:00 — Included meal", "13:00–15:30 — Relax, explore the shoreline and enjoy the view", "15:30–18:30 — Return to Banyuwangi (estimated)"],
+      ru: ["07:00 — Выезд из Баньюванги", "07:00–10:00 — Поездка на Пулау-Мерах (ориентировочно)", "10:00–12:00 — Посещение пляжа и свободное время", "12:00–13:00 — Включённый обед", "13:00–15:30 — Отдых и прогулка по побережью", "15:30–18:30 — Возвращение в Баньюванги (ориентировочно)"],
+    },
+    included: {
+      en: ["Pulau Merah entrance ticket", "Meal"],
+      ka: ["Pulau Merah entrance ticket", "Meal"],
+      ru: ["Входной билет на Пулау-Мерах", "Питание"],
+    },
+  },
 }
 
 type AdditionalLanguage = "id" | "de" | "zh" | "ja" | "ko" | "fr" | "nl"
@@ -282,10 +281,12 @@ type LocalizedTourCopy = {
 }
 const translatedTours: Record<AdditionalLanguage, Record<number, LocalizedTourCopy>> = {
   id: {
-    1: { title: { id: "Kawah Ijen" }, description: { id: "Jelajahi Kawah Ijen di Banyuwangi yang terkenal dengan api biru langka, lanskap vulkanik dramatis, dan danau kawah berwarna toska." }, itinerary: { id: ["Penjemputan dari hotel di Banyuwangi", "Perjalanan menuju pintu masuk pendakian Ijen", "Mendaki ke titik pandang kawah", "Menikmati pemandangan vulkanik yang menakjubkan", "Kembali ke Banyuwangi"] } },
-    2: { title: { id: "Hutan Djawatan" }, description: { id: "Jelajahi Hutan Djawatan di Benculuk, Banyuwangi, dengan pepohonan trembesi tua yang besar dan suasana alam yang menenangkan." }, itinerary: { id: ["Penjemputan di Banyuwangi", "Perjalanan menuju Hutan Djawatan", "Menjelajahi pepohonan trembesi raksasa", "Berfoto dan menikmati waktu santai", "Kembali ke hotel"] } },
+    1: { title: { id: "Kawah Ijen" }, description: { id: "Jelajahi Kawah Ijen di Banyuwangi yang terkenal dengan api biru langka, lanskap vulkanik dramatis, dan danau kawah berwarna toska." }, itinerary: { id: ["00.00 — Penjemputan malam dari hotel di Banyuwangi (waktu perkiraan)", "01.30 — Tiba di Paltuding, pemeriksaan tiket dan surat kesehatan, persiapan perlengkapan", "02.00 — Memulai pendakian saat pintu resmi dibuka", "02.00–05.30 — Pendakian dengan pemandu; akses kawah mengikuti aturan keselamatan terbaru", "05.30–07.00 — Menikmati titik pandang dan matahari terbit, sesuai cuaca dan akses", "07.00–08.30 — Turun dan makan", "08.30–10.00 — Kembali ke Banyuwangi (perkiraan)"] } },
+    2: { title: { id: "Hutan Djawatan" }, description: { id: "Jelajahi Hutan Djawatan di Benculuk, Banyuwangi, dengan pepohonan trembesi tua yang besar dan suasana alam yang menenangkan." }, itinerary: { id: ["08.00 — Penjemputan di Banyuwangi", "09.30 — Tiba di Djawatan dan masuk kawasan", "10.00–12.00 — Menjelajahi hutan trembesi dan area berfoto", "12.00–13.00 — Makan", "13.00–14.00 — Waktu bebas dan persiapan kembali", "14.00–15.30 — Kembali ke Banyuwangi (perkiraan)"] } },
     3: { title: { id: "Pantai Bangsring" }, description: { id: "Nikmati pemandangan pesisir Pantai Bangsring yang indah, air laut jernih, kesempatan snorkeling, dan beragam aktivitas bahari." }, itinerary: { id: ["Penjemputan di Banyuwangi", "Perjalanan menuju Pantai Bangsring", "Menikmati pantai dan pemandangan pesisir", "Pilihan aktivitas snorkeling", "Kembali ke Banyuwangi"] } },
     4: { title: { id: "Teluk Hijau" }, description: { id: "Temukan Teluk Hijau, pantai tersembunyi yang indah di Taman Nasional Meru Betiri, Banyuwangi, Jawa Timur." }, itinerary: { id: ["Penjemputan di Banyuwangi", "Perjalanan menuju Taman Nasional Meru Betiri", "Melanjutkan perjalanan ke kawasan Teluk Hijau", "Menikmati pantai dan pemandangan alam", "Kembali ke Banyuwangi"] } },
+    5: { title: { id: "Pulau Tabuhan" }, description: { id: "Menyeberang dari pesisir Bangsring ke Pulau Tabuhan untuk menikmati pantai, air jernih, dan snorkeling." }, itinerary: { id: ["07.30 — Penjemputan di Banyuwangi dan perjalanan ke Pantai Kampe, Bangsring", "08.30 — Registrasi, memeriksa kondisi laut, dan menyiapkan alat selam", "09.00 — Menyeberang ke Pulau Tabuhan; keberangkatan menyesuaikan cuaca dan kondisi laut", "09.30–12.00 — Menikmati pantai dan snorkeling dengan alat yang disediakan", "12.00–13.00 — Makan dan istirahat di pulau", "13.00 — Kembali dengan perahu ke Pantai Kampe", "14.00–15.00 — Kembali ke Banyuwangi (perkiraan)"] } },
+    6: { title: { id: "Pulau Merah" }, description: { id: "Nikmati wisata sehari penuh di Pantai Pulau Merah, pesisir selatan Banyuwangi yang terkenal dengan bukit merah dan pemandangan senja." }, itinerary: { id: ["07.00 — Penjemputan di Banyuwangi", "07.00–10.00 — Perjalanan ke Pulau Merah (perkiraan, dapat berubah karena lalu lintas)", "10.00–12.00 — Kunjungan pantai dan waktu bebas", "12.00–13.00 — Makan siang", "13.00–15.30 — Bersantai, menyusuri pantai, dan menikmati pemandangan", "15.30–18.30 — Kembali ke Banyuwangi (perkiraan)"] } },
   },
   de: {
     1: { title: { de: "Ijen-Krater" }, description: { de: "Entdecken Sie den Ijen-Krater in Banyuwangi, bekannt für sein seltenes blaues Feuer, die eindrucksvolle Vulkanlandschaft und den türkisfarbenen Kratersee." }, itinerary: { de: ["Abholung am Hotel in Banyuwangi", "Fahrt zum Startpunkt der Ijen-Wanderung", "Wanderung zum Aussichtspunkt am Krater", "Die beeindruckende Vulkanlandschaft genießen", "Rückfahrt nach Banyuwangi"] } },
@@ -325,14 +326,40 @@ const translatedTours: Record<AdditionalLanguage, Record<number, LocalizedTourCo
   },
 }
 
-const translatedIncluded: Record<AdditionalLanguage, string[]> = {
-  id: ["Pemandu lokal profesional", "Transportasi", "Air minum", "Bantuan perjalanan"],
-  de: ["Professioneller lokaler Guide", "Transport", "Trinkwasser", "Reiseunterstützung"],
-  zh: ["专业当地向导", "交通", "饮用水", "旅行协助"],
-  ja: ["経験豊富な現地ガイド", "交通", "飲料水", "旅行サポート"],
-  ko: ["전문 현지 가이드", "교통편", "식수", "여행 지원"],
-  fr: ["Guide local professionnel", "Transport", "Eau potable", "Assistance pendant le voyage"],
-  nl: ["Professionele lokale gids", "Vervoer", "Drinkwater", "Reisassistentie"],
+const translatedIncluded: Record<AdditionalLanguage, Record<number, string[]>> = {
+  id: {
+    1: ["Tiket masuk Ijen", "Surat keterangan kesehatan", "Makan", "Senter", "Masker gas", "Tongkat daki"],
+    2: ["Tiket masuk Djawatan", "Makan"],
+    3: ["Pemandu lokal profesional", "Transportasi", "Air minum", "Bantuan perjalanan"],
+    4: ["Pemandu lokal profesional", "Transportasi", "Air minum", "Bantuan perjalanan"],
+    5: ["Tiket masuk Pulau Tabuhan", "Perahu/sampan pulang-pergi", "Makan", "Alat selam/snorkeling"],
+    6: ["Tiket masuk Pulau Merah", "Makan"],
+  },
+  de: {
+    1: ["Eintrittskarte für Ijen", "Gesundheitsbescheinigung", "Mahlzeit", "Taschenlampe", "Gasmaske", "Wanderstock"],
+    2: ["Eintrittskarte für Djawatan", "Mahlzeit"], 3: ["Eintrittskarte für Bangsring", "Mahlzeit"], 4: ["Eintrittskarte für Teluk Hijau", "Mahlzeit"],
+    5: ["Eintrittskarte für Tabuhan", "Boot/Sampan für Hin- und Rückfahrt", "Mahlzeit", "Schnorchelausrüstung"], 6: ["Eintrittskarte für Pulau Merah", "Mahlzeit"],
+  },
+  zh: {
+    1: ["伊真门票", "健康证明", "餐食", "手电筒", "防毒面具", "登山杖"], 2: ["Djawatan门票", "餐食"], 3: ["Bangsring门票", "餐食"], 4: ["Teluk Hijau门票", "餐食"],
+    5: ["塔布汉岛门票", "往返船只/小船", "餐食", "浮潜装备"], 6: ["红岛门票", "餐食"],
+  },
+  ja: {
+    1: ["イジェン入場券", "健康証明書", "食事", "懐中電灯", "ガスマスク", "トレッキングポール"], 2: ["ジャワタン入場券", "食事"], 3: ["バンスリン入場券", "食事"], 4: ["テルク・ヒジャウ入場券", "食事"],
+    5: ["タブハン島入場券", "往復のボート／サンパン", "食事", "シュノーケリング用具"], 6: ["プラウ・メラ入場券", "食事"],
+  },
+  ko: {
+    1: ["이젠 입장권", "건강 증명서", "식사", "손전등", "방독면", "등산 스틱"], 2: ["자와탄 입장권", "식사"], 3: ["방스링 입장권", "식사"], 4: ["텔룩 히자우 입장권", "식사"],
+    5: ["타부한섬 입장권", "왕복 보트/삼판", "식사", "스노클링 장비"], 6: ["풀라우 메라 입장권", "식사"],
+  },
+  fr: {
+    1: ["Billet d’entrée pour Ijen", "Certificat médical", "Repas", "Lampe torche", "Masque à gaz", "Bâton de randonnée"], 2: ["Billet d’entrée pour Djawatan", "Repas"], 3: ["Billet d’entrée pour Bangsring", "Repas"], 4: ["Billet d’entrée pour Teluk Hijau", "Repas"],
+    5: ["Billet pour l’île de Tabuhan", "Bateau/sampan aller-retour", "Repas", "Équipement de snorkeling"], 6: ["Billet d’entrée pour Pulau Merah", "Repas"],
+  },
+  nl: {
+    1: ["Toegangsbewijs voor Ijen", "Gezondheidsverklaring", "Maaltijd", "Zaklamp", "Gasmasker", "Wandelstok"], 2: ["Toegangsbewijs voor Djawatan", "Maaltijd"], 3: ["Toegangsbewijs voor Bangsring", "Maaltijd"], 4: ["Toegangsbewijs voor Teluk Hijau", "Maaltijd"],
+    5: ["Toegangsbewijs voor Tabuhan", "Boot/sampan voor heen- en terugreis", "Maaltijd", "Snorkeluitrusting"], 6: ["Toegangsbewijs voor Pulau Merah", "Maaltijd"],
+  },
 }
 
 function formatDuration(duration: string, locale: SupportedLanguage) {
@@ -401,7 +428,7 @@ export default async function TourDetailPage({
   const description = localeCopy?.description?.[currentLang as AdditionalLanguage] ?? tour.description[tourLang]
   const itinerary = localeCopy?.itinerary?.[currentLang as AdditionalLanguage] ?? tour.itinerary[tourLang]
   const included = hasAdditionalTranslation
-    ? translatedIncluded[currentLang as AdditionalLanguage]
+    ? translatedIncluded[currentLang as AdditionalLanguage]?.[tourId] ?? tour.included[tourLang]
     : tour.included[tourLang]
   const duration = formatDuration(tour.duration, currentLang)
 
