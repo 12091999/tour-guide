@@ -1,142 +1,68 @@
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import Link from "next/link"
 
 export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
-  const labels = dict?.site?.footer ?? {
-    destinations: "Destinations", company: "Company", support: "Support", about: "About Us", careers: "Careers", press: "Press", blog: "Blog", partners: "Partners", help: "Help Center", contact: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Service", cancellation: "Cancellation Policy", copyright: "All rights reserved.",
+  const id = lang === "id"
+  const labels = {
+    destinations: id ? "Destinasi" : "Destinations",
+    company: id ? "Perusahaan" : "Company",
+    support: id ? "Bantuan" : "Help & Support",
+    about: id ? "Tentang Tour Guide Traveler" : "About Tour Guide Traveler",
+    partners: id ? "Mitra lokal" : "Local partners",
+    becomePartner: id ? "Ingin menjadi mitra?" : "Become a partner",
+    help: id ? "FAQ / Pusat Bantuan" : "FAQ / Help Center",
+    booking: id ? "Cara memesan" : "How to book",
+    payment: id ? "Pembayaran & pembatalan" : "Payments & cancellations",
+    safety: id ? "Keamanan & darurat" : "Travel safety & emergencies",
+    feedback: id ? "Masukan untuk Perusahaan" : "Company Feedback",
+    contact: id ? "Kontak: WhatsApp & jam layanan" : "Contact: WhatsApp & hours",
+    rights: id ? "Hak cipta dilindungi." : "All rights reserved.",
   }
-  const description = dict?.footer?.description ?? "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences."
+  const description = dict?.footer?.description ?? (id
+    ? "Tour Guide Traveller membantu wisatawan menjelajahi alam, budaya, dan pengalaman lokal Banyuwangi."
+    : "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences.")
+  const linkClass = "transition-colors hover:text-foreground"
+
   return (
-    <footer id="contact" className="bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+        <div className="mb-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Tour Guide Traveller"}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {description}
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Youtube className="h-5 w-5" />
-              </a>
-            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
           </div>
-
-          {/* Destinations */}
           <div>
-            <h4 className="font-semibold mb-4">{labels.destinations}</h4>
+            <h4 className="mb-4 font-semibold">{labels.destinations}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Ijen
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Djawatan
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Teluk Hijau
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  Bangsring
-                </a>
-              </li>
-              <li>
-                {/* <a href="#" className="hover:text-foreground transition-colors">
-                  Oceania
-                </a> */}
-              </li>
+              <li><Link className={linkClass} href={`/${lang}/explore/1`}>Ijen Crater</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/2`}>Djawatan</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/4`}>Teluk Hijau</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/3`}>Bangsring Beach</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/5`}>Tabuhan Island</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/6`}>Pulau Merah</Link></li>
             </ul>
           </div>
-
-          {/* Company */}
           <div>
-            <h4 className="font-semibold mb-4">{labels.company}</h4>
+            <h4 className="mb-4 font-semibold">{labels.company}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <Link href={`/${lang}/about`} className="hover:text-foreground transition-colors">
-                  {labels.about}
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.careers}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.press}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.blog}
-                </a>
-              </li>
-              <li>
-                <Link href={`/${lang}/partners`} className="hover:text-foreground transition-colors">
-                  {labels.partners}
-                </Link>
-              </li>
+              <li><Link className={linkClass} href={`/${lang}/about`}>{labels.about}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/partners`}>{labels.partners}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/partners#join`}>{labels.becomePartner}</Link></li>
             </ul>
           </div>
-
-          {/* Support */}
           <div>
-            <h4 className="font-semibold mb-4">{labels.support}</h4>
+            <h4 className="mb-4 font-semibold">{labels.support}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <Link href={`/${lang}/help`} className="hover:text-foreground transition-colors">
-                  {labels.help}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/feedback`} className="hover:text-foreground transition-colors">
-                  {lang === "id" ? "Masukan untuk Perusahaan" : "Company Feedback"}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${lang}/contact`} className="hover:text-foreground transition-colors">
-                  {labels.contact}
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.privacy}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.terms}
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-foreground transition-colors">
-                  {labels.cancellation}
-                </a>
-              </li>
+              <li><Link className={linkClass} href={`/${lang}/help#faq`}>{labels.help}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/help#booking`}>{labels.booking}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/help#payments`}>{labels.payment}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/help#safety`}>{labels.safety}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/feedback`}>{labels.feedback}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/contact`}>{labels.contact}</Link></li>
             </ul>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© 2026 Tour Guide Travel Agency. {labels.copyright}</p>
+        <div className="border-t border-border pt-7 text-center text-sm text-muted-foreground">
+          <p>© 2026 Tour Guide Traveller. {labels.rights}</p>
         </div>
       </div>
     </footer>

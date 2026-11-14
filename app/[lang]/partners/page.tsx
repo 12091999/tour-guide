@@ -78,6 +78,13 @@ export default async function PartnersPage({ params }: { params: Promise<{ lang:
               </div>
             </div>
           ))}
+          <div id="join" className="scroll-mt-24 rounded-2xl border border-primary/20 bg-primary/5 p-6 md:flex md:items-center md:justify-between md:gap-8">
+            <div>
+              <h2 className="text-2xl font-semibold">{currentLang === "id" ? "Ingin menjadi mitra Tour Guide?" : "Want to partner with Tour Guide?"}</h2>
+              <p className="mt-2 max-w-2xl text-muted-foreground">{currentLang === "id" ? "Kami terbuka untuk bekerja sama dengan tempat makan, penginapan, dan penyedia rental motor di Banyuwangi." : "We welcome dining, accommodation, and motorbike rental businesses in Banyuwangi."}</p>
+            </div>
+            <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin bergabung sebagai mitra. Nama usaha dan layanan kami: " : "Hi Tour Guide, we would like to become a partner. Our business and services: ")} target="_blank" rel="noreferrer" className="mt-5 inline-flex shrink-0 rounded-full bg-green-600 px-5 py-3 font-medium text-white hover:bg-green-700 md:mt-0">{currentLang === "id" ? "Daftar via WhatsApp" : "Contact us on WhatsApp"}</a>
+          </div>
           <div className="rounded-2xl border bg-muted/30 p-6 md:flex md:items-center md:justify-between md:gap-8">
             <div className="flex items-start gap-4">
               <Bike className="mt-1 h-6 w-6 shrink-0 text-primary" />
