@@ -70,7 +70,7 @@ export function TourPackages({ lang }: { lang: SupportedLanguage }) {
   } as Record<string, string>)[activity] ?? activity : activity
 
   return (
-    <section className="bg-muted/30 py-20">
+    <section id="tour-packages" className="bg-muted/30 py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-12 max-w-3xl">
           <p className="mb-3 text-sm uppercase tracking-widest text-primary">Tour Guide</p>

@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Calendar, Users, Star } from "lucide-react"
 import { formatPrice } from "@/lib/currency"
+import Link from "next/link"
 
 const packages = [
   {
@@ -59,8 +59,9 @@ export async function PopularPackages() {
           {packages.map((pkg, index) => (
             <Card
               key={index}
-              className="group overflow-hidden border-0 bg-card hover:shadow-2xl transition-all duration-500"
+              className="group relative overflow-hidden border-0 bg-card transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
             >
+              <Link href="/en/explore#tour-packages" aria-label={`View ${pkg.title} itinerary`} className="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset" />
               {/* Image */}
               <div className="relative h-64 overflow-hidden">
                 <img
@@ -112,9 +113,7 @@ export async function PopularPackages() {
                     <div className="text-sm font-semibold text-primary">2 people: {twoPersonPerGuest.formatted}/person ({twoPersonTotal.formatted} total)</div>
                     <div className="text-sm font-semibold text-primary">4 people: {fourPersonPerGuest.formatted}/person ({fourPersonTotal.formatted} total)</div>
                   </div>
-                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
-                    Book Now
-                  </Button>
+                  <span className="pointer-events-none relative z-20 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">View itinerary</span>
                 </div>
               </div>
             </Card>

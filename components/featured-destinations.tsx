@@ -83,10 +83,13 @@ export async function FeaturedDestinations({
         {/* Destinations Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {destinations.map((destination, index) => (
-            <Card
+            <Link
               key={destination.id}
-              className="group overflow-hidden border-0 bg-card hover:shadow-2xl transition-all duration-500"
+              href={`/${currentLang}/explore/${destination.id}`}
+              aria-label={`${dict.site.destinations.explore}: ${destination.name}`}
+              className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
             >
+            <Card className="h-full overflow-hidden border-0 bg-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl">
               {/* Image */}
               <div className="relative h-80 overflow-hidden">
                 <img
@@ -123,22 +126,14 @@ export async function FeaturedDestinations({
                     {dict.tours.from} {prices[index].formatted} {getOnePersonLabel(currentLang as SupportedLanguage)}
                   </span>
 
-                  <Button
-                    asChild
-                    variant="ghost"
-                    size="sm"
-                    className="group/btn text-foreground hover:text-primary"
-                  >
-                    <Link
-                      href={`/${currentLang}/explore/${destination.id}`}
-                    >
-                      {dict.site.destinations.explore}
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
+                  <span className="inline-flex items-center text-sm font-medium text-foreground group-hover:text-primary">
+                    {dict.site.destinations.explore}
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
                 </div>
               </div>
             </Card>
+            </Link>
           ))}
         </div>
 
