@@ -8,8 +8,22 @@ import { Target, Eye, Heart } from "lucide-react"
 const team = [
   { name: "Rizky Frimansyah Ramadhan", avatar: "/placeholder-user.jpg" },
   { name: "Fajar Kurniawan", avatar: "/placeholder-user.jpg" },
-  { name: "Kungking", avatar: "/placeholder-user.jpg" },
+  { name: "Widi Dwi Kurniawan", avatar: "/placeholder-user.jpg" },
 ]
+
+const thirdMemberRole: Record<string, [string, string]> = {
+  id: ["Partnership Team IT", "Mengelola kemitraan dan mendukung kebutuhan teknologi Tour Guide."],
+  en: ["IT Partnerships Team", "Coordinates partnerships and supports Tour Guide's IT operations."],
+  "en-au": ["IT Partnerships Team", "Coordinates partnerships and supports Tour Guide's IT operations."],
+  de: ["IT-Partnerschaften", "Koordiniert Partnerschaften und unterstützt den IT-Betrieb von Tour Guide."],
+  zh: ["IT合作伙伴团队", "负责合作伙伴关系并支持Tour Guide的技术运营。"],
+  ja: ["ITパートナーシップチーム", "パートナー連携とTour GuideのIT運用を担当します。"],
+  ko: ["IT 파트너십 팀", "파트너십을 조율하고 Tour Guide의 IT 운영을 지원합니다."],
+  fr: ["Équipe partenariats et informatique", "Coordonne les partenariats et accompagne les opérations informatiques de Tour Guide."],
+  nl: ["IT-partnersteam", "Coördineert partnerschappen en ondersteunt de IT-activiteiten van Tour Guide."],
+  ru: ["Команда IT-партнёрств", "Координирует партнёрства и поддерживает IT-направление Tour Guide."],
+  ka: ["IT პარტნიორობის გუნდი", "კოორდინაციას უწევს პარტნიორობას და მხარს უჭერს Tour Guide-ის IT საქმიანობას."],
+}
 
 export default async function AboutPage({
   params,
@@ -102,10 +116,10 @@ export default async function AboutPage({
                     </AvatarFallback>
                   </Avatar>
                   <CardTitle>{member.name}</CardTitle>
-                  <p className="text-sm text-muted-foreground">{dict.site.about.team[index][0]}</p>
+                  <p className="text-sm text-muted-foreground">{index === 2 ? thirdMemberRole[currentLang][0] : dict.site.about.team[index][0]}</p>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{dict.site.about.team[index][1]}</p>
+                  <p className="text-muted-foreground">{index === 2 ? thirdMemberRole[currentLang][1] : dict.site.about.team[index][1]}</p>
                 </CardContent>
               </Card>
             ))}
