@@ -7,7 +7,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/teluk-hijau.jpg"
+          src="/ijen.jpg"
           alt="Turquoise waters and tropical coast of Banyuwangi"
           className="w-full h-full object-cover"
         />

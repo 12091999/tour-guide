@@ -23,7 +23,7 @@ export default async function HomePage({
       <section className="relative min-h-[650px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/teluk-hijau.jpg"
+            src="/ijen.jpg"
             alt={dict.site.home.title}
             className="w-full h-full object-cover"
           />
