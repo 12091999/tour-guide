@@ -16,14 +16,6 @@ import { Globe } from "lucide-react"
 const languages = [
   { code: "id", name: "Bahasa Indonesia", flag: "🇮🇩" },
   { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "en-au", name: "English (Australia)", flag: "🇦🇺" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "ja", name: "日本語", flag: "🇯🇵" },
-  { code: "ko", name: "한국어", flag: "🇰🇷" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "nl", name: "Nederlands", flag: "🇳🇱" },
-  { code: "ru", name: "Русский", flag: "🇷🇺" },
 ]
 
 interface LanguageSwitcherProps {
