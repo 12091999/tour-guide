@@ -12,7 +12,7 @@ const prompt = Prompt({
 })
 
 export const metadata: Metadata = {
-  title: "Wanderlust Travel - Discover Your Next Adventure",
+  title: "Tour Guide Traveler - Discover Your Next Adventure",
   description: "Explore breathtaking destinations around the world with curated travel experiences",
   generator: "v0.app",
 }
