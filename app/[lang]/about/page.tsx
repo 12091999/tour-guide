@@ -25,12 +25,14 @@ export default async function AboutPage({
       <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary/10 to-primary/5">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative isolate overflow-hidden py-20 text-white bg-gradient-to-br from-teal-800 via-cyan-700 to-orange-500">
+        <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-amber-300/25 blur-3xl" />
+        <div className="absolute -bottom-48 -left-20 h-96 w-96 rounded-full bg-sky-300/20 blur-3xl" />
+        <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{dict.about.title}</h1>
-          <p className="text-xl text-muted-foreground mb-8">{dict.about.subtitle}</p>
+          <p className="text-xl text-white/85 mb-8">{dict.about.subtitle}</p>
           <div className="max-w-3xl mx-auto">
-            <p className="text-lg leading-relaxed">{dict.about.description}</p>
+            <p className="text-lg leading-relaxed text-white/95">{dict.about.description}</p>
           </div>
         </div>
       </section>

@@ -48,11 +48,13 @@ export default async function PartnersPage({ params }: { params: Promise<{ lang:
     <div className="min-h-screen bg-background">
       <Header dict={dict} lang={currentLang} />
       <main className="pt-16">
-        <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
-          <div className="mx-auto max-w-5xl px-6 text-center">
-            <p className="mb-3 text-sm uppercase tracking-widest text-primary">{text.recommended}</p>
+        <section className="relative isolate overflow-hidden bg-gradient-to-br from-teal-800 via-cyan-700 to-orange-500 py-16 text-white">
+          <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-amber-300/25 blur-3xl" />
+          <div className="absolute -bottom-48 -left-20 h-96 w-96 rounded-full bg-sky-300/20 blur-3xl" />
+          <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+            <p className="mb-3 text-sm uppercase tracking-widest text-amber-200">{text.recommended}</p>
             <h1 className="mb-4 text-4xl font-bold md:text-5xl">{text.title}</h1>
-            <p className="mx-auto max-w-3xl text-lg text-muted-foreground">{text.intro}</p>
+            <p className="mx-auto max-w-3xl text-lg text-white/90">{text.intro}</p>
           </div>
         </section>
         <section className="mx-auto max-w-7xl space-y-14 px-6 py-16 lg:px-8">

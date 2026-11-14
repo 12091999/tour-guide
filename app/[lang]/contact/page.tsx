@@ -19,10 +19,12 @@ export default async function ContactPage({
       <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
-        <div className="container mx-auto px-4 text-center">
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-teal-800 via-cyan-700 to-orange-500 py-16 text-white">
+        <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-amber-300/25 blur-3xl" />
+        <div className="absolute -bottom-48 -left-20 h-96 w-96 rounded-full bg-sky-300/20 blur-3xl" />
+        <div className="container relative z-10 mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{dict.contact.title}</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{dict.contact.info.description}</p>
+          <p className="text-xl text-white/90 max-w-2xl mx-auto">{dict.contact.info.description}</p>
         </div>
       </section>
 
