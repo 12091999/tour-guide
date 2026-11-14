@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card"
 import { Calendar, Users, Star } from "lucide-react"
 import { formatPrice } from "@/lib/currency"
 import Link from "next/link"
+import { getWhatsAppUrl } from "@/lib/whatsapp"
 
 const packages = [
   {
@@ -113,7 +114,7 @@ export async function PopularPackages() {
                     <div className="text-sm font-semibold text-primary">2 people: {twoPersonPerGuest.formatted}/person ({twoPersonTotal.formatted} total)</div>
                     <div className="text-sm font-semibold text-primary">4 people: {fourPersonPerGuest.formatted}/person ({fourPersonTotal.formatted} total)</div>
                   </div>
-                  <span className="pointer-events-none relative z-20 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">View itinerary</span>
+                  <a href={getWhatsAppUrl(`Hi Tour Guide, I am interested in the ${pkg.title}. Please send me the package details and availability.`)} target="_blank" rel="noreferrer" className="relative z-20 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">Book via WhatsApp</a>
                 </div>
               </div>
             </Card>

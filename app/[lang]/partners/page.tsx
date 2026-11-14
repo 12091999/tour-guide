@@ -1,9 +1,9 @@
-import Link from "next/link"
 import { ArrowUpRight, BedDouble, Bike, Utensils } from "lucide-react"
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
+import { getWhatsAppUrl } from "@/lib/whatsapp"
 
 const copy: Record<string, { title: string; intro: string; recommended: string; dining: string; stays: string; mobility: string; contact: string; contactCta: string; note: string }> = {
   id: { title: "Mitra Lokal Tour Guide", intro: "Temukan pilihan tempat makan, penginapan, dan bantuan rental motor untuk perjalanan Anda di Banyuwangi.", recommended: "Pilihan lokal", dining: "Tempat Makan", stays: "Penginapan", mobility: "Rental Motor Roda Dua", contact: "Butuh bantuan mencari rental motor yang tersedia? Hubungi tim Tour Guide.", contactCta: "Hubungi Tour Guide", note: "Pilihan tempat pada halaman ini merupakan rekomendasi lokal. Ketersediaan dan layanan dapat berubah; silakan konfirmasi langsung." },
@@ -86,7 +86,7 @@ export default async function PartnersPage({ params }: { params: Promise<{ lang:
                 <p className="mt-2 max-w-2xl text-muted-foreground">{text.contact}</p>
               </div>
             </div>
-            <Link href={`/${currentLang}/contact`} className="mt-5 inline-flex shrink-0 rounded-full bg-primary px-5 py-3 font-medium text-primary-foreground hover:opacity-90 md:mt-0">{text.contactCta}</Link>
+            <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya mencari rental motor roda dua di Banyuwangi." : "Hi Tour Guide, I am looking for a motorbike rental in Banyuwangi.")} target="_blank" rel="noreferrer" className="mt-5 inline-flex shrink-0 rounded-full bg-green-600 px-5 py-3 font-medium text-white hover:bg-green-700 md:mt-0">{currentLang === "id" ? "Pesan via WhatsApp" : "Message us on WhatsApp"}</a>
           </div>
           <p className="text-xs text-muted-foreground">{text.note}</p>
         </section>

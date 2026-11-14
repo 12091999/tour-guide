@@ -1,8 +1,8 @@
-import Link from "next/link"
 import { CalendarDays, CheckCircle, Clock } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
+import { getWhatsAppUrl } from "@/lib/whatsapp"
 
 const labels: Record<string, { title: string; intro: string; schedule: string; included: string; day: string; book: string; notice: string }> = {
   id: { title: "Paket Wisata & Jadwal", intro: "Paket tiga hari dengan urutan destinasi, jam kegiatan, dan fasilitas yang disertakan.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Hari", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
@@ -111,7 +111,7 @@ export function TourPackages({ lang }: { lang: SupportedLanguage }) {
                   </ul>
                 </div>
                 <Button asChild className="w-full rounded-full">
-                  <Link href={`/${lang}/contact`}>{text.book}</Link>
+                  <a href={getWhatsAppUrl(isIndonesian ? `Halo Tour Guide, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)} target="_blank" rel="noreferrer">{isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}</a>
                 </Button>
               </CardContent>
             </Card>

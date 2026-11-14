@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
 import { formatPrice, getOnePersonLabel } from "@/lib/currency"
+import { getWhatsAppUrl } from "@/lib/whatsapp"
 
 type TourLanguage = "ka" | "en" | "ru"
 type LocalizedText = Record<TourLanguage, string>
@@ -542,9 +543,9 @@ export default async function TourDetailPage({
               </div>
 
               <Button asChild className="w-full" size="lg">
-                <Link href={`/${currentLang}/contact`}>
-                  {labels.contact}
-                </Link>
+                <a href={getWhatsAppUrl(currentLang === "id" ? `Halo Tour Guide, saya ingin memesan ${title}. Mohon info jadwal dan ketersediaannya.` : `Hi Tour Guide, I would like to book ${title}. Please share available dates and details.`)} target="_blank" rel="noreferrer">
+                  {currentLang === "id" ? "Pesan via WhatsApp" : "Book via WhatsApp"}
+                </a>
               </Button>
 
               <Button asChild variant="outline" className="w-full">
