@@ -135,7 +135,7 @@ const tourData: Record<number, Tour> = {
     price: 300000,
     maxPeople: 5,
     rating: 4.7,
-    image: "/bangsring.jpg",
+    image: "/bangsring-underwater.jpg",
     itinerary: {
       en: ["07:30 — Pickup in Banyuwangi", "08:30 — Arrive, check in and prepare for activities", "09:00–11:30 — Beach, conservation area and optional snorkeling", "11:30–12:30 — Lunch break (meal at own expense)", "12:30–14:30 — Continue exploring; boat and water activities depend on availability", "14:30–16:00 — Return to Banyuwangi (estimated; site operating hours may change)"],
       ka: ["07:30 — Pickup in Banyuwangi", "08:30 — Arrive, check in and prepare for activities", "09:00–11:30 — Beach, conservation area and optional snorkeling", "11:30–12:30 — Lunch break (meal at own expense)", "12:30–14:30 — Continue exploring; boat and water activities depend on availability", "14:30–16:00 — Return to Banyuwangi (estimated; site operating hours may change)"],
@@ -209,7 +209,7 @@ const tourData: Record<number, Tour> = {
   5: {
     title: { en: "Tabuhan Island", ka: "Tabuhan Island", ru: "Остров Табухан" },
     description: { en: "Take a boat from the Bangsring coast to Tabuhan Island for a day of clear water, beach time and snorkeling.", ka: "Take a boat from Bangsring to Tabuhan Island for a day of clear water and snorkeling.", ru: "Отправьтесь на лодке от побережья Бангсринга на остров Табухан, чтобы отдохнуть на пляже и заняться снорклингом." },
-    duration: "7 hours", difficulty: "Easy", price: 300000, maxPeople: 5, rating: 4.8, image: "/bangsring.jpg",
+    duration: "7 hours", difficulty: "Easy", price: 300000, maxPeople: 5, rating: 4.8, image: "/pulau-tabuhan.jpg",
     itinerary: {
       en: ["07:30 — Pickup in Banyuwangi and drive to Kampe Beach at Bangsring", "08:30 — Check in, confirm sea conditions and prepare snorkeling equipment", "09:00 — Boat transfer to Tabuhan Island (departure depends on weather and sea conditions)", "09:30–12:00 — Beach time and snorkeling with provided equipment", "12:00–13:00 — Included meal and rest on the island", "13:00 — Return boat to Kampe Beach", "14:00–15:00 — Return to Banyuwangi (estimated)"],
       ka: ["07:30 — Pickup in Banyuwangi and drive to Kampe Beach at Bangsring", "08:30 — Check in, confirm sea conditions and prepare snorkeling equipment", "09:00 — Boat transfer to Tabuhan Island (departure depends on weather and sea conditions)", "09:30–12:00 — Beach time and snorkeling with provided equipment", "12:00–13:00 — Included meal and rest on the island", "13:00 — Return boat to Kampe Beach", "14:00–15:00 — Return to Banyuwangi (estimated)"],
