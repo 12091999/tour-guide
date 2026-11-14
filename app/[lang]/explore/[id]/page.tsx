@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
+import { formatPrice } from "@/lib/currency"
 
 type TourLanguage = "ka" | "en" | "ru"
 type LocalizedText = Record<TourLanguage, string>
@@ -363,6 +364,7 @@ export default async function TourDetailPage({
 
   const tourId = Number(id)
   const tour = tourData[tourId]
+  const localizedPrice = tour ? await formatPrice(tour.price, "USD", currentLang) : null
 
   if (!Number.isInteger(tourId) || !tour) {
     return (
@@ -506,7 +508,7 @@ export default async function TourDetailPage({
                 </p>
 
                 <p className="text-3xl font-bold text-primary">
-                  ${tour.price.toLocaleString("en-US")}
+                  {localizedPrice?.formatted}
                 </p>
 
                 <p className="text-sm text-muted-foreground">

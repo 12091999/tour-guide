@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { formatPrice } from "@/lib/currency"
+import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 
 interface FeaturedDestinationsProps {
   lang: string
@@ -48,13 +50,14 @@ const destinations = [
   },
 ]
 
-export function FeaturedDestinations({
+export async function FeaturedDestinations({
   lang,
   dict,
 }: FeaturedDestinationsProps) {
   const currentLang = ["id", "en", "en-au", "de", "zh", "ja", "ko", "fr", "nl", "ru", "ka"].includes(lang)
     ? lang
     : "en"
+  const prices = await Promise.all(destinations.map(({ price }) => formatPrice(price, "USD", currentLang as SupportedLanguage)))
 
   return (
     <section id="destinations" className="py-24 bg-background">
@@ -77,7 +80,7 @@ export function FeaturedDestinations({
 
         {/* Destinations Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {destinations.map((destination) => (
+          {destinations.map((destination, index) => (
             <Card
               key={destination.id}
               className="group overflow-hidden border-0 bg-card hover:shadow-2xl transition-all duration-500"
@@ -115,7 +118,7 @@ export function FeaturedDestinations({
 
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-sm font-semibold text-primary">
-                    {dict.tours.from} ${destination.price.toLocaleString(currentLang === "zh" || currentLang === "ja" ? "en-US" : currentLang)}
+                    {dict.tours.from} {prices[index].formatted}
                   </span>
 
                   <Button

@@ -1,6 +1,7 @@
 import { BedDouble, ExternalLink, MapPin, Utensils } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
+import { formatPrice } from "@/lib/currency"
 
 type Copy = {
   eyebrow: string; title: string; intro: string; ticket: string; stay: string
@@ -91,15 +92,16 @@ const copy: Record<string, Copy> = {
 }
 
 const destinations = [
-  { name: "Pulau Merah", location: "Pesanggaran, Banyuwangi", fee: "IDR 10,000", image: "/Teluk hijau.jpg", url: "https://sisparnas.kemenpar.go.id/p/68539", stay: "The Wisma Pulau Merah", food: "Wisma Bar & Restaurant", stayUrl: "https://redislandwisma.com/" },
-  { name: "Baluran National Park", location: "Situbondo, East Java", fee: "IDR 205,000 (international visitor)", image: "/african-safari-wildlife-elephants-sunset.jpg", url: "https://tnbaluran.ksdae.kehutanan.go.id/tiket", stay: "RedDoorz near Baluran National Park / Grand Baluran Villa", food: "RM Valentine, Wongsorejo", stayUrl: "https://www.traveloka.com/id-id/hotel/indonesia/landmark/polsek-wongsorejo-91607407739105" },
-  { name: "Alas Purwo & G-Land", location: "Tegaldlimo, Banyuwangi", fee: "From IDR 150,000 (international visitor; gate-dependent)", image: "/djawatan.jpg", url: "https://tnalaspurwo.org/", stay: "Jawa Jiwa G-Land", food: "Jawa Jiwa G-Land resort dining", stayUrl: "https://jawajiwa.com/" },
-  { name: "Jagir Waterfall", location: "Glagah, Banyuwangi", fee: "From IDR 5,000", image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg", url: "https://jadesta.kemenpar.go.id/atraksi/air_terjun_jagir", stay: "Herry's Guesthouse / Lintang Luku Tent Resort", food: "The Osing Bamboo Restaurant", stayUrl: "https://www.tripadvisor.co.id/HotelsNear-g317103-d15197910-Jagir_Waterfall-Banyuwangi_East_Java_Java.html" },
+  { name: "Pulau Merah", location: "Pesanggaran, Banyuwangi", fee: 10000, image: "/Teluk hijau.jpg", url: "https://sisparnas.kemenpar.go.id/p/68539", stay: "The Wisma Pulau Merah", food: "Wisma Bar & Restaurant", stayUrl: "https://redislandwisma.com/" },
+  { name: "Baluran National Park", location: "Situbondo, East Java", fee: 205000, image: "/african-safari-wildlife-elephants-sunset.jpg", url: "https://tnbaluran.ksdae.kehutanan.go.id/tiket", stay: "RedDoorz near Baluran National Park / Grand Baluran Villa", food: "RM Valentine, Wongsorejo", stayUrl: "https://www.traveloka.com/id-id/hotel/indonesia/landmark/polsek-wongsorejo-91607407739105" },
+  { name: "Alas Purwo & G-Land", location: "Tegaldlimo, Banyuwangi", fee: 150000, image: "/djawatan.jpg", url: "https://tnalaspurwo.org/", stay: "Jawa Jiwa G-Land", food: "Jawa Jiwa G-Land resort dining", stayUrl: "https://jawajiwa.com/" },
+  { name: "Jagir Waterfall", location: "Glagah, Banyuwangi", fee: 5000, image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg", url: "https://jadesta.kemenpar.go.id/atraksi/air_terjun_jagir", stay: "Herry's Guesthouse / Lintang Luku Tent Resort", food: "The Osing Bamboo Restaurant", stayUrl: "https://www.tripadvisor.co.id/HotelsNear-g317103-d15197910-Jagir_Waterfall-Banyuwangi_East_Java_Java.html" },
 ]
 
-export function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
+export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
   const locale = (lang === "en-au" ? "en" : lang) as string
   const text = copy[locale] ?? copy.en
+  const prices = await Promise.all(destinations.map(({ fee }) => formatPrice(fee, "IDR", lang)))
 
   return (
     <section className="py-20 bg-muted/30">
@@ -120,7 +122,7 @@ export function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                     <h2 className="text-2xl font-semibold">{destination.name}</h2>
                     <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-4 w-4" />{destination.location}</p>
                   </div>
-                  <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">{destination.fee}</span>
+                  <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">{prices[index].formatted}</span>
                 </div>
                 <p className="text-sm leading-relaxed text-muted-foreground">{text.descriptions[index]}</p>
                 <div className="grid sm:grid-cols-2 gap-4 border-t pt-4">
