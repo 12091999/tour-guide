@@ -43,13 +43,13 @@ const destinations = [
     id: 4,
     name: "Teluk Hijau",
     country: "Banyuwangi, Indonesia",
-    image: "/Teluk hijau.jpg",
+    image: "/teluk-hijau.jpg",
     description:
       "Discover Green Bay, a hidden coastal paradise in Meru Betiri National Park.",
     price: 300000,
   },
   { id: 5, name: "Tabuhan Island", country: "Bangsring, Banyuwangi, Indonesia", image: "/pulau-tabuhan.jpg", description: "Reach this clear-water island by boat from Bangsring and enjoy snorkeling and beach time.", price: 300000 },
-  { id: 6, name: "Pulau Merah", country: "Pesanggaran, Banyuwangi, Indonesia", image: "/Teluk hijau.jpg", description: "Spend a day at the south-coast beach known for its red offshore hill and sunset views.", price: 250000 },
+  { id: 6, name: "Pulau Merah", country: "Pesanggaran, Banyuwangi, Indonesia", image: "/pulau-merah.jpg", description: "Spend a day at the south-coast beach known for its red offshore hill and sunset views.", price: 250000 },
 ]
 
 export async function FeaturedDestinations({

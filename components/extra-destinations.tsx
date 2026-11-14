@@ -93,7 +93,7 @@ const copy: Record<string, Copy> = {
 }
 
 const destinations = [
-  { name: "Pulau Merah", location: "Pesanggaran, Banyuwangi", fee: 10000, dayRate: 250000, image: "/Teluk hijau.jpg", url: "https://sisparnas.kemenpar.go.id/p/68539", stay: "The Wisma Pulau Merah", food: "Wisma Bar & Restaurant", stayUrl: "https://redislandwisma.com/" },
+  { name: "Pulau Merah", location: "Pesanggaran, Banyuwangi", fee: 10000, dayRate: 250000, image: "/pulau-merah.jpg", url: "https://sisparnas.kemenpar.go.id/p/68539", stay: "The Wisma Pulau Merah", food: "Wisma Bar & Restaurant", stayUrl: "https://redislandwisma.com/" },
   { name: "Baluran National Park", location: "Situbondo, East Java", fee: 205000, dayRate: 300000, image: "/african-safari-wildlife-elephants-sunset.jpg", url: "https://tnbaluran.ksdae.kehutanan.go.id/tiket", stay: "RedDoorz near Baluran National Park / Grand Baluran Villa", food: "RM Valentine, Wongsorejo", stayUrl: "https://www.traveloka.com/id-id/hotel/indonesia/landmark/polsek-wongsorejo-91607407739105" },
   { name: "Alas Purwo & G-Land", location: "Tegaldlimo, Banyuwangi", fee: 150000, dayRate: 300000, image: "/djawatan.jpg", url: "https://tnalaspurwo.org/", stay: "Jawa Jiwa G-Land", food: "Jawa Jiwa G-Land resort dining", stayUrl: "https://jawajiwa.com/" },
   { name: "Jagir Waterfall", location: "Glagah, Banyuwangi", fee: 5000, dayRate: 300000, image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg", url: "https://jadesta.kemenpar.go.id/atraksi/air_terjun_jagir", stay: "Herry's Guesthouse / Lintang Luku Tent Resort", food: "The Osing Bamboo Restaurant", stayUrl: "https://www.tripadvisor.co.id/HotelsNear-g317103-d15197910-Jagir_Waterfall-Banyuwangi_East_Java_Java.html" },

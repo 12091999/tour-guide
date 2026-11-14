@@ -179,7 +179,7 @@ const tourData: Record<number, Tour> = {
     price: 300000,
     maxPeople: 5,
     rating: 4.9,
-    image: "/Teluk hijau.jpg",
+    image: "/teluk-hijau.jpg",
     itinerary: {
       en: ["05:00 — Pickup in Banyuwangi for the long drive to Rajegwesi (estimated)", "10:00 — Arrive at Rajegwesi, arrange park entry and confirm local access", "10:30–11:00 — Reach Teluk Hijau by local boat (around 20 minutes, weather permitting) or take the land trail (about 1 hour)", "11:00–13:00 — Enjoy the beach, waterfall and free time", "13:00–14:00 — Rest and meal break (meal at own expense)", "14:00–15:00 — Return to Rajegwesi by the agreed boat or trail", "15:00–20:00 — Drive back to Banyuwangi (estimated; road conditions may change timing)"],
       ka: ["05:00 — Pickup in Banyuwangi for the long drive to Rajegwesi (estimated)", "10:00 — Arrive at Rajegwesi, arrange park entry and confirm local access", "10:30–11:00 — Reach Teluk Hijau by local boat (around 20 minutes, weather permitting) or take the land trail (about 1 hour)", "11:00–13:00 — Enjoy the beach, waterfall and free time", "13:00–14:00 — Rest and meal break (meal at own expense)", "14:00–15:00 — Return to Rajegwesi by the agreed boat or trail", "15:00–20:00 — Drive back to Banyuwangi (estimated; road conditions may change timing)"],
@@ -224,7 +224,7 @@ const tourData: Record<number, Tour> = {
   6: {
     title: { en: "Pulau Merah", ka: "Pulau Merah", ru: "Пулау-Мерах" },
     description: { en: "Spend a full day at Pulau Merah, a south-coast beach known for its red offshore hill and sunset views.", ka: "Spend a full day at Pulau Merah beach and enjoy its south-coast scenery.", ru: "Проведите день на пляже Пулау-Мерах, известном красноватым островком у берега и закатами." },
-    duration: "10 hours", difficulty: "Easy", price: 250000, maxPeople: 5, rating: 4.7, image: "/Teluk hijau.jpg",
+    duration: "10 hours", difficulty: "Easy", price: 250000, maxPeople: 5, rating: 4.7, image: "/pulau-merah.jpg",
     itinerary: {
       en: ["07:00 — Pickup in Banyuwangi", "07:00–10:00 — Drive to Pulau Merah (estimated; traffic may change travel time)", "10:00–12:00 — Beach visit and free time", "12:00–13:00 — Included meal", "13:00–15:30 — Relax, explore the shoreline and enjoy the view", "15:30–18:30 — Return to Banyuwangi (estimated)"],
       ka: ["07:00 — Pickup in Banyuwangi", "07:00–10:00 — Drive to Pulau Merah (estimated; traffic may change travel time)", "10:00–12:00 — Beach visit and free time", "12:00–13:00 — Included meal", "13:00–15:30 — Relax, explore the shoreline and enjoy the view", "15:30–18:30 — Return to Banyuwangi (estimated)"],

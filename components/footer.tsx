@@ -69,9 +69,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
             <h4 className="font-semibold mb-4">{labels.company}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href={`/${lang}/about`} className="hover:text-foreground transition-colors">
                   {labels.about}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
@@ -101,14 +101,19 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
             <h4 className="font-semibold mb-4">{labels.support}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href={`/${lang}/help`} className="hover:text-foreground transition-colors">
                   {labels.help}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <Link href={`/${lang}/feedback`} className="hover:text-foreground transition-colors">
+                  {lang === "id" ? "Masukan untuk Perusahaan" : "Company Feedback"}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${lang}/contact`} className="hover:text-foreground transition-colors">
                   {labels.contact}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-foreground transition-colors">
