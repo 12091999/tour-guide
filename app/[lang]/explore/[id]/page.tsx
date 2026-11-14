@@ -39,7 +39,7 @@ const tourData: Record<number, Tour> = {
     duration: "8 hours",
     difficulty: "Moderate",
     price: 300000,
-    maxPeople: 15,
+    maxPeople: 5,
     rating: 4.8,
     image: "/ijen.jpg",
     itinerary: {
@@ -101,7 +101,7 @@ const tourData: Record<number, Tour> = {
     duration: "4 hours",
     difficulty: "Easy",
     price: 250000,
-    maxPeople: 15,
+    maxPeople: 5,
     rating: 4.8,
     image: "/djawatan.jpg",
     itinerary: {
@@ -163,7 +163,7 @@ const tourData: Record<number, Tour> = {
     duration: "5 hours",
     difficulty: "Easy",
     price: 300000,
-    maxPeople: 15,
+    maxPeople: 5,
     rating: 4.7,
     image: "/bangsring.jpg",
     itinerary: {
@@ -225,7 +225,7 @@ const tourData: Record<number, Tour> = {
     duration: "8 hours",
     difficulty: "Moderate",
     price: 300000,
-    maxPeople: 15,
+    maxPeople: 5,
     rating: 4.9,
     image: "/Teluk hijau.jpg",
     itinerary: {

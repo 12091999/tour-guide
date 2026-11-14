@@ -7,7 +7,7 @@ const packages = [
   {
     title: "Ngalor Package",
     duration: "4 Days",
-    groupSize: "1-4 People",
+    groupSize: "1-5 People",
     rating: "4.9",
     reviews: "234",
     image: "/bangsring.jpg",
@@ -17,7 +17,7 @@ const packages = [
   {
     title: "Ngulon Package",
     duration: "5 Days",
-    groupSize: "1-4 People",
+    groupSize: "1-5 People",
     rating: "4.8",
     reviews: "189",
     image: "/ijen.jpg",
@@ -27,7 +27,7 @@ const packages = [
   {
     title: "Ngidul Package",
     duration: "6 Days",
-    groupSize: "1-4 People",
+    groupSize: "1-5 People",
     rating: "5.0",
     reviews: "156",
     image: "/djawatan.jpg",
