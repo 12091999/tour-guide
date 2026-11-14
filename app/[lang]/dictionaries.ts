@@ -218,5 +218,21 @@ export async function getDictionary(locale: SupportedLanguage) {
     de: "Weitere Ziele", zh: "更多目的地", ja: "その他の目的地", ko: "다른 여행지",
     fr: "Autres destinations", nl: "Andere bestemmingen", ru: "Другие направления", ka: "Other Destinations",
   }
-  return merge(withAboutCopy, { nav: { tours: navLabels[locale] ?? navLabels.en } })
+  const footerDescriptions: Record<string, string> = {
+    id: "Tour Guide Traveller membantu wisatawan menjelajahi alam, budaya, dan pengalaman lokal Banyuwangi.",
+    en: "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences.",
+    "en-au": "Tour Guide Traveller helps international travellers discover Banyuwangi's nature, culture and local experiences.",
+    de: "Tour Guide Traveller hilft internationalen Gästen, Natur, Kultur und lokale Erlebnisse in Banyuwangi zu entdecken.",
+    zh: "Tour Guide Traveller 帮助国际游客探索外南梦的自然风光、文化与当地体验。",
+    ja: "Tour Guide Travellerは、海外旅行者にバニュワンギの自然、文化、地域の体験をご紹介します。",
+    ko: "Tour Guide Traveller는 해외 여행객에게 반유왕이의 자연, 문화와 현지 경험을 소개합니다.",
+    fr: "Tour Guide Traveller aide les visiteurs internationaux à découvrir la nature, la culture et les expériences locales de Banyuwangi.",
+    nl: "Tour Guide Traveller helpt internationale reizigers de natuur, cultuur en lokale ervaringen van Banyuwangi te ontdekken.",
+    ru: "Tour Guide Traveller помогает иностранным гостям открыть природу, культуру и местные впечатления Баньюванги.",
+    ka: "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences.",
+  }
+  return merge(withAboutCopy, {
+    nav: { tours: navLabels[locale] ?? navLabels.en },
+    footer: { brandName: "Tour Guide Traveller", description: footerDescriptions[locale] ?? footerDescriptions.en },
+  })
 }

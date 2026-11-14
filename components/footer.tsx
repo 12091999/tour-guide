@@ -4,14 +4,14 @@ export function Footer({ dict }: { dict?: any; lang?: string }) {
   const labels = dict?.site?.footer ?? {
     destinations: "Destinations", company: "Company", support: "Support", about: "About Us", careers: "Careers", press: "Press", blog: "Blog", partners: "Partners", help: "Help Center", contact: "Contact Us", privacy: "Privacy Policy", terms: "Terms of Service", cancellation: "Cancellation Policy", copyright: "All rights reserved.",
   }
-  const description = dict?.footer?.description ?? "Creating unforgettable travel experiences around the world since 2026"
+  const description = dict?.footer?.description ?? "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences."
   return (
     <footer id="contact" className="bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-semibold">Tour Guide</h3>
+            <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Tour Guide Traveller"}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {description}
             </p>
