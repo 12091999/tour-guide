@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Calendar, Users, Star } from "lucide-react"
-import { formatPrice } from "@/lib/currency"
+import { formatPrice, getExtraPersonLabel, getOnePersonLabel } from "@/lib/currency"
 
 const packages = [
   {
@@ -12,7 +12,7 @@ const packages = [
     reviews: "234",
     image: "/bangsring.jpg",
     highlights: ["Grand Watu Dodol", "Ayam Pedas", "Wongsorejo"],
-    price: 4299,
+    price: 1500000,
   },
   {
     title: "Ngulon Package",
@@ -22,7 +22,7 @@ const packages = [
     reviews: "189",
     image: "/ijen.jpg",
     highlights: ["Ijen skylight", "Bobocabin",],
-    price: 3499,
+    price: 1500000,
   },
   {
     title: "Ngidul Package",
@@ -32,12 +32,13 @@ const packages = [
     reviews: "156",
     image: "/djawatan.jpg",
     highlights: ["Warung Mbok Sul (WSL)", "Kohay Coffee", "Ngorongoro", "Amboseli"],
-    price: 5999,
+    price: 1500000,
   },
 ]
 
 export async function PopularPackages() {
-  const prices = await Promise.all(packages.map(({ price }) => formatPrice(price, "USD", "en")))
+  const prices = await Promise.all(packages.map(({ price }) => formatPrice(price, "IDR", "en")))
+  const extraPersonPrice = await formatPrice(750000, "IDR", "en")
   return (
     <section id="packages" className="py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -105,8 +106,9 @@ export async function PopularPackages() {
                 {/* Price & CTA */}
                 <div className="flex items-center justify-between pt-6 border-t border-border">
                   <div>
-                    <div className="text-xs text-muted-foreground mb-1">Starting from</div>
+                    <div className="text-xs text-muted-foreground mb-1">Starting from {getOnePersonLabel("en")}</div>
                     <div className="text-2xl font-semibold text-primary">{prices[index].formatted}</div>
+                    <div className="mt-1 text-xs text-muted-foreground">+ {extraPersonPrice.formatted} {getExtraPersonLabel("en")}</div>
                   </div>
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full">
                     Book Now

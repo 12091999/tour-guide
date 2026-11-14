@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
-import { formatPrice } from "@/lib/currency"
+import { formatPrice, getExtraPersonLabel, getOnePersonLabel } from "@/lib/currency"
 
 type TourLanguage = "ka" | "en" | "ru"
 type LocalizedText = Record<TourLanguage, string>
@@ -38,7 +38,7 @@ const tourData: Record<number, Tour> = {
     },
     duration: "8 hours",
     difficulty: "Moderate",
-    price: 2499,
+    price: 1500000,
     maxPeople: 15,
     rating: 4.8,
     image: "/ijen.jpg",
@@ -100,7 +100,7 @@ const tourData: Record<number, Tour> = {
     },
     duration: "4 hours",
     difficulty: "Easy",
-    price: 1899,
+    price: 1500000,
     maxPeople: 15,
     rating: 4.8,
     image: "/djawatan.jpg",
@@ -162,7 +162,7 @@ const tourData: Record<number, Tour> = {
     },
     duration: "5 hours",
     difficulty: "Easy",
-    price: 1599,
+    price: 1500000,
     maxPeople: 15,
     rating: 4.7,
     image: "/bangsring.jpg",
@@ -224,7 +224,7 @@ const tourData: Record<number, Tour> = {
     },
     duration: "8 hours",
     difficulty: "Moderate",
-    price: 3499,
+    price: 1500000,
     maxPeople: 15,
     rating: 4.9,
     image: "/Teluk hijau.jpg",
@@ -364,7 +364,8 @@ export default async function TourDetailPage({
 
   const tourId = Number(id)
   const tour = tourData[tourId]
-  const localizedPrice = tour ? await formatPrice(tour.price, "USD", currentLang) : null
+  const localizedPrice = tour ? await formatPrice(tour.price, "IDR", currentLang) : null
+  const localizedExtraPersonPrice = await formatPrice(750000, "IDR", currentLang)
 
   if (!Number.isInteger(tourId) || !tour) {
     return (
@@ -512,7 +513,10 @@ export default async function TourDetailPage({
                 </p>
 
                 <p className="text-sm text-muted-foreground">
-                  {labels.perPerson}
+                  {getOnePersonLabel(currentLang)}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  + {localizedExtraPersonPrice.formatted} {getExtraPersonLabel(currentLang)}
                 </p>
               </div>
 

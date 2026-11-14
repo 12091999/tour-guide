@@ -14,6 +14,42 @@ const localeCurrency: Record<SupportedLanguage, { currency: string; locale: stri
   ka: { currency: "GEL", locale: "ka-GE" },
 }
 
+const extraPersonLabel: Record<SupportedLanguage, string> = {
+  id: "tambahan per orang",
+  en: "per extra person",
+  "en-au": "per extra person",
+  de: "pro weitere Person",
+  zh: "每增加一人",
+  ja: "追加1名あたり",
+  ko: "추가 1인당",
+  fr: "par personne supplémentaire",
+  nl: "per extra persoon",
+  ru: "за каждого дополнительного человека",
+  ka: "ყოველ დამატებით ადამიანზე",
+}
+
+const onePersonLabel: Record<SupportedLanguage, string> = {
+  id: "untuk 1 orang",
+  en: "for 1 person",
+  "en-au": "for 1 person",
+  de: "für 1 Person",
+  zh: "1人价格",
+  ja: "1名料金",
+  ko: "1인 기준",
+  fr: "pour 1 personne",
+  nl: "voor 1 persoon",
+  ru: "за 1 человека",
+  ka: "1 ადამიანისთვის",
+}
+
+export function getExtraPersonLabel(language: SupportedLanguage) {
+  return extraPersonLabel[language]
+}
+
+export function getOnePersonLabel(language: SupportedLanguage) {
+  return onePersonLabel[language]
+}
+
 type LatestRates = { date: string; rates: Record<string, number> }
 
 async function getUsdRates(): Promise<LatestRates | null> {
