@@ -34,7 +34,7 @@ export function Header({ dict, lang }: HeaderProps) {
             </Link>
 
             <Link
-              href={`/${lang}/tours`}
+              href={`/${lang}/explore`}
               className="hover:text-orange-600 transition-colors font-medium"
             >
               {dict.nav.tours}

@@ -2,6 +2,7 @@ import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeaturedDestinations } from "@/components/featured-destinations"
+import { ExtraDestinations } from "@/components/extra-destinations"
 
 export default async function ExplorePage({
   params,
@@ -17,6 +18,7 @@ export default async function ExplorePage({
       <Header dict={dict} lang={currentLang} />
       <main className="pt-16">
         <FeaturedDestinations lang={currentLang} dict={dict} />
+        <ExtraDestinations lang={currentLang} />
       </main>
       <Footer dict={dict} />
     </div>
