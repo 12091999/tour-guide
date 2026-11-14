@@ -20,7 +20,7 @@ export default async function ExplorePage({
         <FeaturedDestinations lang={currentLang} dict={dict} />
         <ExtraDestinations lang={currentLang} />
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={currentLang} />
     </div>
   )
 }

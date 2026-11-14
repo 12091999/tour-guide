@@ -18,7 +18,7 @@ export default async function Home() {
       <WhyChooseUs />
       <PopularPackages />
       <Newsletter />
-      <Footer dict={dict} />
+      <Footer dict={dict} lang="en" />
     </main>
   )
 }

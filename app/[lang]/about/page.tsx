@@ -111,7 +111,7 @@ export default async function AboutPage({
         </div>
       </section>
 
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={currentLang} />
     </div>
   )
 }
