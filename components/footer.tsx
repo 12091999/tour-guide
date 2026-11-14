@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import Link from "next/link"
 
 const partnerCategories: Record<string, [string, string, string]> = {
   id: ["Mitra tempat makan", "Mitra penginapan", "Mitra rental motor roda dua"],
@@ -102,9 +103,13 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
                   {labels.blog}
                 </a>
               </li>
-              <li className="pt-1 font-medium text-foreground">{labels.partners}</li>
+              <li className="pt-1">
+                <Link href={`/${lang}/partners`} className="font-medium text-foreground hover:text-primary transition-colors">{labels.partners}</Link>
+              </li>
               {localPartners.map((partner) => (
-                <li key={partner} className="pl-2">{partner}</li>
+                <li key={partner} className="pl-2">
+                  <Link href={`/${lang}/partners`} className="hover:text-foreground transition-colors">{partner}</Link>
+                </li>
               ))}
             </ul>
           </div>
