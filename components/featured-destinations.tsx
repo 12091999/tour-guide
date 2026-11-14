@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { formatPrice, getExtraPersonLabel, getOnePersonLabel } from "@/lib/currency"
+import { formatPrice, getOnePersonLabel } from "@/lib/currency"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 
 interface FeaturedDestinationsProps {
@@ -19,7 +19,7 @@ const destinations = [
     image: "/ijen.jpg",
     description:
       "Discover the spectacular blue fire and breathtaking turquoise crater lake.",
-    price: 1500000,
+    price: 300000,
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const destinations = [
     image: "/djawatan.jpg",
     description:
       "Explore a magical forest surrounded by giant and ancient trembesi trees.",
-    price: 1500000,
+    price: 250000,
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const destinations = [
     image: "/bangsring.jpg",
     description:
       "Enjoy pristine beaches, crystal-clear waters, and exciting marine activities.",
-    price: 1500000,
+    price: 300000,
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const destinations = [
     image: "/Teluk hijau.jpg",
     description:
       "Discover Green Bay, a hidden coastal paradise in Meru Betiri National Park.",
-    price: 1500000,
+    price: 300000,
   },
 ]
 
@@ -58,7 +58,6 @@ export async function FeaturedDestinations({
     ? lang
     : "en"
   const prices = await Promise.all(destinations.map(({ price }) => formatPrice(price, "IDR", currentLang as SupportedLanguage)))
-  const extraPersonPrice = await formatPrice(750000, "IDR", currentLang as SupportedLanguage)
 
   return (
     <section id="destinations" className="py-24 bg-background">
@@ -120,7 +119,6 @@ export async function FeaturedDestinations({
                 <div className="flex items-center justify-between pt-4 border-t border-border">
                   <span className="text-sm font-semibold text-primary">
                     {dict.tours.from} {prices[index].formatted} {getOnePersonLabel(currentLang as SupportedLanguage)}
-                    <span className="mt-1 block text-xs font-normal text-muted-foreground">+ {extraPersonPrice.formatted} {getExtraPersonLabel(currentLang as SupportedLanguage)}</span>
                   </span>
 
                   <Button

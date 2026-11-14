@@ -42,12 +42,30 @@ const onePersonLabel: Record<SupportedLanguage, string> = {
   ka: "1 ადამიანისთვის",
 }
 
+const dayTourLabel: Record<SupportedLanguage, string> = {
+  id: "tur 1 hari",
+  en: "1-day tour",
+  "en-au": "1-day tour",
+  de: "Tagestour",
+  zh: "一日游",
+  ja: "1日ツアー",
+  ko: "1일 투어",
+  fr: "excursion d’une journée",
+  nl: "dagtour",
+  ru: "тур на 1 день",
+  ka: "ერთდღიანი ტური",
+}
+
 export function getExtraPersonLabel(language: SupportedLanguage) {
   return extraPersonLabel[language]
 }
 
 export function getOnePersonLabel(language: SupportedLanguage) {
   return onePersonLabel[language]
+}
+
+export function getDayTourLabel(language: SupportedLanguage) {
+  return dayTourLabel[language]
 }
 
 type LatestRates = { date: string; rates: Record<string, number> }
