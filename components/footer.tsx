@@ -36,12 +36,12 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
           <div>
             <h4 className="mb-4 font-semibold">{labels.destinations}</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><Link className={linkClass} href={`/${lang}/explore/1`}>Ijen Crater</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/2`}>Djawatan</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/4`}>Teluk Hijau</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/3`}>Bangsring Beach</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/5`}>Tabuhan Island</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/6`}>Pulau Merah</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/ijen-crater`}>Ijen Crater</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/djawatan-forest`}>Djawatan Forest</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/teluk-hijau`}>Teluk Hijau</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/bangsring-beach`}>Bangsring Beach</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/tabuhan-island`}>Tabuhan Island</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore/pulau-merah`}>Pulau Merah</Link></li>
             </ul>
           </div>
           <div>

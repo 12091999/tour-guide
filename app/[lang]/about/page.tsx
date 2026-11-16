@@ -8,7 +8,7 @@ import { Target, Eye, Heart } from "lucide-react"
 const team = [
   { name: "Rizky Frimansyah Ramadhan", avatar: "/placeholder-user.jpg" },
   { name: "Fajar Kurniawan", avatar: "/placeholder-user.jpg" },
-  { name: "Widi Dwi Kurniawan", avatar: "/placeholder-user.jpg" },
+  { name: "Widi Diky Kurniawan", avatar: "/placeholder-user.jpg" },
 ]
 
 const thirdMemberRole: Record<string, [string, string]> = {
@@ -39,7 +39,7 @@ export default async function AboutPage({
       <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
-      <section className="relative isolate overflow-hidden py-20 text-white bg-gradient-to-br from-teal-800 via-cyan-700 to-orange-500">
+      <section className="relative isolate overflow-hidden py-20 text-white bg-linear-to-br from-teal-800 via-cyan-700 to-orange-500">
         <div className="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-amber-300/25 blur-3xl" />
         <div className="absolute -bottom-48 -left-20 h-96 w-96 rounded-full bg-sky-300/20 blur-3xl" />
         <div className="container relative z-10 mx-auto px-4 text-center">

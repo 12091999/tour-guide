@@ -3,7 +3,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeaturedDestinations } from "@/components/featured-destinations"
 import { ExtraDestinations } from "@/components/extra-destinations"
-import { TourPackages } from "@/components/tour-packages"
 
 export default async function ExplorePage({
   params,
@@ -20,7 +19,6 @@ export default async function ExplorePage({
       <main className="pt-16">
         <FeaturedDestinations lang={currentLang} dict={dict} />
         <ExtraDestinations lang={currentLang} />
-        <TourPackages lang={currentLang} />
       </main>
       <Footer dict={dict} lang={currentLang} />
     </div>

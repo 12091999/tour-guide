@@ -71,7 +71,7 @@ const policies: Record<string, Record<string, { title: string; intro: string; se
   },
 }
 
-export function PolicyPage({ kind, lang }: { kind: keyof typeof policies; lang: string }) {
+export function PolicyPage({ kind, lang, email }: { kind: keyof typeof policies; lang: string; email: string }) {
   const content = policies[kind][lang === "id" ? "id" : "en"]
 
   return (
@@ -86,7 +86,9 @@ export function PolicyPage({ kind, lang }: { kind: keyof typeof policies; lang: 
             <CardContent className="p-6 sm:p-8">
               <h2 className="text-xl font-semibold">{section.title}</h2>
               <div className="mt-3 space-y-3 text-sm leading-7 text-muted-foreground sm:text-base">
-                {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph.replaceAll("TourGuide@gmail.com", email)}</p>
+                ))}
               </div>
             </CardContent>
           </Card>

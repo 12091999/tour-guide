@@ -55,7 +55,7 @@ function MathCaptcha({ onValidate }: { onValidate: (isValid: boolean) => void })
         <Shield className="h-4 w-4" />
         Security Check
       </Label>
-      <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg">
+      <div className="flex items-center gap-3 p-3 bg-linear-to-r from-orange-50 to-red-50 border border-orange-200 rounded-lg">
         <span className="text-lg font-mono">
           {num1} + {num2} = ?
         </span>
@@ -179,7 +179,7 @@ export function BookingModal({ tourTitle, tourPrice, duration, difficulty, dict,
         </DialogHeader>
 
         {/* Tour Summary */}
-        <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-300">
+        <Card className="bg-linear-to-r from-orange-500/10 to-red-500/10 border-orange-300">
           <CardContent className="p-4">
             <h3 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
               <Mountain className="h-4 w-4" />
@@ -275,7 +275,7 @@ export function BookingModal({ tourTitle, tourPrice, duration, difficulty, dict,
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
+              className="w-full bg-linear-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
               disabled={isSubmitting || !isCaptchaValid}
             >
               {isSubmitting ? (

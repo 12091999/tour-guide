@@ -17,7 +17,7 @@ type ContactFormDictionary = {
   }
 }
 
-export function ContactForm({ dict }: { dict: ContactFormDictionary | any }) {
+export function ContactForm({ dict, email }: { dict: ContactFormDictionary | any; email: string }) {
   const form = dict.contact.form
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -25,11 +25,11 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary | any }) {
 
     const values = new FormData(event.currentTarget)
     const name = String(values.get("name") ?? "")
-    const email = String(values.get("email") ?? "")
+    const senderEmail = String(values.get("email") ?? "")
     const subject = String(values.get("subject") ?? "")
     const message = String(values.get("message") ?? "")
-    const body = `${message}\n\nFrom: ${name}\nEmail: ${email}`
-    const mailto = `mailto:TourGuide@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const body = `${message}\n\nFrom: ${name}\nEmail: ${senderEmail}`
+    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
     window.location.href = mailto
   }

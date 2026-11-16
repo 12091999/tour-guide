@@ -1,4 +1,5 @@
 
+import Image from "next/image"
 import { getDictionary, isSupportedLanguage } from "./dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -20,15 +21,18 @@ export default async function HomePage({
       <Header dict={dict} lang={currentLang} />
 
       {/* Hero Section */}
-      <section className="relative min-h-[650px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-162.5 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/ijen.jpg"
             alt={dict.site.home.title}
-            className="w-full h-full object-cover"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-teal-950/35 to-orange-950/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/15" />
+          <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-teal-950/35 to-orange-950/30" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-slate-950/15" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">

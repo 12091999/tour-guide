@@ -15,7 +15,7 @@ type Copy = {
   required: string
 }
 
-export function FeedbackForm({ lang, text }: { lang: string; text: Copy }) {
+export function FeedbackForm({ lang, text, phone }: { lang: string; text: Copy; phone: string }) {
   const [error, setError] = useState("")
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -34,7 +34,7 @@ export function FeedbackForm({ lang, text }: { lang: string; text: Copy }) {
       ? ["Masukan untuk Tour Guide", `Kategori: ${category}`, `Nama: ${name || "Tidak dicantumkan"}`, `Email: ${email || "Tidak dicantumkan"}`, `Pesan: ${message}`].join("\n")
       : ["Feedback for Tour Guide", `Category: ${category}`, `Name: ${name || "Not provided"}`, `Email: ${email || "Not provided"}`, `Message: ${message}`].join("\n")
 
-    window.open(getWhatsAppUrl(body), "_blank", "noopener,noreferrer")
+    window.open(getWhatsAppUrl(body, phone), "_blank", "noopener,noreferrer")
     event.currentTarget.reset()
     setError("")
   }

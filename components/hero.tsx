@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 
@@ -6,13 +7,16 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/ijen.jpg"
           alt="Turquoise waters and tropical coast of Banyuwangi"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-teal-950/35 to-orange-950/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20" />
+        <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-teal-950/35 to-orange-950/30" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/70 via-transparent to-slate-950/20" />
       </div>
 
       {/* Content */}
