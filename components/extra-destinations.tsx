@@ -93,10 +93,10 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text.diningNotes[index]}</p>
                   </div>
                 </div>
-                <a href={destination.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+                <Link href={destination.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                   {text.verify}<ExternalLink className="h-3.5 w-3.5" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href={getWhatsAppUrl(
                     lang === "id"
                       ? `Halo Tour Guide, saya ingin memesan atau bertanya tentang ${destination.name}. Mohon info jadwal dan ketersediaannya.`
@@ -108,7 +108,7 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-green-700"
                 >
                   <MessageCircle className="h-4 w-4" />{text.whatsapp}
-                </a>
+                </Link>
               </CardContent>
             </Card>
           ))}

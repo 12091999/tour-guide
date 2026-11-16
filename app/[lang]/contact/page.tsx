@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/contact-form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
+import Link from "next/link"
 
 export default async function ContactPage({
   params,
@@ -45,16 +46,16 @@ export default async function ContactPage({
                   <CardTitle>{dict.contact.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin bertanya tentang wisata Banyuwangi." : "Hi Tour Guide, I would like to ask about trips in Banyuwangi.", phone)} target="_blank" rel="noreferrer" className="mb-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-green-700">
+                  <Link href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin bertanya tentang wisata Banyuwangi." : "Hi Tour Guide, I would like to ask about trips in Banyuwangi.", phone)} target="_blank" rel="noreferrer" className="mb-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-green-700">
                     <MessageCircle className="h-5 w-5" />{currentLang === "id" ? "Pesan via WhatsApp" : "Message us on WhatsApp"}
-                  </a>
+                  </Link>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Phone className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.phone}</p>
-                      <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin menghubungi tim Anda." : "Hi Tour Guide, I would like to contact your team.", phone)} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">+{phone} (WhatsApp)</a>
+                      <Link href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin menghubungi tim Anda." : "Hi Tour Guide, I would like to contact your team.", phone)} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">+{phone} (WhatsApp)</Link>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -63,7 +64,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.email}</p>
-                      <a href={`mailto:${email}`} className="text-muted-foreground hover:text-primary">{email}</a>
+                      <Link href={`mailto:${email}`} className="text-muted-foreground hover:text-primary">{email}</Link>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
