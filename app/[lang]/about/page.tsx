@@ -12,17 +12,17 @@ const team = [
 ]
 
 const thirdMemberRole: Record<string, [string, string]> = {
-  id: ["Partnership Team IT", "Mengelola kemitraan dan mendukung kebutuhan teknologi Tour Guide."],
-  en: ["IT Partnerships Team", "Coordinates partnerships and supports Tour Guide's IT operations."],
-  "en-au": ["IT Partnerships Team", "Coordinates partnerships and supports Tour Guide's IT operations."],
-  de: ["IT-Partnerschaften", "Koordiniert Partnerschaften und unterstützt den IT-Betrieb von Tour Guide."],
-  zh: ["IT合作伙伴团队", "负责合作伙伴关系并支持Tour Guide的技术运营。"],
-  ja: ["ITパートナーシップチーム", "パートナー連携とTour GuideのIT運用を担当します。"],
-  ko: ["IT 파트너십 팀", "파트너십을 조율하고 Tour Guide의 IT 운영을 지원합니다."],
-  fr: ["Équipe partenariats et informatique", "Coordonne les partenariats et accompagne les opérations informatiques de Tour Guide."],
-  nl: ["IT-partnersteam", "Coördineert partnerschappen en ondersteunt de IT-activiteiten van Tour Guide."],
-  ru: ["Команда IT-партнёрств", "Координирует партнёрства и поддерживает IT-направление Tour Guide."],
-  ka: ["IT პარტნიორობის გუნდი", "კოორდინაციას უწევს პარტნიორობას და მხარს უჭერს Tour Guide-ის IT საქმიანობას."],
+  id: ["IT Support", "Bertugas mengelola database website Tour Guide."],
+  en: ["IT Support", "Responsible for managing the Tour Guide website database."],
+  "en-au": ["IT Support", "Responsible for managing the Tour Guide website database."],
+  de: ["IT-Support", "Verantwortlich für die Verwaltung der Datenbank der Tour-Guide-Website."],
+  zh: ["IT支持", "负责管理Tour Guide网站数据库。"],
+  ja: ["ITサポート", "Tour Guideウェブサイトのデータベース管理を担当します。"],
+  ko: ["IT 지원", "Tour Guide 웹사이트 데이터베이스 관리를 담당합니다."],
+  fr: ["Support informatique", "Responsable de la gestion de la base de données du site Tour Guide."],
+  nl: ["IT-ondersteuning", "Verantwoordelijk voor het beheer van de database van de Tour Guide-website."],
+  ru: ["IT-поддержка", "Отвечает за управление базой данных сайта Tour Guide."],
+  ka: ["IT მხარდაჭერა", "პასუხისმგებელია Tour Guide-ის ვებსაიტის მონაცემთა ბაზის მართვაზე."],
 }
 
 export default async function AboutPage({
