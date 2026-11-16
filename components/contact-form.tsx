@@ -29,7 +29,7 @@ export function ContactForm({ dict }: { dict: ContactFormDictionary | any }) {
     const subject = String(values.get("subject") ?? "")
     const message = String(values.get("message") ?? "")
     const body = `${message}\n\nFrom: ${name}\nEmail: ${email}`
-    const mailto = `mailto:info@georgiatours.ge?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    const mailto = `mailto:TourGuide@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
     window.location.href = mailto
   }

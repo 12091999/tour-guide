@@ -15,6 +15,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
     safety: id ? "Keamanan & darurat" : "Travel safety & emergencies",
     feedback: id ? "Masukan untuk Perusahaan" : "Company Feedback",
     contact: id ? "Kontak: WhatsApp & jam layanan" : "Contact: WhatsApp & hours",
+    privacy: id ? "Kebijakan Privasi" : "Privacy Policy",
+    terms: id ? "Syarat Layanan" : "Terms of Service",
+    cancellation: id ? "Kebijakan Pembatalan" : "Cancellation Policy",
     rights: id ? "Hak cipta dilindungi." : "All rights reserved.",
   }
   const description = dict?.footer?.description ?? (id
@@ -58,6 +61,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
               <li><Link className={linkClass} href={`/${lang}/help#safety`}>{labels.safety}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/feedback`}>{labels.feedback}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/contact`}>{labels.contact}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/privacy`}>{labels.privacy}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/terms`}>{labels.terms}</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/cancellation`}>{labels.cancellation}</Link></li>
             </ul>
           </div>
         </div>

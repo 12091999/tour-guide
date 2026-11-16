@@ -3,7 +3,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Twitter, MessageCircle } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
 
 export default async function ContactPage({
@@ -61,7 +61,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.email}</p>
-                      <p className="text-muted-foreground">TourGuide@gmail.com</p>
+                      <a href="mailto:TourGuide@gmail.com" className="text-muted-foreground hover:text-primary">TourGuide@gmail.com</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -96,33 +96,6 @@ export default async function ContactPage({
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>{dict.footer.followUs}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex space-x-4">
-                    <a
-                      href="#"
-                      className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                    >
-                      <Facebook className="h-5 w-5 text-primary" />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                    >
-                      <Instagram className="h-5 w-5 text-primary" />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors"
-                    >
-                      <Twitter className="h-5 w-5 text-primary" />
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </div>
