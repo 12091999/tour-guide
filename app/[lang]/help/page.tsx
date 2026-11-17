@@ -1,9 +1,25 @@
-import { ChevronDown } from "lucide-react"
+import type { Metadata } from "next"
 import Link from "next/link"
+import { ChevronDown } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent } from "@/components/ui/card"
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    path: "/help",
+    title: isId ? "Bantuan & FAQ" : "Help & FAQ",
+    description: isId
+      ? "Temukan jawaban atas pertanyaan umum seputar pemesanan, pembayaran, dan perjalanan wisata Banyuwangi."
+      : "Find answers to common questions about booking, payment, and travelling in Banyuwangi.",
+  })
+}
 
 const copy = {
   id: {

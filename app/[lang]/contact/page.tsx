@@ -1,4 +1,20 @@
+import type { Metadata } from "next"
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    path: "/contact",
+    title: isId ? "Hubungi Kami" : "Contact Us",
+    description: isId
+      ? "Hubungi Tour Guide Banyuwangi via WhatsApp atau email. Kami siap membantu perencanaan perjalanan Anda."
+      : "Contact Tour Guide Banyuwangi via WhatsApp or email. We're ready to help plan your trip.",
+  })
+}
 import { getSiteConfig } from "@/lib/actions/config"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"

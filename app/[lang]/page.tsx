@@ -1,6 +1,23 @@
 
 import Image from "next/image"
+import type { Metadata } from "next"
 import { getDictionary, isSupportedLanguage } from "./dictionaries"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    title: isId
+      ? "Destinasi & Paket Wisata Lokal Banyuwangi"
+      : "Banyuwangi Local Destinations & Tours",
+    description: isId
+      ? "Jelajahi Banyuwangi bersama Tour Guide. Panduan lokal untuk Kawah Ijen, Hutan Djawatan, Teluk Hijau, dan destinasi wisata terbaik di Jawa Timur."
+      : "Discover Banyuwangi with Tour Guide. Expert local guides for Ijen Crater, Djawatan Forest, Teluk Hijau, and more in East Java, Indonesia.",
+  })
+}
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeaturedDestinations } from "@/components/featured-destinations"

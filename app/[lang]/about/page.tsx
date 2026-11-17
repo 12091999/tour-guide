@@ -1,4 +1,20 @@
+import type { Metadata } from "next"
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    path: "/about",
+    title: isId ? "Tentang Kami" : "About Us",
+    description: isId
+      ? "Kenali tim Tour Guide Banyuwangi — panduan wisata lokal yang berdedikasi membantu Anda menjelajahi destinasi terbaik Banyuwangi."
+      : "Meet the Tour Guide Banyuwangi team — dedicated local guides helping you explore the best destinations in Banyuwangi, East Java.",
+  })
+}
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"

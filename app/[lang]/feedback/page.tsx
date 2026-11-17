@@ -1,8 +1,24 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeedbackForm } from "@/components/feedback-form"
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { getSiteConfig } from "@/lib/actions/config"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = isSupportedLanguage(lang) ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    path: "/feedback",
+    title: isId ? "Kirim Masukan" : "Send Feedback",
+    description: isId
+      ? "Bagikan masukan Anda untuk membantu Tour Guide Banyuwangi meningkatkan pengalaman wisata."
+      : "Share your feedback to help Tour Guide Banyuwangi improve your travel experience.",
+  })
+}
 
 const copy = {
   id: { title: "Masukan untuk Perusahaan", intro: "Bantu kami meningkatkan pengalaman wisata di Banyuwangi. Masukan Anda akan diteruskan ke tim Tour Guide melalui WhatsApp.", name: "Nama (opsional)", email: "Email (opsional)", category: "Kategori masukan", categories: ["Saran", "Kendala pemesanan", "Informasi destinasi", "Pengalaman perjalanan", "Lainnya"], message: "Pesan", send: "Kirim masukan via WhatsApp", note: "WhatsApp akan terbuka dengan pesan yang sudah disiapkan. Tinjau lalu tekan Kirim di WhatsApp.", required: "Silakan tulis pesan Anda." },

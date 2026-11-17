@@ -1,4 +1,20 @@
+import type { Metadata } from "next"
 import { ArrowUpRight, BedDouble, Bike, Utensils } from "lucide-react"
+import { buildMeta } from "@/lib/metadata"
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params
+  const currentLang = (lang === "id" || lang === "en") ? lang : "en"
+  const isId = currentLang === "id"
+  return buildMeta({
+    lang: currentLang,
+    path: "/partners",
+    title: isId ? "Mitra Lokal Banyuwangi" : "Local Partners Banyuwangi",
+    description: isId
+      ? "Temukan rekomendasi tempat makan, penginapan, dan rental motor lokal di Banyuwangi dari Tour Guide."
+      : "Find dining, accommodation and motorbike rental recommendations in Banyuwangi from Tour Guide.",
+  })
+}
 import { getDictionary, isSupportedLanguage } from "../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"

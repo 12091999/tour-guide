@@ -1,14 +1,46 @@
+import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
 import { getDictionary, isSupportedLanguage, type SupportedLanguage } from "../../dictionaries"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Clock, MapPin, Users, Star, CheckCircle } from "lucide-react"
 import { formatPrice, getOnePersonLabel } from "@/lib/currency"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
-import Image from "next/image"
 import { getTour } from "@/lib/actions/tours"
 import { getSiteConfig } from "@/lib/actions/config"
+import { buildMeta, siteUrl } from "@/lib/metadata"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string; id: string }>
+}): Promise<Metadata> {
+  const { lang, id: slug } = await params
+  const currentLang: SupportedLanguage = isSupportedLanguage(lang) ? lang : "en"
+  const tour = await getTour(slug, currentLang)
+  if (!tour) return { robots: { index: false, follow: false } }
+
+  const description = tour.description.replace(/\s+/g, " ").slice(0, 160).trim()
+  return {
+    ...buildMeta({
+      lang: currentLang,
+      path: `/explore/${slug}`,
+      title: tour.title,
+      description,
+      ogImage: { url: tour.image_url, width: 1200, height: 630, alt: tour.title },
+    }),
+    alternates: {
+      canonical: `${siteUrl}/${currentLang}/explore/${slug}`,
+      languages: {
+        en: `${siteUrl}/en/explore/${slug}`,
+        id: `${siteUrl}/id/explore/${slug}`,
+        "x-default": `${siteUrl}/en/explore/${slug}`,
+      },
+    },
+  }
+}
 
 function formatDuration(duration: string, locale: SupportedLanguage) {
   const match = duration.match(/^(\d+)\s+(hours?|days?)$/i)
@@ -33,7 +65,6 @@ export default async function TourDetailPage({
   const [dict, config] = await Promise.all([getDictionary(currentLang), getSiteConfig()])
   const labels = dict.site.detail
 
-  // Fetch from Supabase; fall back to English if no translation for current lang
   const fetchLang = ["en", "id"].includes(currentLang) ? currentLang : "en"
   const tour = await getTour(slug, fetchLang)
   const localizedPrice = tour ? await formatPrice(tour.price, "IDR", currentLang) : null
@@ -171,7 +202,7 @@ export default async function TourDetailPage({
               </div>
 
               <Button asChild className="w-full" size="lg">
-                <a
+                <Link
                   href={getWhatsAppUrl(
                     currentLang === "id"
                       ? `Halo Tour Guide, saya ingin memesan ${tour.title}. Mohon info jadwal dan ketersediaannya.`
@@ -182,7 +213,7 @@ export default async function TourDetailPage({
                   rel="noreferrer"
                 >
                   {currentLang === "id" ? "Pesan via WhatsApp" : "Book via WhatsApp"}
-                </a>
+                </Link>
               </Button>
 
               <Button asChild variant="outline" className="w-full">
