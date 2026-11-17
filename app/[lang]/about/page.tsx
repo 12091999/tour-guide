@@ -8,7 +8,7 @@ import { Target, Eye, Heart } from "lucide-react"
 const team = [
   { name: "Risky Firmansyah Ramadhan", avatar: "/placeholder-user.jpg" },
   { name: "Fajar Kurniawan", avatar: "/placeholder-user.jpg" },
-  { name: "Widi Dwi Kurniawan", avatar: "/placeholder-user.jpg" },
+  { name: "Widi Diky Kurniawan", avatar: "/placeholder-user.jpg" },
 ]
 
 const thirdMemberRole: Record<string, [string, string]> = {
