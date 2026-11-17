@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Target, Eye, Heart } from "lucide-react"
 
 const team = [
-  { name: "Rizky Frimansyah Ramadhan", avatar: "/placeholder-user.jpg" },
+  { name: "Risky Firmansyah Ramadhan", avatar: "/placeholder-user.jpg" },
   { name: "Fajar Kurniawan", avatar: "/placeholder-user.jpg" },
   { name: "Widi Dwi Kurniawan", avatar: "/placeholder-user.jpg" },
 ]
