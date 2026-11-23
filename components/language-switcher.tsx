@@ -51,10 +51,12 @@ export function LanguageSwitcher({
         <Button
           variant="outline"
           size="sm"
-          className="gap-2 bg-transparent"
+          className="gap-1.5 bg-transparent px-2 sm:gap-2 sm:px-3"
         >
-          <Globe className="h-4 w-4" />
-          {currentLanguage.flag} {currentLanguage.name}
+          <Globe className="h-4 w-4 shrink-0" aria-hidden="true" />
+          <span aria-hidden="true">{currentLanguage.flag}</span>
+          <span className="hidden sm:inline">{currentLanguage.name}</span>
+          <span className="sr-only">{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>
 
