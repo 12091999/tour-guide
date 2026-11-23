@@ -21,8 +21,8 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
     rights: id ? "Hak cipta dilindungi." : "All rights reserved.",
   }
   const description = dict?.footer?.description ?? (id
-    ? "Tour Guide Traveller membantu wisatawan menjelajahi alam, budaya, dan pengalaman lokal Banyuwangi."
-    : "Tour Guide Traveller helps international visitors discover Banyuwangi's nature, culture and local experiences.")
+    ? "Dolen Bareng Kang Pir membantu wisatawan menjelajahi alam, budaya, dan pengalaman lokal Banyuwangi."
+    : "Dolen Bareng Kang Pir helps international visitors discover Banyuwangi's nature, culture and local experiences.")
   const linkClass = "transition-colors hover:text-foreground"
 
   return (
@@ -30,7 +30,7 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="mb-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Tour Guide Traveller"}</h3>
+            <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Dolen Bareng Kang Pir"}</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
           </div>
           <div>
@@ -68,7 +68,7 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
           </div>
         </div>
         <div className="border-t border-border pt-7 text-center text-sm text-muted-foreground">
-          <p>© 2026 Tour Guide Traveller. {labels.rights}</p>
+          <p>© 2026 Dolen Bareng Kang Pir. {labels.rights}</p>
         </div>
       </div>
     </footer>

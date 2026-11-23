@@ -1,0 +1,297 @@
+"use client"
+
+import { useEffect, useState, type FormEvent } from "react"
+import { LogOut, Plus, RotateCcw, Save, Trash2 } from "lucide-react"
+import type { SupabaseClient } from "@supabase/supabase-js"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { createSupabaseBrowserClient } from "@/lib/supabase/client"
+import type { PackageScheduleActivity, PackageScheduleDay, PackageScheduleRecord } from "@/lib/package-schedules"
+
+type PageState = "starting" | "unavailable" | "signed-out" | "checking" | "ready" | "denied" | "error"
+
+function cloneRecord(record: PackageScheduleRecord): PackageScheduleRecord {
+  return JSON.parse(JSON.stringify(record)) as PackageScheduleRecord
+}
+
+export function PackageScheduleEditor() {
+  const [client, setClient] = useState<SupabaseClient | null>(null)
+  const [pageState, setPageState] = useState<PageState>("starting")
+  const [records, setRecords] = useState<PackageScheduleRecord[]>([])
+  const [drafts, setDrafts] = useState<Record<string, PackageScheduleRecord>>({})
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [busy, setBusy] = useState(false)
+  const [savingId, setSavingId] = useState<string | null>(null)
+  const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    let active = true
+    const supabase = createSupabaseBrowserClient()
+    if (!supabase) {
+      setPageState("unavailable")
+      return () => { active = false }
+    }
+
+    setClient(supabase)
+
+    const loadAdmin = async () => {
+      if (!active) return
+      setPageState("checking")
+      setMessage("")
+      const { data: userData, error: userError } = await supabase.auth.getUser()
+      if (!active) return
+      if (userError || !userData.user) {
+        setPageState("signed-out")
+        return
+      }
+
+      const { data: admin, error: adminError } = await supabase
+        .from("schedule_admins")
+        .select("user_id")
+        .eq("user_id", userData.user.id)
+        .maybeSingle()
+      if (!active) return
+      if (adminError) {
+        setMessage(`Tidak dapat memeriksa akses admin. Pastikan SQL Supabase sudah diterapkan. ${adminError.message}`)
+        setPageState("error")
+        return
+      }
+      if (!admin) {
+        setMessage("Akun ini belum terdaftar sebagai admin jadwal.")
+        setPageState("denied")
+        return
+      }
+
+      const { data, error } = await supabase
+        .from("tour_packages")
+        .select("id, position, title, days, includes")
+        .order("position", { ascending: true })
+      if (!active) return
+      if (error) {
+        setMessage(`Tidak dapat memuat paket. ${error.message}`)
+        setPageState("error")
+        return
+      }
+      if (!data?.length) {
+        setMessage("Data paket belum tersedia. Jalankan file SQL setup untuk membuat tabel dan data awal.")
+        setPageState("error")
+        return
+      }
+
+      const loaded = data.map((record) => ({
+        id: record.id,
+        position: record.position,
+        title: record.title,
+        days: Array.isArray(record.days) ? record.days as PackageScheduleDay[] : [],
+        includes: Array.isArray(record.includes) ? record.includes as string[] : [],
+      }))
+      setRecords(loaded)
+      setDrafts(Object.fromEntries(loaded.map((record) => [record.id, cloneRecord(record)])))
+      setPageState("ready")
+    }
+
+    void supabase.auth.getSession().then(({ data, error }) => {
+      if (!active) return
+      if (error) {
+        setMessage(`Tidak dapat memeriksa sesi admin. ${error.message}`)
+        setPageState("error")
+      } else if (data.session) {
+        void loadAdmin()
+      } else {
+        setPageState("signed-out")
+      }
+    })
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) {
+        setRecords([])
+        setDrafts({})
+        setPageState("signed-out")
+        return
+      }
+      void Promise.resolve().then(loadAdmin)
+    })
+
+    return () => {
+      active = false
+      subscription.unsubscribe()
+    }
+  }, [])
+
+  async function handleLogin(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!client) return
+    setBusy(true)
+    setMessage("")
+    const { error } = await client.auth.signInWithPassword({ email: email.trim(), password })
+    setBusy(false)
+    if (error) setMessage(`Gagal masuk. ${error.message}`)
+  }
+
+  async function handleLogout() {
+    if (!client) return
+    setBusy(true)
+    const { error } = await client.auth.signOut()
+    setBusy(false)
+    if (error) setMessage(`Gagal keluar. ${error.message}`)
+  }
+
+  function updateDraft(id: string, updater: (record: PackageScheduleRecord) => PackageScheduleRecord) {
+    setDrafts((current) => {
+      const record = current[id]
+      return record ? { ...current, [id]: updater(record) } : current
+    })
+  }
+
+  function updateActivity(id: string, dayIndex: number, activityIndex: number, key: keyof PackageScheduleActivity, value: string) {
+    updateDraft(id, (record) => ({
+      ...record,
+      days: record.days.map((day, index) => index !== dayIndex ? day : {
+        ...day,
+        activities: day.activities.map((activity, rowIndex) => rowIndex !== activityIndex ? activity : { ...activity, [key]: value }),
+      }),
+    }))
+  }
+
+  function validate(record: PackageScheduleRecord): string | null {
+    if (!record.title.trim()) return "Nama paket wajib diisi."
+    if (!record.days.length) return "Paket harus memiliki minimal satu hari perjalanan."
+    for (const [dayIndex, day] of record.days.entries()) {
+      if (!day.activities.length) return `Hari ${dayIndex + 1} harus memiliki minimal satu kegiatan.`
+      if (day.activities.some((activity) => !activity.time.trim() || !activity.activity.trim())) {
+        return `Lengkapi waktu dan kegiatan pada Hari ${dayIndex + 1}.`
+      }
+    }
+    if (record.includes.some((item) => !item.trim())) return "Isi fasilitas yang kosong atau hapus barisnya."
+    return null
+  }
+
+  async function saveRecord(id: string) {
+    if (!client) return
+    const draft = drafts[id]
+    if (!draft) return
+    const validationError = validate(draft)
+    if (validationError) {
+      setMessage(validationError)
+      return
+    }
+
+    const saved: PackageScheduleRecord = {
+      ...draft,
+      title: draft.title.trim(),
+      days: draft.days.map((day) => ({
+        activities: day.activities.map((activity) => ({ time: activity.time.trim(), activity: activity.activity.trim() })),
+      })),
+      includes: draft.includes.map((item) => item.trim()),
+    }
+    setSavingId(id)
+    setMessage("")
+    const { error } = await client.from("tour_packages").upsert({ ...saved, updated_at: new Date().toISOString() })
+    setSavingId(null)
+    if (error) {
+      setMessage(`Jadwal belum tersimpan. ${error.message}`)
+      return
+    }
+    setRecords((current) => current.map((record) => record.id === id ? saved : record))
+    setDrafts((current) => ({ ...current, [id]: cloneRecord(saved) }))
+    setMessage(`Perubahan paket “${saved.title}” sudah tersimpan.`)
+  }
+
+  function cancelRecord(id: string) {
+    const saved = records.find((record) => record.id === id)
+    if (saved) setDrafts((current) => ({ ...current, [id]: cloneRecord(saved) }))
+    setMessage("")
+  }
+
+  return (
+    <main className="min-h-screen bg-muted/30 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-6">
+        <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Dolen Bareng Kang Pir</p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Kelola Jadwal Paket</h1>
+            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Edit jadwal perjalanan dan fasilitas paket. Perubahan tersimpan akan tampil di kartu paket bahasa Indonesia.</p>
+          </div>
+          {(pageState === "ready" || pageState === "denied" || pageState === "error") && client && (
+            <Button variant="outline" onClick={handleLogout} disabled={busy} className="shrink-0">
+              <LogOut className="mr-2 h-4 w-4" />Keluar
+            </Button>
+          )}
+        </header>
+
+        {pageState === "starting" || pageState === "checking" ? (
+          <Card><CardContent className="py-8 text-center text-muted-foreground">Memeriksa akses admin…</CardContent></Card>
+        ) : null}
+
+        {pageState === "unavailable" ? (
+          <Card><CardHeader><CardTitle>Supabase belum dikonfigurasi</CardTitle></CardHeader><CardContent className="space-y-3 text-sm text-muted-foreground">
+            <p>Tambahkan `NEXT_PUBLIC_SUPABASE_URL` dan `NEXT_PUBLIC_SUPABASE_ANON_KEY` pada environment lokal dan Vercel, lalu jalankan SQL setup.</p>
+            <p>Petunjuk lengkap tersedia pada file `docs/supabase-package-schedules.md` di repositori proyek.</p>
+          </CardContent></Card>
+        ) : null}
+
+        {pageState === "signed-out" ? (
+          <Card className="mx-auto w-full max-w-md"><CardHeader><CardTitle>Masuk sebagai admin</CardTitle></CardHeader><CardContent>
+            <form className="space-y-4" onSubmit={handleLogin}>
+              <div className="space-y-2"><Label htmlFor="admin-email">Email</Label><Input id="admin-email" type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} required /></div>
+              <div className="space-y-2"><Label htmlFor="admin-password">Kata sandi</Label><Input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /></div>
+              {message ? <p role="alert" className="text-sm text-destructive">{message}</p> : null}
+              <Button className="w-full" type="submit" disabled={busy}>{busy ? "Memeriksa…" : "Masuk"}</Button>
+            </form>
+          </CardContent></Card>
+        ) : null}
+
+        {pageState === "denied" ? <Card><CardContent className="py-6"><p role="alert" className="text-sm text-destructive">{message}</p></CardContent></Card> : null}
+        {pageState === "error" ? <Card><CardContent className="py-6"><p role="alert" className="text-sm text-destructive">{message}</p></CardContent></Card> : null}
+        {pageState === "ready" && message ? <p role="status" className="rounded-lg border bg-background px-4 py-3 text-sm">{message}</p> : null}
+
+        {pageState === "ready" ? records.map((record) => {
+          const draft = drafts[record.id]
+          if (!draft) return null
+          return (
+            <Card key={record.id}>
+              <CardHeader><CardTitle className="text-xl">{record.title}</CardTitle></CardHeader>
+              <CardContent className="space-y-7">
+                <div className="space-y-2"><Label htmlFor={`${record.id}-title`}>Nama paket</Label><Input id={`${record.id}-title`} value={draft.title} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, title: event.target.value }))} /></div>
+
+                <div className="space-y-5">
+                  <div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-lg font-semibold">Jadwal perjalanan</h2><Button type="button" variant="outline" size="sm" onClick={() => updateDraft(record.id, (current) => ({ ...current, days: [...current.days, { activities: [] }] }))}><Plus className="mr-1 h-4 w-4" />Tambah hari</Button></div>
+                  {draft.days.map((day: PackageScheduleDay, dayIndex: number) => (
+                    <section key={dayIndex} className="space-y-4 rounded-xl border p-4 sm:p-5">
+                      <div className="flex flex-wrap items-center justify-between gap-3"><h3 className="font-semibold">Hari {dayIndex + 1}</h3><Button type="button" variant="ghost" size="sm" className="text-destructive hover:text-destructive" onClick={() => updateDraft(record.id, (current) => ({ ...current, days: current.days.filter((_, index) => index !== dayIndex) }))}><Trash2 className="mr-1 h-4 w-4" />Hapus hari</Button></div>
+                      <div className="space-y-3">
+                        {day.activities.map((activity, activityIndex) => (
+                          <div key={activityIndex} className="grid gap-3 rounded-lg bg-muted/40 p-3 sm:grid-cols-[minmax(7rem,0.3fr)_minmax(0,1fr)_auto] sm:items-end">
+                            <div className="space-y-2"><Label htmlFor={`${record.id}-${dayIndex}-${activityIndex}-time`}>Jam</Label><Input id={`${record.id}-${dayIndex}-${activityIndex}-time`} value={activity.time} onChange={(event) => updateActivity(record.id, dayIndex, activityIndex, "time", event.target.value)} placeholder="09.00–10.00" /></div>
+                            <div className="space-y-2"><Label htmlFor={`${record.id}-${dayIndex}-${activityIndex}-activity`}>Kegiatan</Label><Input id={`${record.id}-${dayIndex}-${activityIndex}-activity`} value={activity.activity} onChange={(event) => updateActivity(record.id, dayIndex, activityIndex, "activity", event.target.value)} placeholder="Penjemputan, waktu bebas, makan, perjalanan pulang…" /></div>
+                            <Button type="button" variant="ghost" size="icon" aria-label={`Hapus kegiatan ${activityIndex + 1} Hari ${dayIndex + 1}`} className="text-destructive hover:text-destructive sm:mb-0.5" onClick={() => updateDraft(record.id, (current) => ({ ...current, days: current.days.map((currentDay, index) => index !== dayIndex ? currentDay : { ...currentDay, activities: currentDay.activities.filter((_, rowIndex) => rowIndex !== activityIndex) }) }))}><Trash2 className="h-4 w-4" /></Button>
+                          </div>
+                        ))}
+                      </div>
+                      <Button type="button" variant="outline" size="sm" onClick={() => updateDraft(record.id, (current) => ({ ...current, days: current.days.map((currentDay, index) => index !== dayIndex ? currentDay : { ...currentDay, activities: [...currentDay.activities, { time: "", activity: "" }] }) }))}><Plus className="mr-1 h-4 w-4" />Tambah kegiatan</Button>
+                    </section>
+                  ))}
+                </div>
+
+                <section className="space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-lg font-semibold">Termasuk dalam paket</h2><Button type="button" variant="outline" size="sm" onClick={() => updateDraft(record.id, (current) => ({ ...current, includes: [...current.includes, ""] }))}><Plus className="mr-1 h-4 w-4" />Tambah fasilitas</Button></div>
+                  {draft.includes.map((item, itemIndex) => (
+                    <div key={itemIndex} className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end"><div className="space-y-2"><Label htmlFor={`${record.id}-include-${itemIndex}`}>Fasilitas {itemIndex + 1}</Label><Input id={`${record.id}-include-${itemIndex}`} value={item} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, includes: current.includes.map((value, index) => index === itemIndex ? event.target.value : value) }))} /></div><Button type="button" variant="ghost" size="icon" aria-label={`Hapus fasilitas ${itemIndex + 1}`} className="text-destructive hover:text-destructive" onClick={() => updateDraft(record.id, (current) => ({ ...current, includes: current.includes.filter((_, index) => index !== itemIndex) }))}><Trash2 className="h-4 w-4" /></Button></div>
+                  ))}
+                </section>
+
+                <div className="flex flex-col-reverse gap-3 border-t pt-5 sm:flex-row sm:justify-end">
+                  <Button type="button" variant="outline" onClick={() => cancelRecord(record.id)} disabled={savingId === record.id}><RotateCcw className="mr-2 h-4 w-4" />Batalkan perubahan</Button>
+                  <Button type="button" onClick={() => void saveRecord(record.id)} disabled={savingId === record.id} className="sm:min-w-36"><Save className="mr-2 h-4 w-4" />{savingId === record.id ? "Menyimpan…" : "Simpan paket"}</Button>
+                </div>
+              </CardContent>
+            </Card>
+          )
+        }) : null}
+      </div>
+    </main>
+  )
+}

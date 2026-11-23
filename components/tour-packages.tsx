@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
+import type { PackageScheduleRecord } from "@/lib/package-schedules"
 
 const labels: Record<string, { title: string; intro: string; schedule: string; included: string; day: string; book: string; notice: string }> = {
   id: { title: "Paket Wisata & Jadwal", intro: "Paket tiga hari dengan urutan destinasi, jam kegiatan, dan fasilitas yang disertakan.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Hari", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
@@ -45,7 +46,7 @@ const packages = [
   { title: "Djawatan → Ijen → Pulau Merah", days: [daySchedules.djawatan, daySchedules.ijen, daySchedules.merah], includes: ["Djawatan: entrance ticket and meal", "Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole", "Pulau Merah: entrance ticket and meal"] },
 ]
 
-export function TourPackages({ lang }: { lang: SupportedLanguage }) {
+export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; schedules?: PackageScheduleRecord[] }) {
   const text = labels[lang] ?? labels.en
   const isIndonesian = lang === "id"
   const translateActivity = (activity: string) => isIndonesian ? ({
@@ -69,6 +70,14 @@ export function TourPackages({ lang }: { lang: SupportedLanguage }) {
     "Return by boat and transfer to Banyuwangi (estimated)": "Kembali dengan perahu lalu ke Banyuwangi (perkiraan)",
   } as Record<string, string>)[activity] ?? activity : activity
 
+  const displayPackages = isIndonesian && schedules?.length
+    ? schedules.map((schedule) => ({
+      title: schedule.title,
+      days: schedule.days.map((day) => day.activities.map(({ time, activity }) => [time, activity] as [string, string])),
+      includes: schedule.includes,
+    }))
+    : packages
+
   return (
     <section id="tour-packages" className="bg-muted/30 py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -78,7 +87,7 @@ export function TourPackages({ lang }: { lang: SupportedLanguage }) {
           <p className="text-lg text-muted-foreground">{text.intro}</p>
         </div>
         <div className="grid gap-7 xl:grid-cols-3">
-          {packages.map((tourPackage) => (
+          {displayPackages.map((tourPackage) => (
             <Card key={tourPackage.title} className="border-0 shadow-md">
               <CardHeader>
                 <CardTitle className="text-xl">{tourPackage.title}</CardTitle>
