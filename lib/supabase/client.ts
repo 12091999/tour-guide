@@ -9,6 +9,10 @@ export function createSupabaseBrowserClient(): SupabaseClient | null {
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   if (!url || !anonKey) return null
 
-  client ??= createClient(url, anonKey)
-  return client
+  try {
+    client ??= createClient(url, anonKey)
+    return client
+  } catch {
+    return null
+  }
 }
