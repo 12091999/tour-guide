@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, ChevronDown } from "lucide-react"
+import { ArrowUpRight, Menu, X } from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
@@ -43,7 +43,7 @@ export function Header({ dict, lang }: HeaderProps) {
   return (
     <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-2 sm:px-4">
-        <div className="flex min-h-14 items-center gap-1 py-2 sm:min-h-[4.5rem] sm:gap-4">
+        <div className="flex min-h-16 items-center gap-1 py-2 sm:gap-4">
           <Link
             href={`/${lang}`}
             onClick={() => setMenuOpen(false)}
@@ -61,10 +61,9 @@ export function Header({ dict, lang }: HeaderProps) {
               aria-expanded={menuOpen}
               aria-controls="main-navigation-menu"
               onClick={() => setMenuOpen((open) => !open)}
-              className="flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-gray-200 px-2.5 text-[clamp(0.75rem,3vw,1rem)] font-medium text-gray-800 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:gap-2 sm:px-4"
+              className="flex size-10 items-center justify-center rounded-full text-gray-800 transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
             >
-              <span>{lang === "id" ? "Menu" : "Menu"}</span>
-              <ChevronDown className={`size-4 transition-transform duration-200 ${menuOpen ? "rotate-180" : ""}`} aria-hidden="true" />
+              {menuOpen ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -76,23 +75,29 @@ export function Header({ dict, lang }: HeaderProps) {
             menuOpen ? "grid-rows-[1fr] translate-y-0 opacity-100" : "pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0"
           }`}
         >
-          <nav aria-label="Main navigation" className="min-h-0 overflow-hidden">
-            <div className="mx-auto mb-3 flex max-w-7xl flex-col rounded-2xl border border-gray-200 bg-white p-2 shadow-lg sm:mb-4 sm:p-3">
-              {navLinks.map(({ href, label, admin }) => (
+          <nav aria-label="Main navigation" className="min-h-0 overflow-hidden border-t border-gray-100">
+            <div className="mx-auto max-w-7xl px-2 py-2 sm:px-4 sm:py-3">
+              <div className="flex flex-col">
+              {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
                   tabIndex={menuOpen ? 0 : -1}
                   onClick={() => setMenuOpen(false)}
-                  className={`rounded-xl px-4 py-3 text-[clamp(0.9375rem,2.8vw,1.125rem)] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ${
-                    admin
-                      ? "mt-1 bg-orange-500 text-white hover:bg-orange-600"
-                      : "text-gray-800 hover:bg-orange-50 hover:text-orange-700"
-                  }`}
+                  className="border-b border-gray-100 px-3 py-3.5 text-[clamp(0.9375rem,2.8vw,1.125rem)] font-medium text-gray-700 transition-colors last:border-b-0 hover:text-orange-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:px-4"
                 >
                   {label}
                 </Link>
               ))}
+              </div>
+              <Link
+                href={`/${lang}/contact`}
+                tabIndex={menuOpen ? 0 : -1}
+                onClick={() => setMenuOpen(false)}
+                className="mt-3 flex min-h-12 items-center justify-center rounded-sm bg-amber-400 px-4 py-3 text-center text-[clamp(0.9375rem,2.8vw,1.125rem)] font-semibold text-slate-900 transition-colors hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:mt-4"
+              >
+                {lang === "id" ? "Cek Ketersediaan" : "Check Availability"}
+              </Link>
             </div>
           </nav>
         </div>
