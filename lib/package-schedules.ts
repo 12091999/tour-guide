@@ -13,6 +13,8 @@ export type PackageScheduleRecord = {
   id: string
   position: number
   title: string
+  price_idr: number | null
+  price_usd: number | null
   days: PackageScheduleDay[]
   includes: string[]
 }
@@ -22,6 +24,8 @@ export const fallbackPackageSchedules: PackageScheduleRecord[] = [
     id: "djawatan-merah-ijen",
     position: 1,
     title: "Djawatan → Pulau Merah → Ijen",
+    price_idr: null,
+    price_usd: null,
     days: [
       { activities: [
         { time: "09.00", activity: "Penjemputan di hotel atau homestay" },
@@ -59,6 +63,8 @@ export const fallbackPackageSchedules: PackageScheduleRecord[] = [
     id: "tabuhan-djawatan-ijen",
     position: 2,
     title: "Tabuhan → Djawatan → Ijen",
+    price_idr: null,
+    price_usd: null,
     days: [
       { activities: [
         { time: "09.00", activity: "Penjemputan di hotel atau homestay" },
@@ -95,6 +101,8 @@ export const fallbackPackageSchedules: PackageScheduleRecord[] = [
     id: "djawatan-ijen-merah",
     position: 3,
     title: "Djawatan → Ijen → Pulau Merah",
+    price_idr: null,
+    price_usd: null,
     days: [
       { activities: [
         { time: "09.00", activity: "Penjemputan di hotel atau homestay" },
@@ -138,6 +146,8 @@ function isScheduleRecord(value: unknown): value is PackageScheduleRecord {
   return typeof record.id === "string"
     && typeof record.position === "number"
     && typeof record.title === "string"
+    && (record.price_idr === null || typeof record.price_idr === "number")
+    && (record.price_usd === null || typeof record.price_usd === "number")
     && Array.isArray(record.days)
     && record.days.every((day) => day && Array.isArray(day.activities)
       && day.activities.every((activity) => activity && typeof activity.time === "string" && typeof activity.activity === "string"))
@@ -157,7 +167,7 @@ export async function getPackageSchedules(): Promise<PackageScheduleRecord[]> {
     })
     const { data, error } = await supabase
       .from("tour_packages")
-      .select("id, position, title, days, includes")
+      .select("id, position, title, price_idr, price_usd, days, includes")
       .order("position", { ascending: true })
 
     if (error || !data?.length) return fallbackPackageSchedules

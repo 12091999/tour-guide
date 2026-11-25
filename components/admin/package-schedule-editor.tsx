@@ -68,7 +68,7 @@ export function PackageScheduleEditor() {
 
       const { data, error } = await supabase
         .from("tour_packages")
-        .select("id, position, title, days, includes")
+        .select("id, position, title, price_idr, price_usd, days, includes")
         .order("position", { ascending: true })
       if (!active) return
       if (error) {
@@ -86,6 +86,8 @@ export function PackageScheduleEditor() {
         id: record.id,
         position: record.position,
         title: record.title,
+        price_idr: record.price_idr === null ? null : Number(record.price_idr),
+        price_usd: record.price_usd === null ? null : Number(record.price_usd),
         days: Array.isArray(record.days) ? record.days as PackageScheduleDay[] : [],
         includes: Array.isArray(record.includes) ? record.includes as string[] : [],
       }))
@@ -159,6 +161,8 @@ export function PackageScheduleEditor() {
 
   function validate(record: PackageScheduleRecord): string | null {
     if (!record.title.trim()) return "Nama paket wajib diisi."
+    if (record.price_idr !== null && (!Number.isFinite(record.price_idr) || record.price_idr < 0)) return "Harga IDR harus berupa angka nol atau lebih."
+    if (record.price_usd !== null && (!Number.isFinite(record.price_usd) || record.price_usd < 0)) return "Harga USD harus berupa angka nol atau lebih."
     if (!record.days.length) return "Paket harus memiliki minimal satu hari perjalanan."
     for (const [dayIndex, day] of record.days.entries()) {
       if (!day.activities.length) return `Hari ${dayIndex + 1} harus memiliki minimal satu kegiatan.`
@@ -262,6 +266,15 @@ export function PackageScheduleEditor() {
               <CardHeader><CardTitle className="text-xl">{record.title}</CardTitle></CardHeader>
               <CardContent className="space-y-7">
                 <div className="space-y-2"><Label htmlFor={`${record.id}-title`}>Nama paket</Label><Input id={`${record.id}-title`} value={draft.title} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, title: event.target.value }))} /></div>
+
+                <section className="space-y-3">
+                  <h2 className="text-lg font-semibold">Harga paket</h2>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-idr`}>Harga dalam IDR (Rp)</Label><Input id={`${record.id}-price-idr`} type="number" min="0" step="1" inputMode="numeric" placeholder="Contoh: 1500000" value={draft.price_idr ?? ""} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, price_idr: event.target.value === "" ? null : Number(event.target.value) }))} /></div>
+                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-usd`}>Harga dalam Dollar (USD)</Label><Input id={`${record.id}-price-usd`} type="number" min="0" step="0.01" inputMode="decimal" placeholder="Contoh: 95" value={draft.price_usd ?? ""} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, price_usd: event.target.value === "" ? null : Number(event.target.value) }))} /></div>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Isi harga untuk masing-masing mata uang secara terpisah. Kosongkan jika harga belum ditentukan.</p>
+                </section>
 
                 <div className="space-y-5">
                   <div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-lg font-semibold">Jadwal perjalanan</h2><Button type="button" variant="outline" size="sm" onClick={() => updateDraft(record.id, (current) => ({ ...current, days: [...current.days, { activities: [] }] }))}><Plus className="mr-1 h-4 w-4" />Tambah hari</Button></div>

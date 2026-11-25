@@ -8,7 +8,7 @@ The Indonesian package cards can read their schedules from Supabase. The public 
 2. Open **SQL Editor** in the Supabase Dashboard.
 3. Copy and run the contents of [`supabase/package-schedules.sql`](../supabase/package-schedules.sql).
 
-The script creates the `tour_packages` table, seeds the three current packages, and enables Row Level Security. Public visitors can read package schedules. Authenticated users can write only when their user ID is in `schedule_admins`.
+The script creates or updates the `tour_packages` table, adds editable `price_idr` and `price_usd` columns, seeds the three current packages, and enables Row Level Security. Public visitors can read package schedules. Authenticated users can write only when their user ID is in `schedule_admins`.
 
 The seed uses `ON CONFLICT DO NOTHING`, so rerunning it will not overwrite edits made through the admin page.
 
@@ -40,7 +40,7 @@ For the production site, add both variables in **Vercel → Project Settings →
 
 ## 4. Use the editor
 
-Open `/admin/tour-packages`, sign in with the Auth account, and edit each package's name, days, time/activity rows, and included items. Use **Simpan paket** to save or **Batalkan perubahan** to reload the last saved values. Saved Indonesian schedules appear on the public package cards after refresh.
+Open `/admin/tour-packages`, sign in with the Auth account, and edit each package's name, IDR and USD prices, days, time/activity rows, and included items. Use **Simpan paket** to save or **Batalkan perubahan** to reload the last saved values. Saved Indonesian schedules and prices appear on the public package cards after refresh. Prices can be left blank until they are set.
 
 The editor can add and remove days and activity rows. Every day must have at least one row, and each row needs both a time and an activity description. Included items may be removed; any item left in the list must have text.
 

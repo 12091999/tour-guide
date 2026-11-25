@@ -73,10 +73,12 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
   const displayPackages = isIndonesian && schedules?.length
     ? schedules.map((schedule) => ({
       title: schedule.title,
+      price_idr: schedule.price_idr,
+      price_usd: schedule.price_usd,
       days: schedule.days.map((day) => day.activities.map(({ time, activity }) => [time, activity] as [string, string])),
       includes: schedule.includes,
     }))
-    : packages
+    : packages.map((tourPackage) => ({ ...tourPackage, price_idr: null, price_usd: null }))
 
   return (
     <section id="tour-packages" className="bg-muted/30 py-20">
@@ -93,6 +95,12 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
                 <CardTitle className="text-xl">{tourPackage.title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+                {(tourPackage.price_idr !== null || tourPackage.price_usd !== null) ? (
+                  <div className="flex flex-wrap gap-x-5 gap-y-1 rounded-lg bg-muted/50 px-4 py-3 text-sm font-semibold">
+                    {tourPackage.price_idr !== null ? <span>{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(tourPackage.price_idr)}</span> : null}
+                    {tourPackage.price_usd !== null ? <span>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(tourPackage.price_usd)}</span> : null}
+                  </div>
+                ) : null}
                 <div>
                   <h3 className="mb-3 flex items-center gap-2 font-semibold"><CalendarDays className="h-4 w-4 text-primary" />{text.schedule}</h3>
                   <div className="space-y-4">
