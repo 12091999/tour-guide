@@ -141,12 +141,6 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
                 <CardTitle className="text-xl">{tourPackage.title}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                {(tourPackage.price_idr !== null || tourPackage.price_usd !== null) ? (
-                  <div className="flex flex-wrap gap-x-5 gap-y-1 rounded-lg bg-muted/50 px-4 py-3 text-sm font-semibold">
-                    {tourPackage.price_idr !== null ? <span>{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(tourPackage.price_idr)}</span> : null}
-                    {tourPackage.price_usd !== null ? <span>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(tourPackage.price_usd)}</span> : null}
-                  </div>
-                ) : null}
                 <div>
                   <h3 className="mb-3 flex items-center gap-2 font-semibold"><CalendarDays className="h-4 w-4 text-primary" />{text.schedule}</h3>
                   <div className="space-y-4">
@@ -173,8 +167,27 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
                     ))}
                   </ul>
                 </div>
-                <Button asChild className="w-full rounded-full">
-                  <a href={getWhatsAppUrl(isIndonesian ? `Halo Tour Guide, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)} target="_blank" rel="noreferrer">{isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}</a>
+                <Button asChild className="group min-h-12 w-full rounded-full bg-green-600 px-3 font-semibold text-white transition-colors hover:bg-green-700">
+                  <a
+                    href={getWhatsAppUrl(isIndonesian ? `Halo Tour Guide, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
+                  >
+                    {tourPackage.price_idr !== null || tourPackage.price_usd !== null ? (
+                      <span className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 group-hover:hidden group-focus-visible:hidden group-active:hidden">
+                        {tourPackage.price_idr !== null ? <span>{new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(tourPackage.price_idr)}</span> : null}
+                        {tourPackage.price_usd !== null ? <span>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(tourPackage.price_usd)}</span> : null}
+                      </span>
+                    ) : (
+                      <span className="group-hover:hidden group-focus-visible:hidden group-active:hidden">
+                        {isIndonesian ? "Tanya Harga" : "Ask for price"}
+                      </span>
+                    )}
+                    <span className="hidden group-hover:inline group-focus-visible:inline group-active:inline">
+                      {isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
+                    </span>
+                  </a>
                 </Button>
               </CardContent>
             </Card>

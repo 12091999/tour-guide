@@ -47,13 +47,30 @@ export function Header({ dict, lang }: HeaderProps) {
           <Link
             href={`/${lang}`}
             onClick={() => setMenuOpen(false)}
-            className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2"
+            className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2 xl:flex-none"
           >
             <ArrowUpRight className="size-[clamp(1rem,5vw,1.75rem)] shrink-0" aria-hidden="true" />
             <span className="truncate">Dolen Bareng Kang Pir</span>
           </Link>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+          <div className="ml-auto hidden shrink-0 items-center gap-4 xl:flex">
+            <nav aria-label="Main navigation" className="flex items-center gap-5 2xl:gap-7">
+              {navLinks.map(({ href, label }) => (
+                <Link key={href} href={href} className="whitespace-nowrap text-sm font-medium text-gray-700 transition-colors hover:text-orange-700 2xl:text-base">
+                  {label}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href={`/${lang}/contact`}
+              className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-sm bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-amber-300 2xl:text-base"
+            >
+              {lang === "id" ? "Cek Ketersediaan" : "Check Availability"}
+            </Link>
+            <LanguageSwitcher currentLang={lang} />
+          </div>
+
+          <div className="ml-auto flex shrink-0 items-center gap-1 xl:hidden">
             <LanguageSwitcher currentLang={lang} />
             <button
               type="button"
@@ -71,7 +88,7 @@ export function Header({ dict, lang }: HeaderProps) {
         <div
           id="main-navigation-menu"
           aria-hidden={!menuOpen}
-          className={`relative left-1/2 grid w-screen -translate-x-1/2 transition-[grid-template-rows,opacity,transform] duration-300 ease-in-out ${
+          className={`relative left-1/2 grid w-screen -translate-x-1/2 transition-[grid-template-rows,opacity,transform] duration-300 ease-in-out xl:hidden ${
             menuOpen ? "grid-rows-[1fr] translate-y-0 opacity-100" : "pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0"
           }`}
         >
