@@ -266,7 +266,7 @@ export function PackageScheduleEditor() {
         </Link>
         <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">Dolen Bareng Kang Pir · Jelajah Banyuwangi</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">Dolan Bareng Kang Pir · Jelajah Banyuwangi</p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Kelola Jadwal Paket</h1>
             <p className="mt-2 max-w-2xl text-sm text-white/80">Edit jadwal perjalanan dan fasilitas paket. Perubahan tersimpan akan tampil di kartu paket bahasa Indonesia.</p>
           </div>

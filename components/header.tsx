@@ -50,7 +50,7 @@ export function Header({ dict, lang }: HeaderProps) {
             className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2 xl:flex-none"
           >
             <ArrowUpRight className="size-[clamp(1rem,5vw,1.75rem)] shrink-0" aria-hidden="true" />
-            <span className="truncate">Dolen Bareng Kang Pir</span>
+            <span className="truncate">Dolan Bareng Kang Pir</span>
           </Link>
 
           <div className="ml-auto hidden shrink-0 items-center gap-4 xl:flex">
