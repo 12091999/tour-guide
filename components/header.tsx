@@ -1,6 +1,9 @@
 
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, Menu } from "lucide-react"
+import { ArrowUpRight, Menu, X } from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 
 interface HeaderProps {
@@ -9,6 +12,8 @@ interface HeaderProps {
 }
 
 export function Header({ dict, lang }: HeaderProps) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   return (
     <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
       <div className="container mx-auto px-3 py-3 sm:px-4 sm:py-4">
@@ -53,6 +58,12 @@ export function Header({ dict, lang }: HeaderProps) {
             >
               {dict.nav.contact}
             </Link>
+            <Link
+              href="/admin/tour-packages"
+              className="rounded-full bg-orange-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-orange-600"
+            >
+              {lang === "id" ? "Login Admin" : "Admin Login"}
+            </Link>
           </nav>
 
           {/* Language Switcher */}
@@ -61,32 +72,39 @@ export function Header({ dict, lang }: HeaderProps) {
           </div>
 
           {/* Compact navigation for phones and tablets */}
-          <details className="group relative shrink-0 lg:hidden">
-            <summary
-              aria-label="Open navigation menu"
-              className="flex size-10 cursor-pointer list-none items-center justify-center rounded-md border border-gray-200 text-gray-800 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 [&::-webkit-details-marker]:hidden"
+          <div className="relative shrink-0 lg:hidden">
+            <button
+              type="button"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-main-navigation"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              className="flex size-10 items-center justify-center rounded-md border border-gray-200 text-gray-800 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
             >
-              <Menu className="size-5" aria-hidden="true" />
-              <span className="sr-only">Menu</span>
-            </summary>
-            <nav
+              {mobileMenuOpen ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            </button>
+            {mobileMenuOpen ? <nav
+              id="mobile-main-navigation"
               aria-label="Main navigation"
               className="absolute right-0 top-full z-50 mt-2 flex w-56 flex-col rounded-lg border bg-white p-2 shadow-lg"
             >
-              <Link href={`/${lang}`} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
+              <Link href={`/${lang}`} onClick={() => setMobileMenuOpen(false)} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
                 {dict.nav.home}
               </Link>
-              <Link href={`/${lang}/explore`} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
+              <Link href={`/${lang}/explore`} onClick={() => setMobileMenuOpen(false)} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
                 {dict.nav.tours}
               </Link>
-              <Link href={`/${lang}/about`} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
+              <Link href={`/${lang}/about`} onClick={() => setMobileMenuOpen(false)} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
                 {dict.nav.about}
               </Link>
-              <Link href={`/${lang}/contact`} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
+              <Link href={`/${lang}/contact`} onClick={() => setMobileMenuOpen(false)} className="rounded-md px-3 py-2.5 font-medium hover:bg-orange-50 hover:text-orange-700">
                 {dict.nav.contact}
               </Link>
-            </nav>
-          </details>
+              <Link href="/admin/tour-packages" onClick={() => setMobileMenuOpen(false)} className="mt-1 rounded-md bg-orange-500 px-3 py-2.5 font-semibold text-white hover:bg-orange-600">
+                {lang === "id" ? "Login Admin" : "Admin Login"}
+              </Link>
+            </nav> : null}
+          </div>
 
         </div>
       </div>

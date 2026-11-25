@@ -28,6 +28,16 @@ function parseIdrInput(value: string) {
   return Number.isSafeInteger(parsed) ? parsed : null
 }
 
+function getIdrCaretPosition(formatted: string, digitsBeforeCaret: number) {
+  if (digitsBeforeCaret === 0) return 0
+  let digitsSeen = 0
+  for (let index = 0; index < formatted.length; index += 1) {
+    if (/\d/.test(formatted[index])) digitsSeen += 1
+    if (digitsSeen === digitsBeforeCaret) return index + 1
+  }
+  return formatted.length
+}
+
 export function PackageScheduleEditor() {
   const [client, setClient] = useState<SupabaseClient | null>(null)
   const [pageState, setPageState] = useState<PageState>("starting")
@@ -316,14 +326,24 @@ export function PackageScheduleEditor() {
                   <h2 className="text-lg font-semibold">Harga paket</h2>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2"><Label htmlFor={`${record.id}-price-idr`}>Harga dalam IDR (Rp)</Label><Input id={`${record.id}-price-idr`} type="text" inputMode="numeric" placeholder="Contoh: 10.000" value={idrInputs[record.id] ?? formatIdrInput(draft.price_idr)} onChange={(event) => {
-                      const rawValue = event.target.value
+                      const input = event.currentTarget
+                      const rawValue = input.value
+                      const digitsBeforeCaret = rawValue.slice(0, input.selectionStart ?? rawValue.length).replace(/\D/g, "").length
                       const priceIdr = parseIdrInput(rawValue)
-                      setIdrInputs((current) => ({ ...current, [record.id]: rawValue }))
+                      const formattedValue = formatIdrInput(priceIdr)
+                      setIdrInputs((current) => ({ ...current, [record.id]: formattedValue }))
                       updateDraft(record.id, (current) => ({
                         ...current,
                         price_idr: priceIdr,
                         price_usd: priceIdr === null ? null : usdToIdrRate ? Math.round((priceIdr / usdToIdrRate) * 100) / 100 : current.price_usd,
                       }))
+                      window.requestAnimationFrame(() => {
+                        const updatedInput = document.getElementById(`${record.id}-price-idr`) as HTMLInputElement | null
+                        if (updatedInput) {
+                          const caret = getIdrCaretPosition(formattedValue, digitsBeforeCaret)
+                          updatedInput.setSelectionRange(caret, caret)
+                        }
+                      })
                     }} onBlur={() => setIdrInputs((current) => ({ ...current, [record.id]: formatIdrInput(drafts[record.id]?.price_idr ?? null) }))} /></div>
                     <div className="space-y-2"><Label htmlFor={`${record.id}-price-usd`}>Harga dalam Dollar (USD)</Label><Input id={`${record.id}-price-usd`} type="number" min="0" step="0.01" inputMode="decimal" placeholder="Contoh: 95" value={draft.price_usd ?? ""} onChange={(event) => {
                       const priceUsd = event.target.value === "" ? null : Number(event.target.value)
