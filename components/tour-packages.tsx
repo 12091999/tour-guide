@@ -78,7 +78,11 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
       days: schedule.days.map((day) => day.activities.map(({ time, activity }) => [time, activity] as [string, string])),
       includes: schedule.includes,
     }))
-    : packages.map((tourPackage) => ({ ...tourPackage, price_idr: null, price_usd: null }))
+    : packages.map((tourPackage, index) => ({
+      ...tourPackage,
+      price_idr: schedules?.[index]?.price_idr ?? null,
+      price_usd: schedules?.[index]?.price_usd ?? null,
+    }))
 
   return (
     <section id="tour-packages" className="bg-muted/30 py-20">

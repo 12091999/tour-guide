@@ -16,7 +16,7 @@ export default async function ExplorePage({
   const { lang } = await params
   const currentLang = isSupportedLanguage(lang) ? lang : "en"
   const dict = await getDictionary(currentLang)
-  const schedules = currentLang === "id" ? await getPackageSchedules() : undefined
+  const schedules = await getPackageSchedules()
 
   return (
     <div className="min-h-screen bg-background">

@@ -17,16 +17,47 @@ function cloneRecord(record: PackageScheduleRecord): PackageScheduleRecord {
   return JSON.parse(JSON.stringify(record)) as PackageScheduleRecord
 }
 
+function formatIdrInput(value: number | null) {
+  return value === null ? "" : new Intl.NumberFormat("id-ID", { maximumFractionDigits: 0 }).format(value)
+}
+
+function parseIdrInput(value: string) {
+  const digits = value.replace(/\D/g, "")
+  if (!digits) return null
+  const parsed = Number(digits)
+  return Number.isSafeInteger(parsed) ? parsed : null
+}
+
 export function PackageScheduleEditor() {
   const [client, setClient] = useState<SupabaseClient | null>(null)
   const [pageState, setPageState] = useState<PageState>("starting")
   const [records, setRecords] = useState<PackageScheduleRecord[]>([])
   const [drafts, setDrafts] = useState<Record<string, PackageScheduleRecord>>({})
+  const [idrInputs, setIdrInputs] = useState<Record<string, string>>({})
+  const [usdToIdrRate, setUsdToIdrRate] = useState<number | null>(null)
+  const [rateDate, setRateDate] = useState<string | null>(null)
+  const [rateUnavailable, setRateUnavailable] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [busy, setBusy] = useState(false)
   const [savingId, setSavingId] = useState<string | null>(null)
   const [message, setMessage] = useState("")
+
+  useEffect(() => {
+    let active = true
+    fetch("/api/exchange-rate", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Kurs tidak tersedia")
+        return response.json() as Promise<{ rate: number; date: string }>
+      })
+      .then(({ rate, date }) => {
+        if (!active || !Number.isFinite(rate) || rate <= 0) return
+        setUsdToIdrRate(rate)
+        setRateDate(date)
+      })
+      .catch(() => { if (active) setRateUnavailable(true) })
+    return () => { active = false }
+  }, [])
 
   useEffect(() => {
     let active = true
@@ -202,12 +233,16 @@ export function PackageScheduleEditor() {
     }
     setRecords((current) => current.map((record) => record.id === id ? saved : record))
     setDrafts((current) => ({ ...current, [id]: cloneRecord(saved) }))
+    setIdrInputs((current) => ({ ...current, [id]: formatIdrInput(saved.price_idr) }))
     setMessage(`Perubahan paket “${saved.title}” sudah tersimpan.`)
   }
 
   function cancelRecord(id: string) {
     const saved = records.find((record) => record.id === id)
-    if (saved) setDrafts((current) => ({ ...current, [id]: cloneRecord(saved) }))
+    if (saved) {
+      setDrafts((current) => ({ ...current, [id]: cloneRecord(saved) }))
+      setIdrInputs((current) => ({ ...current, [id]: formatIdrInput(saved.price_idr) }))
+    }
     setMessage("")
   }
 
@@ -258,6 +293,16 @@ export function PackageScheduleEditor() {
         {pageState === "error" ? <Card><CardContent className="py-6"><p role="alert" className="text-sm text-destructive">{message}</p></CardContent></Card> : null}
         {pageState === "ready" && message ? <p role="status" className="rounded-lg border bg-background px-4 py-3 text-sm">{message}</p> : null}
 
+        {pageState === "ready" ? (
+          <p className="rounded-lg border border-white/20 bg-slate-950/35 px-4 py-3 text-sm text-white/90">
+            {usdToIdrRate !== null
+              ? <>Kurs referensi terbaru: <strong>1 USD = Rp{new Intl.NumberFormat("id-ID", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(usdToIdrRate)}</strong>{rateDate ? ` (tanggal ${rateDate})` : ""}. Harga akan dikonversi otomatis saat salah satu kolom diubah.</>
+              : rateUnavailable
+                ? "Kurs USD/IDR tidak tersedia. Harga tetap dapat diisi manual, tetapi konversi otomatis belum aktif."
+                : "Sedang mengambil kurs USD/IDR terbaru…"}
+          </p>
+        ) : null}
+
         {pageState === "ready" ? records.map((record) => {
           const draft = drafts[record.id]
           if (!draft) return null
@@ -270,10 +315,24 @@ export function PackageScheduleEditor() {
                 <section className="space-y-3">
                   <h2 className="text-lg font-semibold">Harga paket</h2>
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-idr`}>Harga dalam IDR (Rp)</Label><Input id={`${record.id}-price-idr`} type="number" min="0" step="1" inputMode="numeric" placeholder="Contoh: 1500000" value={draft.price_idr ?? ""} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, price_idr: event.target.value === "" ? null : Number(event.target.value) }))} /></div>
-                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-usd`}>Harga dalam Dollar (USD)</Label><Input id={`${record.id}-price-usd`} type="number" min="0" step="0.01" inputMode="decimal" placeholder="Contoh: 95" value={draft.price_usd ?? ""} onChange={(event) => updateDraft(record.id, (current) => ({ ...current, price_usd: event.target.value === "" ? null : Number(event.target.value) }))} /></div>
+                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-idr`}>Harga dalam IDR (Rp)</Label><Input id={`${record.id}-price-idr`} type="text" inputMode="numeric" placeholder="Contoh: 10.000" value={idrInputs[record.id] ?? formatIdrInput(draft.price_idr)} onChange={(event) => {
+                      const rawValue = event.target.value
+                      const priceIdr = parseIdrInput(rawValue)
+                      setIdrInputs((current) => ({ ...current, [record.id]: rawValue }))
+                      updateDraft(record.id, (current) => ({
+                        ...current,
+                        price_idr: priceIdr,
+                        price_usd: priceIdr === null ? null : usdToIdrRate ? Math.round((priceIdr / usdToIdrRate) * 100) / 100 : current.price_usd,
+                      }))
+                    }} onBlur={() => setIdrInputs((current) => ({ ...current, [record.id]: formatIdrInput(drafts[record.id]?.price_idr ?? null) }))} /></div>
+                    <div className="space-y-2"><Label htmlFor={`${record.id}-price-usd`}>Harga dalam Dollar (USD)</Label><Input id={`${record.id}-price-usd`} type="number" min="0" step="0.01" inputMode="decimal" placeholder="Contoh: 95" value={draft.price_usd ?? ""} onChange={(event) => {
+                      const priceUsd = event.target.value === "" ? null : Number(event.target.value)
+                      const priceIdr = priceUsd === null ? null : usdToIdrRate ? Math.round(priceUsd * usdToIdrRate) : draft.price_idr
+                      updateDraft(record.id, (current) => ({ ...current, price_usd: priceUsd, price_idr: priceIdr }))
+                      setIdrInputs((current) => ({ ...current, [record.id]: formatIdrInput(priceIdr) }))
+                    }} /></div>
                   </div>
-                  <p className="text-xs text-muted-foreground">Isi harga untuk masing-masing mata uang secara terpisah. Kosongkan jika harga belum ditentukan.</p>
+                  <p className="text-xs text-muted-foreground">Nilai IDR ditampilkan dengan pemisah ribuan, misalnya 10.000. Mengubah IDR atau USD akan menghitung ulang kolom lainnya menggunakan kurs referensi terbaru.</p>
                 </section>
 
                 <div className="space-y-5">
