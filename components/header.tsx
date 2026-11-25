@@ -42,7 +42,7 @@ export function Header({ dict, lang }: HeaderProps) {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto px-2 sm:px-4">
+      <div className="w-full px-0">
         <div className="flex min-h-16 items-center gap-1 py-2 sm:gap-4">
           <Link
             href={`/${lang}`}
