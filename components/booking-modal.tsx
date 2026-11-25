@@ -179,7 +179,7 @@ export function BookingModal({ tourTitle, tourPrice, duration, difficulty, dict,
         </DialogHeader>
 
         {/* Tour Summary */}
-        <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-300">
+        <Card className="bg-gradient-to-br from-emerald-100 via-sky-100 to-amber-100 border-emerald-200 dark:from-emerald-950/60 dark:via-sky-950/60 dark:to-amber-950/60 dark:border-emerald-800">
           <CardContent className="p-4">
             <h3 className="font-semibold text-orange-900 mb-2 flex items-center gap-2">
               <Mountain className="h-4 w-4" />

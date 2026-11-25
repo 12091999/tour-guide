@@ -289,7 +289,7 @@ export function PackageScheduleEditor() {
         ) : null}
 
         {pageState === "signed-out" ? (
-          <Card className="mx-auto w-full max-w-md border-white/30 bg-white/95 shadow-2xl backdrop-blur"><CardHeader><CardTitle>Masuk sebagai admin</CardTitle><p className="text-sm text-muted-foreground">Siap mengatur perjalanan berikutnya?</p></CardHeader><CardContent>
+          <Card className="mx-auto w-full max-w-md border-emerald-100/80 bg-gradient-to-br from-emerald-50/95 via-sky-50/95 to-amber-50/95 shadow-2xl backdrop-blur dark:from-emerald-950/90 dark:via-slate-900/95 dark:to-sky-950/90"><CardHeader><CardTitle>Masuk sebagai admin</CardTitle><p className="text-sm text-muted-foreground">Siap mengatur perjalanan berikutnya?</p></CardHeader><CardContent>
             <form className="space-y-4" onSubmit={handleLogin}>
               <div className="space-y-2"><Label htmlFor="admin-email">Email</Label><Input id="admin-email" type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} required /></div>
               <div className="space-y-2"><Label htmlFor="admin-password">Kata sandi</Label><Input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /></div>

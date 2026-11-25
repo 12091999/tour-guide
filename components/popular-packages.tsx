@@ -60,7 +60,7 @@ export async function PopularPackages() {
           {packages.map((pkg, index) => (
             <Card
               key={index}
-              className="group relative overflow-hidden border-0 bg-card transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
+              className="group relative overflow-hidden border-0 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl"
             >
               <Link href="/en/explore#tour-packages" aria-label={`View ${pkg.title} itinerary`} className="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset" />
               {/* Image */}

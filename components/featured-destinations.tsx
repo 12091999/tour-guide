@@ -89,7 +89,7 @@ export async function FeaturedDestinations({
               aria-label={`${dict.site.destinations.explore}: ${destination.name}`}
               className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
             >
-            <Card className="h-full overflow-hidden border-0 bg-card transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl">
+            <Card className="h-full overflow-hidden border-0 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl">
               {/* Image */}
               <div className="relative h-80 overflow-hidden">
                 <img
