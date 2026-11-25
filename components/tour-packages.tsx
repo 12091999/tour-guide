@@ -167,19 +167,23 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
                     ))}
                   </ul>
                 </div>
-                <Button asChild className="group min-h-12 w-full whitespace-normal rounded-xl bg-green-600 px-3 py-3 font-semibold text-white transition-colors hover:bg-green-700">
+                <Button asChild className="group relative min-h-[76px] w-full whitespace-normal rounded-xl bg-green-600 px-4 py-3 text-white shadow-sm transition-colors hover:bg-green-700">
                   <a
                     href={getWhatsAppUrl(isIndonesian ? `Halo Tour Guide, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
                   >
-                    <span className="flex flex-col items-center leading-tight group-hover:hidden group-focus-visible:hidden group-active:hidden">
-                      <span>Rp 250.000</span>
-                      <span className="mt-1 text-sm font-medium">Tur 1 Hari</span>
-                      <span className="mt-1 text-xs font-normal">Tiket masuk per-orang Rp 10.000</span>
+                    <span className="flex flex-col items-center justify-center gap-1 leading-tight group-hover:hidden group-focus-visible:hidden group-active:hidden">
+                      <span className="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-0.5">
+                        <span className="text-lg font-bold tracking-tight sm:text-xl">Rp 250.000</span>
+                        <span className="text-sm font-medium">{isIndonesian ? "Tur 1 Hari" : "1-Day Tour"}</span>
+                      </span>
+                      <span className="text-xs font-normal leading-snug text-white/90 sm:text-sm">
+                        {isIndonesian ? "Tiket masuk per-orang Rp 10.000" : "Entrance ticket per person Rp 10,000"}
+                      </span>
                     </span>
-                    <span className="hidden group-hover:inline group-focus-visible:inline group-active:inline">
+                    <span className="absolute inset-0 hidden items-center justify-center px-3 text-sm font-semibold group-hover:flex group-focus-visible:flex group-active:flex sm:text-base">
                       {isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
                     </span>
                   </a>
