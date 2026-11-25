@@ -71,12 +71,12 @@ export function Header({ dict, lang }: HeaderProps) {
         <div
           id="main-navigation-menu"
           aria-hidden={!menuOpen}
-          className={`grid transition-[grid-template-rows,opacity,transform] duration-300 ease-in-out ${
+          className={`relative left-1/2 grid w-screen -translate-x-1/2 transition-[grid-template-rows,opacity,transform] duration-300 ease-in-out ${
             menuOpen ? "grid-rows-[1fr] translate-y-0 opacity-100" : "pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0"
           }`}
         >
           <nav aria-label="Main navigation" className="min-h-0 overflow-hidden border-t border-gray-100">
-            <div className="mx-auto max-w-7xl px-2 py-2 sm:px-4 sm:py-3">
+            <div className="mx-auto max-w-7xl py-2 sm:py-3">
               <div className="flex flex-col">
               {navLinks.map(({ href, label }) => (
                 <Link
