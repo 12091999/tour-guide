@@ -1,6 +1,5 @@
 
 import { getDictionary, isSupportedLanguage } from "./dictionaries"
-import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FeaturedDestinations } from "@/components/featured-destinations"
@@ -52,12 +51,6 @@ export default async function HomePage({
             >
               {dict.site.home.explore}
             </a>
-            <Link
-              href="/admin/tour-packages"
-              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/80 bg-slate-950/25 px-8 py-4 font-semibold text-white shadow-lg backdrop-blur-sm transition-colors hover:bg-white hover:text-slate-950"
-            >
-              {currentLang === "id" ? "Login Admin" : "Admin Login"}
-            </Link>
           </div>
         </div>
       </section>
