@@ -52,9 +52,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
               <li><Link className={linkClass} href={`/${lang}/partners#join`}>{labels.becomePartner}</Link></li>
             </ul>
           </div>
-          <div className="lg:justify-self-end lg:text-right">
+          <div className="text-center lg:justify-self-center">
             <h4 className="mb-4 font-semibold">{labels.support}</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground lg:text-right">
+            <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link className={linkClass} href={`/${lang}/help#faq`}>{labels.help}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/help#booking`}>{labels.booking}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/help#payments`}>{labels.payment}</Link></li>
