@@ -1,9 +1,13 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import { CalendarDays, CheckCircle, Clock } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
 import type { PackageScheduleRecord } from "@/lib/package-schedules"
+import { createSupabaseBrowserClient } from "@/lib/supabase/client"
 
 const labels: Record<string, { title: string; intro: string; schedule: string; included: string; day: string; book: string; notice: string }> = {
   id: { title: "Paket Wisata & Jadwal", intro: "Paket tiga hari dengan urutan destinasi, jam kegiatan, dan fasilitas yang disertakan.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Hari", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
@@ -47,6 +51,44 @@ const packages = [
 ]
 
 export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; schedules?: PackageScheduleRecord[] }) {
+  const [liveSchedules, setLiveSchedules] = useState(schedules ?? [])
+
+  useEffect(() => {
+    const supabase = createSupabaseBrowserClient()
+    if (!supabase) return
+
+    let active = true
+    const refreshSchedules = async () => {
+      const { data, error } = await supabase
+        .from("tour_packages")
+        .select("id, position, title, price_idr, price_usd, days, includes")
+        .order("position", { ascending: true })
+      if (!active || error || !data?.length) return
+
+      setLiveSchedules(data.map((record) => ({
+        id: record.id,
+        position: record.position,
+        title: record.title,
+        price_idr: record.price_idr === null ? null : Number(record.price_idr),
+        price_usd: record.price_usd === null ? null : Number(record.price_usd),
+        days: Array.isArray(record.days) ? record.days : [],
+        includes: Array.isArray(record.includes) ? record.includes : [],
+      })))
+    }
+
+    const channel = supabase
+      .channel("public-tour-packages-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "tour_packages" }, () => {
+        void refreshSchedules()
+      })
+      .subscribe()
+
+    return () => {
+      active = false
+      void supabase.removeChannel(channel)
+    }
+  }, [])
+
   const text = labels[lang] ?? labels.en
   const isIndonesian = lang === "id"
   const translateActivity = (activity: string) => isIndonesian ? ({
@@ -70,8 +112,8 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
     "Return by boat and transfer to Banyuwangi (estimated)": "Kembali dengan perahu lalu ke Banyuwangi (perkiraan)",
   } as Record<string, string>)[activity] ?? activity : activity
 
-  const displayPackages = isIndonesian && schedules?.length
-    ? schedules.map((schedule) => ({
+  const displayPackages = isIndonesian && liveSchedules.length
+    ? liveSchedules.map((schedule) => ({
       title: schedule.title,
       price_idr: schedule.price_idr,
       price_usd: schedule.price_usd,
@@ -80,8 +122,8 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
     }))
     : packages.map((tourPackage, index) => ({
       ...tourPackage,
-      price_idr: schedules?.[index]?.price_idr ?? null,
-      price_usd: schedules?.[index]?.price_usd ?? null,
+      price_idr: liveSchedules[index]?.price_idr ?? null,
+      price_usd: liveSchedules[index]?.price_usd ?? null,
     }))
 
   return (
