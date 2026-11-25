@@ -4,14 +4,14 @@ import english from "./dictionaries/en.json"
 import georgian from "./dictionaries/ka.json"
 import russian from "./dictionaries/ru.json"
 
-export const supportedLanguages = [
-  "id", "en", "en-au", "de", "zh", "ja", "ko", "fr", "nl", "ru", "ka",
-] as const
+const allLanguages = ["id", "en", "en-au", "de", "zh", "ja", "ko", "fr", "nl", "ru", "ka"] as const
 
-export type SupportedLanguage = (typeof supportedLanguages)[number]
+export const supportedLanguages = ["id", "en"] as const
 
-export function isSupportedLanguage(locale: string): locale is SupportedLanguage {
-  return supportedLanguages.includes(locale as SupportedLanguage)
+export type SupportedLanguage = (typeof allLanguages)[number]
+
+export function isSupportedLanguage(locale: string): locale is (typeof supportedLanguages)[number] {
+  return (supportedLanguages as readonly string[]).includes(locale)
 }
 
 const translations: Partial<Record<SupportedLanguage, Record<string, unknown>>> = {
