@@ -170,7 +170,7 @@ export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { l
                 </div>
                 <Button asChild className="group relative min-h-[76px] w-full whitespace-normal rounded-xl bg-green-600 px-4 py-3 text-white shadow-sm transition-colors hover:bg-green-700">
                   <a
-                    href={getWhatsAppUrl(isIndonesian ? `Halo Tour Guide, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)}
+                    href={getWhatsAppUrl(isIndonesian ? `Hallo Kang Pir, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}

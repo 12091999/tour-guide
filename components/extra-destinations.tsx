@@ -147,7 +147,7 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                 </a>
                 <a
                   href={getWhatsAppUrl(lang === "id"
-                    ? `Halo Tour Guide, saya ingin memesan atau bertanya tentang ${destination.name}. Mohon info jadwal dan ketersediaannya.`
+                    ? `Hallo Kang Pir, saya ingin memesan atau bertanya tentang ${destination.name}. Mohon info jadwal dan ketersediaannya.`
                     : `Hello Tour Guide, I would like to book or ask about ${destination.name}. Please share the schedule and availability.`)}
                   target="_blank"
                   rel="noreferrer"

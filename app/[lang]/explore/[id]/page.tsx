@@ -543,7 +543,7 @@ export default async function TourDetailPage({
               </div>
 
               <Button asChild className="w-full" size="lg">
-                <a href={getWhatsAppUrl(currentLang === "id" ? `Halo Tour Guide, saya ingin memesan ${title}. Mohon info jadwal dan ketersediaannya.` : `Hi Tour Guide, I would like to book ${title}. Please share available dates and details.`)} target="_blank" rel="noreferrer">
+                <a href={getWhatsAppUrl(currentLang === "id" ? `Hallo Kang Pir, saya ingin memesan ${title}. Mohon info jadwal dan ketersediaannya.` : `Hi Tour Guide, I would like to book ${title}. Please share available dates and details.`)} target="_blank" rel="noreferrer">
                   {currentLang === "id" ? "Pesan via WhatsApp" : "Book via WhatsApp"}
                 </a>
               </Button>
