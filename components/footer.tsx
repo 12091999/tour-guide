@@ -6,7 +6,7 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
     destinations: id ? "Destinasi" : "Destinations",
     company: id ? "Perusahaan" : "Company",
     support: id ? "Bantuan" : "Help & Support",
-    about: id ? "Tentang Tour Guide Traveler" : "About Tour Guide Traveler",
+    about: id ? "Tentang Dolan Bareng Kang Pir" : "About Dolan Bareng Kang Pir",
     partners: id ? "Mitra lokal" : "Local partners",
     becomePartner: id ? "Ingin menjadi mitra?" : "Become a partner",
     help: id ? "FAQ / Pusat Bantuan" : "FAQ / Help Center",
