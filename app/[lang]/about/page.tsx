@@ -12,17 +12,17 @@ const team = [
 ]
 
 const thirdMemberRole: Record<string, [string, string]> = {
-  id: ["IT Support", "Bertugas mengelola database website Tour Guide."],
-  en: ["IT Support", "Responsible for managing the Tour Guide website database."],
-  "en-au": ["IT Support", "Responsible for managing the Tour Guide website database."],
-  de: ["IT-Support", "Verantwortlich für die Verwaltung der Datenbank der Tour-Guide-Website."],
-  zh: ["IT支持", "负责管理Tour Guide网站数据库。"],
-  ja: ["ITサポート", "Tour Guideウェブサイトのデータベース管理を担当します。"],
-  ko: ["IT 지원", "Tour Guide 웹사이트 데이터베이스 관리를 담당합니다."],
-  fr: ["Support informatique", "Responsable de la gestion de la base de données du site Tour Guide."],
-  nl: ["IT-ondersteuning", "Verantwoordelijk voor het beheer van de database van de Tour Guide-website."],
-  ru: ["IT-поддержка", "Отвечает за управление базой данных сайта Tour Guide."],
-  ka: ["IT მხარდაჭერა", "პასუხისმგებელია Tour Guide-ის ვებსაიტის მონაცემთა ბაზის მართვაზე."],
+  id: ["IT Support", "Bertugas mengelola database website Dolan Bareng Kang Pir."],
+  en: ["IT Support", "Responsible for managing the Dolan Bareng Kang Pir website database."],
+  "en-au": ["IT Support", "Responsible for managing the Dolan Bareng Kang Pir website database."],
+  de: ["IT-Support", "Verantwortlich für die Verwaltung der Datenbank der Dolan Bareng Kang Pir-Website."],
+  zh: ["IT支持", "负责管理Dolan Bareng Kang Pir网站数据库。"],
+  ja: ["ITサポート", "Dolan Bareng Kang Pirウェブサイトのデータベース管理を担当します。"],
+  ko: ["IT 지원", "Dolan Bareng Kang Pir 웹사이트 데이터베이스 관리를 담당합니다."],
+  fr: ["Support informatique", "Responsable de la gestion de la base de données du site Dolan Bareng Kang Pir."],
+  nl: ["IT-ondersteuning", "Verantwoordelijk voor het beheer van de database van de Dolan Bareng Kang Pir-website."],
+  ru: ["IT-поддержка", "Отвечает за управление базой данных сайта Dolan Bareng Kang Pir."],
+  ka: ["IT მხარდაჭერა", "პასუხისმგებელია Dolan Bareng Kang Pir-ის ვებსაიტის მონაცემთა ბაზის მართვაზე."],
 }
 
 export default async function AboutPage({

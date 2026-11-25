@@ -43,7 +43,7 @@ export default async function ContactPage({
                   <CardTitle>{dict.contact.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin bertanya tentang wisata Banyuwangi." : "Hi Tour Guide, I would like to ask about trips in Banyuwangi.")} target="_blank" rel="noreferrer" className="mb-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-green-700">
+                  <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Dolan Bareng Kang Pir bertanya tentang wisata Banyuwangi." : "Hi Dolan Bareng Kang Pir, I would like to ask about trips in Banyuwangi.")} target="_blank" rel="noreferrer" className="mb-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition-colors hover:bg-green-700">
                     <MessageCircle className="h-5 w-5" />{currentLang === "id" ? "Pesan via WhatsApp" : "Message us on WhatsApp"}
                   </a>
                   <div className="flex items-center gap-3">
@@ -52,7 +52,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.phone}</p>
-                      <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Tour Guide, saya ingin menghubungi tim Anda." : "Hi Tour Guide, I would like to contact your team.")} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">+62 877-7591-6086 (WhatsApp)</a>
+                      <a href={getWhatsAppUrl(currentLang === "id" ? "Halo Dolan Bareng Kang Pir, saya ingin menghubungi tim Anda." : "Hi Dolan Bareng Kang Pir, I would like to contact your team.")} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">+62 877-7591-6086 (WhatsApp)</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -61,7 +61,7 @@ export default async function ContactPage({
                     </div>
                     <div>
                       <p className="font-medium">{dict.contact.email}</p>
-                      <a href="mailto:TourGuide@gmail.com" className="text-muted-foreground hover:text-primary">TourGuide@gmail.com</a>
+                      <a href="mailto:DolanBarengKangPir@gmail.com" className="text-muted-foreground hover:text-primary">DolanBarengKangPir@gmail.com</a>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
