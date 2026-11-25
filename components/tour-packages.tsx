@@ -8,6 +8,7 @@ import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
 import type { PackageScheduleRecord } from "@/lib/package-schedules"
 import { createSupabaseBrowserClient } from "@/lib/supabase/client"
+import { getDayTourLabel } from "@/lib/currency"
 
 const labels: Record<string, { title: string; intro: string; schedule: string; included: string; day: string; book: string; notice: string }> = {
   id: { title: "Paket Wisata & Jadwal", intro: "Paket tiga hari dengan urutan destinasi, jam kegiatan, dan fasilitas yang disertakan.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Hari", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
@@ -50,7 +51,7 @@ const packages = [
   { title: "Djawatan → Ijen → Pulau Merah", days: [daySchedules.djawatan, daySchedules.ijen, daySchedules.merah], includes: ["Djawatan: entrance ticket and meal", "Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole", "Pulau Merah: entrance ticket and meal"] },
 ]
 
-export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; schedules?: PackageScheduleRecord[] }) {
+export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { lang: SupportedLanguage; schedules?: PackageScheduleRecord[]; packagePrice: string; entranceFee: string }) {
   const [liveSchedules, setLiveSchedules] = useState(schedules ?? [])
 
   useEffect(() => {
@@ -176,11 +177,11 @@ export function TourPackages({ lang, schedules }: { lang: SupportedLanguage; sch
                   >
                     <span className="flex flex-col items-center justify-center gap-1 leading-tight group-hover:hidden group-focus-visible:hidden group-active:hidden">
                       <span className="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-0.5">
-                        <span className="text-lg font-bold tracking-tight sm:text-xl">Rp 250.000</span>
-                        <span className="text-sm font-medium">{isIndonesian ? "Tur 1 Hari" : "1-Day Tour"}</span>
+                        <span className="text-lg font-bold tracking-tight sm:text-xl">{packagePrice}</span>
+                        <span className="text-sm font-medium">{getDayTourLabel(lang)}</span>
                       </span>
                       <span className="text-xs font-normal leading-snug text-white/90 sm:text-sm">
-                        {isIndonesian ? "Tiket masuk per-orang Rp 10.000" : "Entrance ticket per person Rp 10,000"}
+                        {isIndonesian ? `Tiket masuk per-orang ${entranceFee}` : `Entrance ticket per person ${entranceFee}`}
                       </span>
                     </span>
                     <span className="absolute inset-0 hidden items-center justify-center px-3 text-sm font-semibold group-hover:flex group-focus-visible:flex group-active:flex sm:text-base">
