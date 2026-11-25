@@ -6,11 +6,11 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: {
-    default: "Tour Guide Banyuwangi| Banyuwangi, Indonesia",
+    default: "Dolan Bareng Kang Pir",
     template: "%s | Tour Guide Banyuwangi",
   },
   description:
-    "Plan your Banyuwangi trip with local destination guides, tour ideas, and direct WhatsApp support from Tour Guide Banyuwangi.",
+    "Plan your Banyuwangi trip with local destination guides, tour ideas, and direct WhatsApp support from Dolan Bareng Kang Pir. Explore the best of Banyuwangi with our expert guidance.",
 }
 
 export default function RootLayout({
