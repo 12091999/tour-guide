@@ -27,7 +27,7 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+      <div className="w-full px-0 py-14">
         <div className="mb-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.15fr] lg:gap-x-16 lg:gap-y-12">
           <div className="space-y-4 lg:pr-6">
             <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Dolan Bareng Kang Pir"}</h3>
