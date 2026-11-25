@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState, type FormEvent } from "react"
-import { LogOut, Plus, RotateCcw, Save, Trash2 } from "lucide-react"
+import { ArrowLeft, LogOut, Plus, RotateCcw, Save, Trash2 } from "lucide-react"
+import Link from "next/link"
 import type { SupabaseClient } from "@supabase/supabase-js"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -207,13 +208,18 @@ export function PackageScheduleEditor() {
   }
 
   return (
-    <main className="min-h-screen bg-muted/30 px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-6">
+    <main className="relative min-h-screen overflow-hidden bg-slate-950 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-[url('/ijen.jpg')] bg-cover bg-center" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950/90 via-teal-950/80 to-orange-950/70" aria-hidden="true" />
+      <div className="relative mx-auto max-w-5xl space-y-6">
+        <Link href="/id" className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/40 bg-slate-950/30 px-4 text-sm font-medium text-white backdrop-blur transition hover:bg-white hover:text-slate-950">
+          <ArrowLeft className="h-4 w-4" />Kembali
+        </Link>
         <header className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Dolen Bareng Kang Pir</p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Kelola Jadwal Paket</h1>
-            <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Edit jadwal perjalanan dan fasilitas paket. Perubahan tersimpan akan tampil di kartu paket bahasa Indonesia.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">Dolen Bareng Kang Pir · Jelajah Banyuwangi</p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Kelola Jadwal Paket</h1>
+            <p className="mt-2 max-w-2xl text-sm text-white/80">Edit jadwal perjalanan dan fasilitas paket. Perubahan tersimpan akan tampil di kartu paket bahasa Indonesia.</p>
           </div>
           {(pageState === "ready" || pageState === "denied" || pageState === "error") && client && (
             <Button variant="outline" onClick={handleLogout} disabled={busy} className="shrink-0">
@@ -234,7 +240,7 @@ export function PackageScheduleEditor() {
         ) : null}
 
         {pageState === "signed-out" ? (
-          <Card className="mx-auto w-full max-w-md"><CardHeader><CardTitle>Masuk sebagai admin</CardTitle></CardHeader><CardContent>
+          <Card className="mx-auto w-full max-w-md border-white/30 bg-white/95 shadow-2xl backdrop-blur"><CardHeader><CardTitle>Masuk sebagai admin</CardTitle><p className="text-sm text-muted-foreground">Siap mengatur perjalanan berikutnya?</p></CardHeader><CardContent>
             <form className="space-y-4" onSubmit={handleLogin}>
               <div className="space-y-2"><Label htmlFor="admin-email">Email</Label><Input id="admin-email" type="email" autoComplete="username" value={email} onChange={(event) => setEmail(event.target.value)} required /></div>
               <div className="space-y-2"><Label htmlFor="admin-password">Kata sandi</Label><Input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={(event) => setPassword(event.target.value)} required /></div>

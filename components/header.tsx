@@ -21,7 +21,7 @@ export function Header({ dict, lang }: HeaderProps) {
           >
             <ArrowUpRight className="h-6 w-6 shrink-0 sm:h-7 sm:w-7" aria-hidden="true" />
 
-            <span className="truncate">Tour Guide</span>
+            <span className="truncate">Dolen Bareng Kang Pir</span>
           </Link>
 
           {/* Navigation */}
