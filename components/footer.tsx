@@ -27,7 +27,7 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="w-full px-0 py-14">
+      <div className="w-full px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.15fr] lg:gap-x-16 lg:gap-y-12">
           <div className="space-y-4 lg:pr-6">
             <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Dolan Bareng Kang Pir"}</h3>
@@ -52,9 +52,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
               <li><Link className={linkClass} href={`/${lang}/partners#join`}>{labels.becomePartner}</Link></li>
             </ul>
           </div>
-          <div>
+          <div className="lg:justify-self-end lg:text-right">
             <h4 className="mb-4 font-semibold">{labels.support}</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <ul className="space-y-3 text-sm text-muted-foreground lg:text-right">
               <li><Link className={linkClass} href={`/${lang}/help#faq`}>{labels.help}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/help#booking`}>{labels.booking}</Link></li>
               <li><Link className={linkClass} href={`/${lang}/help#payments`}>{labels.payment}</Link></li>
