@@ -42,18 +42,18 @@ export function Header({ dict, lang }: HeaderProps) {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto px-3 sm:px-4">
-        <div className="flex min-h-16 items-center justify-between gap-2 py-2 sm:min-h-[4.5rem] sm:gap-4">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="flex min-h-14 items-center gap-1 py-2 sm:min-h-[4.5rem] sm:gap-4">
           <Link
             href={`/${lang}`}
             onClick={() => setMenuOpen(false)}
-            className="flex min-w-0 items-center gap-1.5 text-[clamp(0.95rem,3.4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2"
+            className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2"
           >
-            <ArrowUpRight className="size-5 shrink-0 sm:size-7" aria-hidden="true" />
+            <ArrowUpRight className="size-[clamp(1rem,5vw,1.75rem)] shrink-0" aria-hidden="true" />
             <span className="truncate">Dolen Bareng Kang Pir</span>
           </Link>
 
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-3">
             <LanguageSwitcher currentLang={lang} />
             <button
               type="button"
@@ -61,7 +61,7 @@ export function Header({ dict, lang }: HeaderProps) {
               aria-expanded={menuOpen}
               aria-controls="main-navigation-menu"
               onClick={() => setMenuOpen((open) => !open)}
-              className="flex min-h-10 items-center justify-center gap-2 rounded-full border border-gray-200 px-3 text-[clamp(0.875rem,2.8vw,1rem)] font-medium text-gray-800 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:px-4"
+              className="flex min-h-10 items-center justify-center gap-1.5 rounded-full border border-gray-200 px-2.5 text-[clamp(0.75rem,3vw,1rem)] font-medium text-gray-800 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 sm:gap-2 sm:px-4"
             >
               <span>{lang === "id" ? "Menu" : "Menu"}</span>
               <ChevronDown className={`size-4 transition-transform duration-200 ${menuOpen ? "rotate-180" : ""}`} aria-hidden="true" />
