@@ -22,12 +22,12 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
   }
   const description = dict?.footer?.description ?? (id
     ? "Dolan Bareng Kang Pir membantu wisatawan menjelajahi alam, budaya, dan pengalaman lokal Banyuwangi."
-    : "Dolan Bareng Kang Pir helps international visitors discover Banyuwangi's nature, culture and local experiences.")
+    : "Discover Banyuwangi's blue fire, vintage forest, ocean adventures, coral reefs and southern coast sunsets with local guides.")
   const linkClass = "transition-colors hover:text-foreground"
 
   return (
     <footer className="border-t border-border bg-background">
-      <div className="w-full px-4 py-14 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.15fr] lg:gap-x-16 lg:gap-y-12">
           <div className="space-y-4 lg:pr-6">
             <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Dolan Bareng Kang Pir"}</h3>
@@ -38,10 +38,10 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li><Link className={linkClass} href={`/${lang}/explore/1`}>Ijen Crater</Link></li>
               <li><Link className={linkClass} href={`/${lang}/explore/2`}>Djawatan</Link></li>
-              <li><Link className={linkClass} href={`/${lang}/explore/4`}>Teluk Hijau</Link></li>
               <li><Link className={linkClass} href={`/${lang}/explore/3`}>Bangsring Beach</Link></li>
               <li><Link className={linkClass} href={`/${lang}/explore/5`}>Tabuhan Island</Link></li>
               <li><Link className={linkClass} href={`/${lang}/explore/6`}>Pulau Merah</Link></li>
+              <li><Link className={linkClass} href={`/${lang}/explore`}>Teluk Hijau & destinasi eksklusif</Link></li>
             </ul>
           </div>
           <div>

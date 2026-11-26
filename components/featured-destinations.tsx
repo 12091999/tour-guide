@@ -5,6 +5,7 @@ import { MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { formatPrice, getOnePersonLabel } from "@/lib/currency"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
+import { AvailabilityBooking } from "@/components/availability-booking"
 
 interface FeaturedDestinationsProps {
   lang: string
@@ -28,7 +29,7 @@ const destinations = [
     image: "/djawatan.jpg",
     description:
       "Explore a magical forest surrounded by giant and ancient trembesi trees.",
-    price: 250000,
+    price: 300000,
   },
   {
     id: 3,
@@ -39,17 +40,8 @@ const destinations = [
       "Enjoy pristine beaches, crystal-clear waters, and exciting marine activities.",
     price: 300000,
   },
-  {
-    id: 4,
-    name: "Teluk Hijau",
-    country: "Banyuwangi, Indonesia",
-    image: "/teluk-hijau.jpg",
-    description:
-      "Discover Green Bay, a hidden coastal paradise in Meru Betiri National Park.",
-    price: 300000,
-  },
   { id: 5, name: "Tabuhan Island", country: "Bangsring, Banyuwangi, Indonesia", image: "/pulau-tabuhan.jpg", description: "Reach this clear-water island by boat from Bangsring and enjoy snorkeling and beach time.", price: 300000 },
-  { id: 6, name: "Pulau Merah", country: "Pesanggaran, Banyuwangi, Indonesia", image: "/pulau-merah.jpg", description: "Spend a day at the south-coast beach known for its red offshore hill and sunset views.", price: 250000 },
+  { id: 6, name: "Pulau Merah", country: "Pesanggaran, Banyuwangi, Indonesia", image: "/pulau-merah.jpg", description: "Spend a day at the south-coast beach known for its red offshore hill and sunset views.", price: 300000 },
 ]
 
 export async function FeaturedDestinations({
@@ -83,11 +75,11 @@ export async function FeaturedDestinations({
         {/* Destinations Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {destinations.map((destination, index) => (
+            <div key={destination.id} className="flex flex-col gap-3">
             <Link
-              key={destination.id}
               href={`/${currentLang}/explore/${destination.id}`}
               aria-label={`${dict.site.destinations.explore}: ${destination.name}`}
-              className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+              className="group block flex-1 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
             >
             <Card className="h-full overflow-hidden border-0 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl">
               {/* Image */}
@@ -134,6 +126,14 @@ export async function FeaturedDestinations({
               </div>
             </Card>
             </Link>
+            <AvailabilityBooking
+              tourId={({ 1: "ijen", 2: "djawatan", 3: "bangsring", 5: "tabuhan", 6: "pulau-merah" } as Record<number, string>)[destination.id] ?? "ijen"}
+              tourName={destination.name}
+              lang={currentLang}
+            >
+              <Button variant="outline" className="w-full">{currentLang === "id" ? "Pilih tanggal & pesan" : "Choose date & book"}</Button>
+            </AvailabilityBooking>
+            </div>
           ))}
         </div>
 

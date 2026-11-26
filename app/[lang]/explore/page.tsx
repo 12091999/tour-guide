@@ -19,7 +19,7 @@ export default async function ExplorePage({
   const dict = await getDictionary(currentLang)
   const schedules = await getPackageSchedules()
   const [packagePrice, entranceFee] = await Promise.all([
-    formatPrice(250000, "IDR", currentLang),
+    formatPrice(550000, "IDR", currentLang),
     formatPrice(10000, "IDR", currentLang),
   ])
 

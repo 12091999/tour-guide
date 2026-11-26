@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
 import { formatPrice, getDayTourLabel } from "@/lib/currency"
 import { getWhatsAppUrl } from "@/lib/whatsapp"
+import { AvailabilityBooking } from "@/components/availability-booking"
+import { Button } from "@/components/ui/button"
 
 type Copy = {
   eyebrow: string; title: string; intro: string; ticket: string; stay: string
@@ -30,7 +32,7 @@ const copy: Record<string, Copy> = {
     intro: "Jelajahi pesisir, hutan, savana, dan air terjun di Jawa Timur. Tarif tur yang ditampilkan berlaku untuk satu hari; tiket masuk, transportasi, penginapan, dan makan terpisah.",
     ticket: "Tiket masuk per orang", stay: "Penginapan sekitar", dining: "Tempat makan sekitar",
     notice: "Tarif dan ketersediaan dapat berubah. Konfirmasikan langsung sebelum bepergian.", verify: "Cek informasi resmi", whatsapp: "Pesan / tanya via WhatsApp",
-    descriptions: ["Pantai di pesisir selatan dengan bukit kecil kemerahan, ombak untuk berselancar, dan pemandangan matahari terbenam.", "Jelajahi Savana Bekol, hutan kering, satwa liar, dan Pantai Bama. Baluran berada di Situbondo, dekat jalur Banyuwangi.", "Kawasan hutan hujan dengan Savana Sadengan, hutan alami, pantai terpencil, dan ombak selancar G-Land.", "Wisata alam dekat Glagah dengan tiga air terjun, kolam jernih, dan suasana hutan di kaki kawasan Ijen."],
+    descriptions: ["Pantai di pesisir selatan dengan bukit kecil kemerahan, ombak untuk berselancar, dan pemandangan matahari terbenam.", "Jelajahi Savana Bekol, hutan kering, satwa liar, dan Pantai Bama. Baluran berada di Situbondo, dekat jalur Banyuwangi.", "Kawasan hutan hujan dengan Savana Sadengan, hutan alami, pantai terpencil, dan ombak selancar G-Land.", "Wisata alam dekat Glagah dengan tiga air terjun, kolam jernih, dan suasana hutan di kaki kawasan Ijen.", "Teluk tersembunyi di kawasan Meru Betiri dengan air hijau jernih, pantai alami, dan perjalanan eksklusif ke pesisir selatan."],
     stayNotes: ["The Wisma Pulau Merah adalah homestay dekat pantai; harga kamar yang tercantum mulai sekitar Rp300.000 per malam. Konfirmasikan tarif terbaru.", "RedDoorz near Baluran National Park atau Grand Baluran Villa di Wonorejo dekat dengan pintu masuk taman nasional.", "Jawa Jiwa G-Land menyediakan glamping, bungalow, dan apartemen di kawasan Alas Purwo. Pesan dan konfirmasikan akses lebih awal.", "Herry's Guesthouse dan Lintang Luku Tent Resort berada di sekitar Glagah dan Licin, dekat Jagir dan Ijen."],
     diningNotes: ["Wisma Bar & Restaurant menyajikan hidangan Indonesia dan Jawa, serta menu Barat, Tiongkok, dan Jepang.", "RM Valentine di Wongsorejo cocok untuk singgah makan; Warung Asri juga dekat pintu masuk taman nasional.", "Jawa Jiwa G-Land adalah pilihan makan terdekat di area resort. Konfirmasikan pengaturan makan sebelum masuk taman.", "The Osing Bamboo Restaurant menyajikan makanan Indonesia dan seafood. Ada juga warung lokal di sekitar desa air terjun."],
   },
@@ -97,6 +99,7 @@ const destinations = [
   { name: "Baluran National Park", location: "Situbondo, East Java", fee: 205000, dayRate: 300000, image: "/african-safari-wildlife-elephants-sunset.jpg", url: "https://tnbaluran.ksdae.kehutanan.go.id/tiket", stay: "RedDoorz near Baluran National Park / Grand Baluran Villa", food: "RM Valentine, Wongsorejo", stayUrl: "https://www.traveloka.com/id-id/hotel/indonesia/landmark/polsek-wongsorejo-91607407739105" },
   { name: "Alas Purwo & G-Land", location: "Tegaldlimo, Banyuwangi", fee: 150000, dayRate: 300000, image: "/djawatan.jpg", url: "https://tnalaspurwo.org/", stay: "Jawa Jiwa G-Land", food: "Jawa Jiwa G-Land resort dining", stayUrl: "https://jawajiwa.com/" },
   { name: "Jagir Waterfall", location: "Glagah, Banyuwangi", fee: 5000, dayRate: 300000, image: "/iceland-northern-lights-waterfalls-dramatic-landsc.jpg", url: "https://jadesta.kemenpar.go.id/atraksi/air_terjun_jagir", stay: "Herry's Guesthouse / Lintang Luku Tent Resort", food: "The Osing Bamboo Restaurant", stayUrl: "https://www.tripadvisor.co.id/HotelsNear-g317103-d15197910-Jagir_Waterfall-Banyuwangi_East_Java_Java.html" },
+  { name: "Teluk Hijau", location: "Meru Betiri, Banyuwangi", fee: 10000, dayRate: 300000, image: "/teluk-hijau.jpg", url: "https://merubetiri.id/", stay: "Penginapan lokal Pesanggaran", food: "Warung lokal Pesanggaran", stayUrl: "https://www.google.com/maps/search/hotel+Pesanggaran+Banyuwangi" },
 ]
 
 export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
@@ -129,7 +132,7 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                     <span className="mt-1 block text-xs font-normal text-muted-foreground">{text.ticket}: {entranceFees[index].formatted}</span>
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">{text.descriptions[index]}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{text.descriptions[index] ?? destination.name}</p>
                 <div className="grid sm:grid-cols-2 gap-4 border-t pt-4">
                   <div>
                     <h3 className="mb-1 flex items-center gap-2 text-sm font-semibold"><BedDouble className="h-4 w-4 text-primary" />{text.stay}</h3>
@@ -145,6 +148,13 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
                 <a href={destination.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                   {text.verify}<ExternalLink className="h-3.5 w-3.5" />
                 </a>
+                <AvailabilityBooking
+                  tourId={destination.name === "Pulau Merah" ? "pulau-merah" : destination.name === "Baluran National Park" ? "baluran" : destination.name === "Alas Purwo & G-Land" ? "alas-purwo" : destination.name === "Jagir Waterfall" ? "jagir" : "teluk-hijau"}
+                  tourName={destination.name}
+                  lang={lang}
+                >
+                  <Button variant="outline" className="w-full">{lang === "id" ? "Pilih tanggal & pesan" : "Choose date & book"}</Button>
+                </AvailabilityBooking>
                 <a
                   href={getWhatsAppUrl(lang === "id"
                     ? `Hallo Kang Pir, saya ingin memesan atau bertanya tentang ${destination.name}. Mohon info jadwal dan ketersediaannya.`

@@ -5,14 +5,13 @@ import { CalendarDays, CheckCircle, Clock } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { SupportedLanguage } from "@/app/[lang]/dictionaries"
-import { getWhatsAppUrl } from "@/lib/whatsapp"
+import { AvailabilityBooking } from "@/components/availability-booking"
 import type { PackageScheduleRecord } from "@/lib/package-schedules"
 import { createSupabaseBrowserClient } from "@/lib/supabase/client"
-import { getDayTourLabel } from "@/lib/currency"
 
 const labels: Record<string, { title: string; intro: string; schedule: string; included: string; day: string; book: string; notice: string }> = {
-  id: { title: "Paket Wisata & Jadwal", intro: "Paket tiga hari dengan urutan destinasi, jam kegiatan, dan fasilitas yang disertakan.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Hari", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
-  en: { title: "Tour Packages & Schedules", intro: "Three-day packages with clear destination order, activity times and included items.", schedule: "Trip schedule", included: "Package includes", day: "Day", book: "Ask for price and book", notice: "Times are estimates and may change with pickup location, weather, sea conditions, traffic and site rules. Confirm the final schedule and quote before booking." },
+  id: { title: "Paket Wisata & Jadwal", intro: "Pilih dua destinasi dalam satu paket. Harga Rp550.000 per orang, minimal 4 orang. Pemesanan perorangan tersedia Rp300.000 per orang.", schedule: "Jadwal perjalanan", included: "Termasuk dalam paket", day: "Destinasi", book: "Tanya harga dan pesan", notice: "Jam adalah perkiraan dan dapat berubah mengikuti titik penjemputan, cuaca, kondisi laut, lalu lintas, serta aturan pengelola. Konfirmasi jadwal dan harga akhir sebelum memesan." },
+  en: { title: "Tour Packages & Schedules", intro: "Choose a two destination route. Packages are IDR 550,000 per person for at least four guests; individual trips are IDR 300,000 per person.", schedule: "Trip schedule", included: "Package includes", day: "Stop", book: "Ask for price and book", notice: "Times are estimates and may change with pickup location, weather, sea conditions, traffic and site rules. Confirm the final schedule and quote before booking." },
   "en-au": { title: "Tour Packages & Schedules", intro: "Three-day packages with clear destination order, activity times and included items.", schedule: "Trip schedule", included: "Package includes", day: "Day", book: "Ask for price and book", notice: "Times are estimates and may change with pickup location, weather, sea conditions, traffic and site rules. Confirm the final schedule and quote before booking." },
   de: { title: "Tourpakete & Zeitpläne", intro: "Dreitägige Pakete mit Reiseziel-Reihenfolge, Zeiten und enthaltenen Leistungen.", schedule: "Reiseplan", included: "Im Paket enthalten", day: "Tag", book: "Preis anfragen und buchen", notice: "Zeiten sind Schätzungen und können sich je nach Abholort, Wetter, Seegang, Verkehr und Regeln ändern. Bitte den endgültigen Ablauf und Preis bestätigen." },
   zh: { title: "旅游套餐与行程", intro: "三日套餐，清楚列出目的地顺序、活动时间和包含项目。", schedule: "行程安排", included: "套餐包含", day: "第", book: "咨询价格并预订", notice: "时间为估算，可能受接送地点、天气、海况、交通和景区规定影响。预订前请确认最终行程和报价。" },
@@ -43,12 +42,16 @@ const daySchedules = {
     ["09:00–09:30", "Boat transfer to Tabuhan Island (weather permitting)"], ["09:30–12:00", "Island visit and snorkeling with provided equipment"],
     ["12:00–13:00", "Included meal and rest"], ["13:00–15:00", "Return by boat and transfer to Banyuwangi (estimated)"],
   ],
+  jagir: [
+    ["08:00–09:00", "Pickup and transfer to Jagir Waterfall"], ["09:00–12:00", "Waterfall visit and free time"],
+    ["12:00–13:00", "Included meal"], ["13:00–14:00", "Return to Banyuwangi (estimated)"],
+  ],
 }
 
 const packages = [
-  { title: "Djawatan → Pulau Merah → Ijen", days: [daySchedules.djawatan, daySchedules.merah, daySchedules.ijen], includes: ["Djawatan: entrance ticket and meal", "Pulau Merah: entrance ticket and meal", "Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole"] },
-  { title: "Tabuhan → Djawatan → Ijen", days: [daySchedules.tabuhan, daySchedules.djawatan, daySchedules.ijen], includes: ["Tabuhan: ticket, return boat/sampan, meal and snorkeling equipment", "Djawatan: entrance ticket and meal", "Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole"] },
-  { title: "Djawatan → Ijen → Pulau Merah", days: [daySchedules.djawatan, daySchedules.ijen, daySchedules.merah], includes: ["Djawatan: entrance ticket and meal", "Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole", "Pulau Merah: entrance ticket and meal"] },
+  { title: "Djawatan → Pulau Merah (Selatan)", days: [daySchedules.djawatan, daySchedules.merah], includes: ["Djawatan: entrance ticket and meal", "Pulau Merah: entrance ticket and meal"] },
+  { title: "Ijen → Jagir Waterfall (Barat)", days: [daySchedules.ijen, daySchedules.jagir], includes: ["Ijen: ticket, health certificate, meal, flashlight, gas mask and hiking pole", "Jagir Waterfall: entrance ticket and meal"] },
+  { title: "Bangsring → Tabuhan (Utara)", days: [daySchedules.tabuhan, daySchedules.tabuhan], includes: ["Tabuhan: ticket, return boat/sampan, meal and snorkeling equipment"] },
 ]
 
 export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { lang: SupportedLanguage; schedules?: PackageScheduleRecord[]; packagePrice: string; entranceFee: string }) {
@@ -113,15 +116,7 @@ export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { l
     "Return by boat and transfer to Banyuwangi (estimated)": "Kembali dengan perahu lalu ke Banyuwangi (perkiraan)",
   } as Record<string, string>)[activity] ?? activity : activity
 
-  const displayPackages = isIndonesian && liveSchedules.length
-    ? liveSchedules.map((schedule) => ({
-      title: schedule.title,
-      price_idr: schedule.price_idr,
-      price_usd: schedule.price_usd,
-      days: schedule.days.map((day) => day.activities.map(({ time, activity }) => [time, activity] as [string, string])),
-      includes: schedule.includes,
-    }))
-    : packages.map((tourPackage, index) => ({
+  const displayPackages = packages.map((tourPackage, index) => ({
       ...tourPackage,
       price_idr: liveSchedules[index]?.price_idr ?? null,
       price_usd: liveSchedules[index]?.price_usd ?? null,
@@ -168,27 +163,20 @@ export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { l
                     ))}
                   </ul>
                 </div>
-                <Button asChild className="group relative min-h-[76px] w-full whitespace-normal rounded-xl bg-green-600 px-4 py-3 text-white shadow-sm transition-colors hover:bg-green-700">
-                  <a
-                    href={getWhatsAppUrl(isIndonesian ? `Hallo Kang Pir, saya ingin bertanya dan memesan paket ${tourPackage.title}. Mohon kirimkan harga dan ketersediaannya.` : `Hi Tour Guide, I would like to ask about and book the ${tourPackage.title} package. Please send the price and availability.`)}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
+                <div className="space-y-3 border-t pt-4">
+                  <div className="text-center">
+                    <p className="font-bold text-primary">{packagePrice}<span className="ml-1 text-sm font-medium">{isIndonesian ? "/orang · min. 4 orang" : "/person · min. 4 guests"}</span></p>
+                    <p className="text-xs text-muted-foreground">{isIndonesian ? "Individu: IDR 300.000/orang" : "Individual: IDR 300,000/person"}</p>
+                  </div>
+                  <AvailabilityBooking
+                    tourId={tourPackage.title.includes("Selatan") ? "route-south" : tourPackage.title.includes("Barat") ? "route-west" : "route-north"}
+                    tourName={tourPackage.title}
+                    bookingType="package"
+                    lang={lang}
                   >
-                    <span className="flex flex-col items-center justify-center gap-1 leading-tight group-hover:hidden group-focus-visible:hidden group-active:hidden">
-                      <span className="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-0.5">
-                        <span className="text-lg font-bold tracking-tight sm:text-xl">{packagePrice}</span>
-                        <span className="text-sm font-medium">{getDayTourLabel(lang)}</span>
-                      </span>
-                      <span className="text-xs font-normal leading-snug text-white/90 sm:text-sm">
-                        {isIndonesian ? `Tiket masuk per-orang ${entranceFee}` : `Entrance ticket per person ${entranceFee}`}
-                      </span>
-                    </span>
-                    <span className="absolute inset-0 hidden items-center justify-center px-3 text-sm font-semibold group-hover:flex group-focus-visible:flex group-active:flex sm:text-base">
-                      {isIndonesian ? "Pesan via WhatsApp" : "Book via WhatsApp"}
-                    </span>
-                  </a>
-                </Button>
+                    <Button className="w-full bg-green-700 hover:bg-green-800">{isIndonesian ? "Pilih tanggal & pesan paket" : "Choose date & book package"}</Button>
+                  </AvailabilityBooking>
+                </div>
               </CardContent>
             </Card>
           ))}
