@@ -28,9 +28,9 @@ export function Footer({ dict, lang = "en" }: { dict?: any; lang?: string }) {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="mb-12 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.15fr] lg:gap-x-16 lg:gap-y-12">
+        <div className="mb-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:mb-12 lg:gap-x-12 lg:gap-y-12 2xl:grid-cols-[1.3fr_1fr_1fr_1.15fr] 2xl:gap-x-16">
           <div className="space-y-4 lg:pr-6">
-            <h3 className="text-2xl font-semibold">{dict?.footer?.brandName ?? "Dolan Bareng Kang Pir"}</h3>
+            <h3 className="text-xl font-semibold sm:text-2xl">{dict?.footer?.brandName ?? "Dolan Bareng Kang Pir"}</h3>
             <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
           </div>
           <div>

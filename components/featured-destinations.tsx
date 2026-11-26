@@ -54,26 +54,26 @@ export async function FeaturedDestinations({
   const prices = await Promise.all(destinations.map(({ price }) => formatPrice(price, "IDR", currentLang as SupportedLanguage)))
 
   return (
-    <section id="destinations" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="destinations" className="bg-background py-14 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <p className="text-sm uppercase tracking-widest text-primary mb-4">
+        <div className="mb-10 max-w-3xl sm:mb-16">
+          <p className="mb-3 text-xs uppercase tracking-widest text-primary sm:mb-4 sm:text-sm">
             {dict.site.destinations.kicker}
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-6">
+          <h2 className="mb-4 text-3xl font-light tracking-tight sm:mb-6 sm:text-4xl md:text-6xl">
             {dict.site.destinations.title}
           </h2>
 
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             {dict.site.destinations.description}
           </p>
         </div>
 
         {/* Destinations Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3 xl:gap-8">
           {destinations.map((destination, index) => (
             <div key={destination.id} className="flex flex-col gap-3">
             <Link
@@ -83,7 +83,7 @@ export async function FeaturedDestinations({
             >
             <Card className="h-full overflow-hidden border-0 transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl">
               {/* Image */}
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-56 overflow-hidden sm:h-72 xl:h-80">
                 <img
                   src={destination.image}
                   alt={destination.name}
@@ -102,18 +102,18 @@ export async function FeaturedDestinations({
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-5">
+              <div className="space-y-4 p-4 sm:space-y-5 sm:p-6">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="mb-2 text-xl font-semibold sm:mb-3 sm:text-2xl">
                     {destination.name}
                   </h3>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {dict.site.destinations[["", "ijen", "djawatan", "bangsring", "teluk"][destination.id]] ?? destination.description}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-border">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
                   <span className="text-sm font-semibold text-primary">
                     {dict.tours.from} {prices[index].formatted} {getOnePersonLabel(currentLang as SupportedLanguage)}
                   </span>
@@ -138,7 +138,7 @@ export async function FeaturedDestinations({
         </div>
 
         {/* View All */}
-        <div className="text-center mt-16">
+        <div className="mt-10 text-center sm:mt-16">
           <Button
             asChild
             variant="outline"

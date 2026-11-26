@@ -17,11 +17,11 @@ export function Newsletter() {
   }
 
   return (
-    <section className="py-32 bg-muted/30">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+    <section className="bg-muted/30 py-14 sm:py-20 lg:py-32">
+      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div className="space-y-8">
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-light tracking-tight text-balance">
+            <h2 className="text-3xl font-light tracking-tight text-balance sm:text-4xl md:text-5xl">
               Stay <span className="font-semibold">Inspired</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-balance leading-relaxed">

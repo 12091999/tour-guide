@@ -110,18 +110,18 @@ export async function ExtraDestinations({ lang }: { lang: SupportedLanguage }) {
 
   return (
     <section className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
-          <p className="text-sm uppercase tracking-widest text-primary mb-4">{text.eyebrow}</p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-5">{text.title}</h1>
-          <p className="text-lg text-muted-foreground">{text.intro}</p>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 max-w-3xl sm:mb-12">
+          <p className="mb-3 text-xs uppercase tracking-widest text-primary sm:mb-4 sm:text-sm">{text.eyebrow}</p>
+          <h1 className="mb-4 text-3xl font-bold sm:mb-5 sm:text-4xl md:text-5xl">{text.title}</h1>
+          <p className="text-base text-muted-foreground sm:text-lg">{text.intro}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-5 md:grid-cols-2 md:gap-7 xl:gap-8">
           {destinations.map((destination, index) => (
             <Card key={destination.name} className="overflow-hidden border-0 shadow-sm">
-              <img src={destination.image} alt={destination.name} className="h-64 w-full object-cover" />
-              <CardContent className="p-6 space-y-5">
+              <img src={destination.image} alt={destination.name} className="h-52 w-full object-cover sm:h-64" />
+              <CardContent className="space-y-4 p-4 sm:space-y-5 sm:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h2 className="text-2xl font-semibold">{destination.name}</h2>

@@ -124,13 +124,13 @@ export function TourPackages({ lang, schedules, packagePrice, entranceFee }: { l
 
   return (
     <section id="tour-packages" className="bg-muted/30 py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 max-w-3xl sm:mb-12">
           <p className="mb-3 text-sm uppercase tracking-widest text-primary">Dolan Bareng Kang Pir</p>
-          <h2 className="mb-4 text-4xl font-bold md:text-5xl">{text.title}</h2>
-          <p className="text-lg text-muted-foreground">{text.intro}</p>
+          <h2 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl">{text.title}</h2>
+          <p className="text-base text-muted-foreground sm:text-lg">{text.intro}</p>
         </div>
-        <div className="grid gap-7 xl:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:gap-7 2xl:grid-cols-3">
           {displayPackages.map((tourPackage) => (
             <Card key={tourPackage.title} className="border-0 shadow-md">
               <CardHeader>

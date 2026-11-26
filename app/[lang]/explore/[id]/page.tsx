@@ -363,7 +363,7 @@ export default async function TourDetailPage({
       <div className="min-h-screen bg-background">
         <Header dict={dict} lang={currentLang} />
 
-        <main className="container mx-auto px-6 py-32 text-center">
+        <main className="container mx-auto px-4 py-20 text-center sm:px-6 sm:py-28 lg:py-32">
           <h1 className="text-4xl font-bold mb-4">
             {labels.notFound}
           </h1>
@@ -402,7 +402,7 @@ export default async function TourDetailPage({
       <Header dict={dict} lang={currentLang} />
 
       {/* Hero */}
-      <section className="relative h-[420px]">
+      <section className="relative h-[clamp(18rem,58svh,26.25rem)]">
         <img
           src={tour.image}
           alt={title}
@@ -411,12 +411,12 @@ export default async function TourDetailPage({
 
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 container mx-auto h-full px-6 flex flex-col justify-end pb-10 text-white">
+        <div className="relative z-10 container mx-auto flex h-full flex-col justify-end px-4 pb-7 text-white sm:px-6 sm:pb-10">
           <p className="uppercase tracking-widest text-sm mb-3">
             Banyuwangi, Indonesia
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-bold mb-5">
+          <h1 className="mb-4 text-3xl font-bold leading-tight sm:mb-5 sm:text-5xl lg:text-6xl">
             {title}
           </h1>
 
@@ -440,8 +440,8 @@ export default async function TourDetailPage({
       </section>
 
       {/* Details */}
-      <main className="container mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <main className="container mx-auto px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-10">
 
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-10">
@@ -493,7 +493,7 @@ export default async function TourDetailPage({
 
           {/* Booking Information */}
           <aside>
-            <div className="border rounded-xl p-6 space-y-6 sticky top-8">
+            <div className="space-y-6 rounded-xl border p-4 sm:p-6 lg:sticky lg:top-8">
               <div>
                 <p className="text-sm text-muted-foreground">
                   {labels.startingPrice}

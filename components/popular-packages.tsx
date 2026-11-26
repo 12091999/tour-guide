@@ -43,11 +43,11 @@ export async function PopularPackages() {
   const fourPersonPerGuest = await formatPrice(1200000, "IDR", "en")
   const fourPersonTotal = await formatPrice(4800000, "IDR", "en")
   return (
-    <section id="packages" className="py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="packages" className="bg-background py-14 sm:py-20 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-20">
-          <h2 className="text-5xl md:text-6xl font-light tracking-tight mb-6 text-balance">
+        <div className="mb-10 max-w-3xl sm:mb-14 lg:mb-20">
+          <h2 className="mb-4 text-3xl font-light tracking-tight text-balance sm:mb-6 sm:text-4xl md:text-6xl">
             Popular <span className="font-semibold">Packages</span>
           </h2>
           <p className="text-lg text-muted-foreground text-balance leading-relaxed">
@@ -56,7 +56,7 @@ export async function PopularPackages() {
         </div>
 
         {/* Packages Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-5 md:grid-cols-2 md:gap-6 2xl:grid-cols-3 lg:gap-8">
           {packages.map((pkg, index) => (
             <Card
               key={index}
@@ -64,7 +64,7 @@ export async function PopularPackages() {
             >
               <Link href="/en/explore#tour-packages" aria-label={`View ${pkg.title} itinerary`} className="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset" />
               {/* Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-52 overflow-hidden sm:h-64">
                 <img
                   src={pkg.image || "/placeholder.svg"}
                   alt={pkg.title}
@@ -81,7 +81,7 @@ export async function PopularPackages() {
               </div>
 
               {/* Content */}
-              <div className="p-6 space-y-6">
+              <div className="space-y-5 p-4 sm:space-y-6 sm:p-6">
                 <div>
                   <h3 className="text-2xl font-semibold mb-4">{pkg.title}</h3>
 
@@ -108,7 +108,7 @@ export async function PopularPackages() {
                 </div>
 
                 {/* Price & CTA */}
-                <div className="flex items-center justify-between pt-6 border-t border-border">
+                <div className="flex flex-col items-stretch justify-between gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:pt-6">
                   <div>
                     <div className="text-xs text-muted-foreground mb-1">Group price</div>
                     <div className="text-sm font-semibold text-primary">2 people: {twoPersonPerGuest.formatted}/person ({twoPersonTotal.formatted} total)</div>

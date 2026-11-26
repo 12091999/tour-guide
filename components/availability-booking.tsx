@@ -111,7 +111,7 @@ export function AvailabilityBooking({
   return (
     <Dialog open={open} onOpenChange={(value) => { setOpen(value); if (!value) { setConfirmation(""); setError("") } }}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
+      <DialogContent className="max-h-[calc(100dvh-1rem)] overflow-y-auto p-4 sm:max-h-[90dvh] sm:max-w-lg sm:p-6">
         <DialogHeader>
           <DialogTitle>{confirmation ? (isId ? "Reservasi tercatat" : "Reservation received") : (isId ? "Pilih tanggal & waktu" : "Choose date & time")}</DialogTitle>
           <DialogDescription>{tourName} · {isPackage ? (isId ? "Paket wisata" : "Tour package") : (isId ? "Wisata perorangan" : "Individual tour")}</DialogDescription>

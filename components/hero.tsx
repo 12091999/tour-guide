@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-slate-950">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -16,9 +16,9 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center text-white py-32">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center text-white sm:px-6 sm:py-28 lg:px-8 lg:py-32">
         <div className="space-y-8">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-light tracking-tight text-balance">
+          <h1 className="text-4xl font-light tracking-tight text-balance sm:text-6xl md:text-7xl lg:text-8xl">
             <span className="drop-shadow-lg">Discover Your Next</span>
             <span className="block font-semibold mt-2 text-amber-300 drop-shadow-lg">Adventure</span>
           </h1>
@@ -43,18 +43,18 @@ export function Hero() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 md:gap-16 max-w-3xl mx-auto mt-24 pt-16 border-t border-white/30 text-white">
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-3 gap-3 border-t border-white/30 pt-8 text-white sm:mt-20 sm:gap-8 sm:pt-12 md:gap-16">
           <div className="space-y-2">
-            <div className="text-4xl md:text-5xl font-light">15+</div>
-            <div className="text-sm text-white/75">Destinations</div>
+            <div className="text-2xl font-light sm:text-4xl md:text-5xl">15+</div>
+            <div className="text-xs text-white/75 sm:text-sm">Destinations</div>
           </div>
           <div className="space-y-2">
-            <div className="text-4xl md:text-5xl font-light">50K+</div>
-            <div className="text-sm text-white/75">Happy Travelers</div>
+            <div className="text-2xl font-light sm:text-4xl md:text-5xl">50K+</div>
+            <div className="text-xs text-white/75 sm:text-sm">Happy Travelers</div>
           </div>
           <div className="space-y-2">
-            <div className="text-4xl md:text-5xl font-light">5.5</div>
-            <div className="text-sm text-white/75">Average Rating</div>
+            <div className="text-2xl font-light sm:text-4xl md:text-5xl">5.5</div>
+            <div className="text-xs text-white/75 sm:text-sm">Average Rating</div>
           </div>
         </div>
       </div>

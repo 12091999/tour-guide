@@ -42,12 +42,12 @@ export function Header({ dict, lang }: HeaderProps) {
 
   return (
     <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
-      <div className="w-full px-0">
+      <div className="mx-auto w-full max-w-7xl px-3 sm:px-6 lg:px-8">
         <div className="flex min-h-16 items-center gap-1 py-2 sm:gap-4">
           <Link
             href={`/${lang}`}
             onClick={() => setMenuOpen(false)}
-            className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,4vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2 xl:flex-none"
+            className="flex min-w-0 flex-1 items-center gap-1 text-[clamp(0.75rem,3.8vw,1.5rem)] font-bold text-black transition-colors hover:text-black sm:gap-2 xl:flex-none"
           >
             <ArrowUpRight className="size-[clamp(1rem,5vw,1.75rem)] shrink-0" aria-hidden="true" />
             <span className="truncate">Dolan Bareng Kang Pir</span>
